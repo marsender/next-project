@@ -8,6 +8,10 @@ cd next-project
 npm install @directus/sdk
 ```
 
+Inspiration for the components comes from [Digest.club application](https://github.com/premieroctet/digestclub)
+
+Backend is provided by [Directus](https://directus.io/) - See [Directus Next.js example](https://github.com/directus-labs/examples/tree/main/nextjs)
+
 ## Install
 
 ```bash
