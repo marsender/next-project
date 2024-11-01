@@ -18,24 +18,27 @@ interface AuthFormProps {
 	isFullForm?: boolean
 }
 
+import { useRef } from 'react'
+
 export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHref, linkDescription, isFullForm = true }: AuthFormProps) {
-	const [formData, setFormData] = useState({
-		first_name: '',
-		last_name: '',
-		email: '',
-		password: '',
-	})
+	// Refs to capture input values directly
+	const firstNameRef = useRef<HTMLInputElement>(null)
+	const lastNameRef = useRef<HTMLInputElement>(null)
+	const emailRef = useRef<HTMLInputElement>(null)
+	const passwordRef = useRef<HTMLInputElement>(null)
 
-	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+	const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		onSubmit(formData)
-	}
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value,
-		})
+		// Collect values from refs
+		const formData = {
+			first_name: firstNameRef.current?.value || '',
+			last_name: lastNameRef.current?.value || '',
+			email: emailRef.current?.value || '',
+			password: passwordRef.current?.value || '',
+		}
+
+		onSubmit(formData)
 	}
 
 	return (
@@ -43,12 +46,12 @@ export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHr
 			<h1>{title}</h1>
 			{isFullForm && (
 				<>
-					<input type="text" placeholder="First Name" name="first_name" value={formData.first_name} onChange={handleInputChange} required />
-					<input type="text" placeholder="Last Name" name="last_name" value={formData.last_name} onChange={handleInputChange} required />
+					<input type="text" placeholder="First Name" name="first_name" ref={firstNameRef} required />
+					<input type="text" placeholder="Last Name" name="last_name" ref={lastNameRef} required />
 				</>
 			)}
-			<input type="email" placeholder="Email Address" name="email" value={formData.email} onChange={handleInputChange} required />
-			<input type="password" placeholder="Enter your Password" name="password" value={formData.password} required onChange={handleInputChange} />
+			<input type="email" placeholder="Email Address" name="email" ref={emailRef} required />
+			<input type="password" placeholder="Enter your Password" name="password" ref={passwordRef} required />
 			<button>{buttonText}</button>
 			<p>
 				{linkDescription}
