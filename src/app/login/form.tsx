@@ -14,7 +14,7 @@ export default function LoginForm() {
 	const router = useRouter()
 	const [error, setError] = useState('')
 	const handleFormSubmit = async (data: Data) => {
-		console.log('Next auth login with "%s" - "%s"', data.email, data.password)
+		//console.log('Next auth login with email %s and password %s', data.email, data.password)
 		const response = await signIn('credentials', {
 			email: data.email,
 			password: data.password,
@@ -24,7 +24,8 @@ export default function LoginForm() {
 			router.push('/')
 			router.refresh()
 		} else {
-			response.status === 401 ? setError('Your email or password is incorrect') : null
+			const authError: string = response.status === 401 && response.error ? response.error : 'Unknown authentication error'
+			setError(authError)
 		}
 	}
 

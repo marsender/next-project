@@ -20,15 +20,16 @@ export const options: NextAuthOptions = {
 				password: {},
 			},
 			async authorize(credentials) {
-				const email = JSON.stringify(credentials?.email)
-				const password = JSON.stringify(credentials?.password)
-				console.log('Directus login with "%s" - "%s"', email, password)
-				// Add logic here to look up the user from the credentials supplied
-				const user = await directus.login(email, password)
-				if (!user) {
-					throw new Error('Email address or password is invalid')
+				const email: string = credentials?.email ?? ''
+				const password: string = credentials?.password ?? ''
+				//console.log('Directus login with email=%s password=%s', email, password)
+				try {
+					const user = await directus.login(email, password)
+					return user as any
+				} catch (error: any) {
+					const directusError: string = error.errors && error.errors.length > 0 ? error.errors[0].message : 'Unknown authentication error'
+					throw { message: directusError }
 				}
-				return user as any
 			},
 		}),
 	],
@@ -60,27 +61,27 @@ export const options: NextAuthOptions = {
 	events: {
 		/* on successful sign in */
 		async signIn(message) {
-			console.log('Next auth signIn message: %s', message)
+			console.log('Next auth signIn message: %o', message)
 		},
 		/* on signout */
 		async signOut(message) {
-			console.log('Next auth signOut message: %s', message)
+			console.log('Next auth signOut message: %o', message)
 		},
 		/* user created */
 		async createUser(message) {
-			console.log('Next auth createUser message: %s', message)
+			console.log('Next auth createUser message: %o', message)
 		},
 		/* user updated - e.g. their email was verified */
 		async updateUser(message) {
-			console.log('Next auth updateUser message: %s', message)
+			console.log('Next auth updateUser message: %o', message)
 		},
 		/* account (e.g. Twitter) linked to a user */
 		async linkAccount(message) {
-			console.log('Next auth linkAccount message: %s', message)
+			console.log('Next auth linkAccount message: %o', message)
 		},
 		/* session is active */
 		async session(message) {
-			console.log('Next auth session message: %s', message)
+			console.log('Next auth session message: %o', message)
 		},
 	},
 }

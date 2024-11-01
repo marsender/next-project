@@ -20,11 +20,18 @@ export default function RegistrationForm() {
 				...data,
 			}),
 		})
-		if (response.status === 201) {
-			router.push('/')
-			router.refresh()
-		} else {
-			response.status === 409 ? setError('A user with this email already exist') : null
+		switch (response.status) {
+			case 201:
+				// Account Created
+				router.push('/')
+				router.refresh()
+				break
+			case 409:
+				setError('A user with this email already exist')
+				break
+			default:
+				setError('An unexpected error occurred, please try again')
+				break
 		}
 	}
 

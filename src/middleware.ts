@@ -1,3 +1,4 @@
 export { default } from 'next-auth/middleware'
 
-export const config = { matcher: ['/'] }
+// Redirect to login for admin path
+export const config = { matcher: ['/admin/'] }
