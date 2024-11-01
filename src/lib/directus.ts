@@ -8,11 +8,7 @@ const { email, password, token } = serverRuntimeConfig
 
 const directus = createDirectus(url)
 	.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
-	.with(
-		rest({
-			onRequest: (options) => ({ ...options, cache: 'no-store' }),
-		})
-	)
+	.with(rest({ onRequest: (options) => ({ ...options, cache: 'no-store' }) }))
 
 export async function getDirectusClient() {
 	//console.log('Email: %s', email)
