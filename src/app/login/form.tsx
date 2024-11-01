@@ -4,6 +4,8 @@ import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import AuthForm from '@/components/auth/AuthForm'
 import { useState } from 'react'
+import useCustomToast from '@/hooks/useCustomToast'
+import useTransitionRefresh from '@/hooks/useTransitionRefresh'
 
 interface Data {
 	email?: string
@@ -11,6 +13,8 @@ interface Data {
 }
 
 export default function LoginForm() {
+	const { refresh } = useTransitionRefresh()
+	const { successToast } = useCustomToast()
 	const router = useRouter()
 	const [error, setError] = useState('')
 	const handleFormSubmit = async (data: Data) => {
@@ -21,8 +25,10 @@ export default function LoginForm() {
 			redirect: false,
 		})
 		if (!response?.error) {
+			successToast('Authentication success')
 			router.push('/')
-			router.refresh()
+			//router.refresh()
+			refresh()
 		} else {
 			const authError: string = response.status === 401 && response.error ? response.error : 'Unknown authentication error'
 			setError(authError)

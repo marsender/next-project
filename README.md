@@ -6,11 +6,18 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 npx create-next-app@latest next-project --ts --app --src-dir --eslint --turbopack --tailwind --import-alias "@/*"
 cd next-project
 npm install @directus/sdk
+npm add next-auth # server session
+npm add react-hot-toast
 ```
 
 Inspiration for the components comes from [Digest.club application](https://github.com/premieroctet/digestclub)
 
 Backend is provided by [Directus](https://directus.io/) - See [Directus Next.js example](https://github.com/directus-labs/examples/tree/main/nextjs)
+
+Directus documentation
+
+- (Create Re-Usable Page Components)[https://docs.directus.io/guides/headless-cms/reusable-components.html]
+- (Using Directus Auth with NextAuth.js)[https://docs.directus.io/blog/directus-auth-nextauth.html]
 
 ## Install
 
