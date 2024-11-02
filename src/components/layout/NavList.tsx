@@ -22,6 +22,9 @@ const MenuItem = ({ pathName, route, label }: { pathName: string | null; route: 
 	</li>
 )
 
+/**
+ * @see https://www.radix-ui.com/primitives/docs/components/navigation-menu
+ */
 export default function NavList() {
 	const pathName = usePathname()
 	const { status } = useSession()

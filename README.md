@@ -13,14 +13,17 @@ npm add @radix-ui/react-navigation-menu
 npm add --dev clsx
 ```
 
-Inspiration for the components comes from [Digest.club application](https://github.com/premieroctet/digestclub)
+Inspiration for the architecture and components comes from [Digest.club application](https://github.com/premieroctet/digestclub)
 
-Backend is provided by [Directus](https://directus.io/) - See [Directus Next.js example](https://github.com/directus-labs/examples/tree/main/nextjs)
+Backend is provided by [Directus](https://directus.io/)
 
-Directus documentation
+- [Directus Next.js example](https://github.com/directus-labs/examples/tree/main/nextjs)
+- [Create Re-Usable Page Components](https://docs.directus.io/guides/headless-cms/reusable-components.html)
+- [Using Directus Auth with NextAuth.js](https://docs.directus.io/blog/directus-auth-nextauth.html)
 
-- (Create Re-Usable Page Components)[https://docs.directus.io/guides/headless-cms/reusable-components.html]
-- (Using Directus Auth with NextAuth.js)[https://docs.directus.io/blog/directus-auth-nextauth.html]
+Frontend libraries
+
+- [Radix UI](https://www.radix-ui.com/primitives)
 
 ## Install
 
