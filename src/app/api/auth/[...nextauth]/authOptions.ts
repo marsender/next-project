@@ -1,6 +1,7 @@
 import type { NextAuthOptions, Session, User } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { JWT } from 'next-auth/jwt'
+import { routes } from '@/lib/constants'
 import directus from '@/lib/directus'
 
 interface CustomSession extends Session {
@@ -11,7 +12,7 @@ interface CustomSession extends Session {
 /**
  * @see https://next-auth.js.org/configuration/options
  */
-export const options: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
 	providers: [
 		CredentialsProvider({
 			name: 'Credentials',
@@ -35,7 +36,7 @@ export const options: NextAuthOptions = {
 	],
 	secret: process.env.NEXTAUTH_SECRET,
 	pages: {
-		signIn: '/login',
+		signIn: routes.LOGIN,
 		// signOut: '/logout',
 		// error: '/auth/error', // Error code passed in query string as ?error=
 		// verifyRequest: '/reset-password',
@@ -52,9 +53,13 @@ export const options: NextAuthOptions = {
 			}
 			return token
 		},
-		async session({ session, token }: { session: CustomSession; token: any }) {
+		async session({ session, token, user }: { session: CustomSession; token: any; user: any }) {
 			session.accessToken = token.accessToken
 			session.refreshToken = token.refreshToken
+			if (user) {
+				session.user = user
+			}
+			console.log('Next auth session callback user: %o', user)
 			return session
 		},
 	},

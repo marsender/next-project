@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FormEvent, useState } from 'react'
 import { passwordRequest } from '@directus/sdk'
 import directus from '@/lib/directus'
+import { routes } from '@/lib/constants'
 
 export default function RequestResetPasswordForm() {
 	const [email, setEmail] = useState('')
@@ -33,7 +34,7 @@ export default function RequestResetPasswordForm() {
 			<p>Enter your registered email and a reset password link will be sent to you</p>
 			<input type="email" placeholder="Email Address" name="email" required onChange={(e) => setEmail(e.target.value)} />
 			<button>Send Reset Link</button>
-			<Link href="/login">Login page</Link>
+			<Link href={routes.LOGIN}>Login page</Link>
 		</form>
 	)
 }

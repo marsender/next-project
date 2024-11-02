@@ -2,6 +2,7 @@
 import AuthForm from '@/components/auth/AuthForm'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { routes } from '@/lib/constants'
 
 interface Data {
 	first_name?: string
@@ -38,7 +39,7 @@ export default function RegistrationForm() {
 	return (
 		<>
 			{error && <p>{error}</p>}
-			<AuthForm title="Register here" onSubmit={handleFormSubmit} buttonText="Register" linkDescription="Already have an account?" linkText="Login" linkHref="/login" />
+			<AuthForm title="Register here" onSubmit={handleFormSubmit} buttonText="Register" linkDescription="Already have an account?" linkText="Login" linkHref={routes.LOGIN} />
 		</>
 	)
 }
