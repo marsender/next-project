@@ -4,6 +4,7 @@ export const routes = {
 	HOME: '/',
 	LOGIN: '/login',
 	ACCOUNT: '/account',
+	ABOUT: '/about',
 }
 
 export const mainNavigation = [
@@ -13,14 +14,19 @@ export const mainNavigation = [
 		requireAuth: false,
 	},
 	{
+		route: routes.LOGIN,
+		label: 'Login',
+		requireAuth: false,
+	},
+	{
 		route: routes.ACCOUNT,
 		label: 'Account',
 		requireAuth: true,
 	},
 	{
-		route: routes.LOGIN,
-		label: 'Login',
-		requireAuth: false,
+		route: routes.ABOUT,
+		label: 'About',
+		requireAuth: true,
 	},
 ] as const
 
@@ -45,7 +51,7 @@ export const SETTINGS_ITEMS = [
 		title: 'Login',
 		routePath: routes.LOGIN,
 		icon: <LogIn color="red" size={48} />,
-		subtitle: 'Manage your user account',
+		subtitle: 'Login into application',
 	},
 	{
 		id: 'user',
