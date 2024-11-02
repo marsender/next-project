@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@directus/sdk": "^17.0.2",
+    "@radix-ui/react-navigation-menu": "^1.2.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.454.0",
     "next": "15.0.1",
     "next-auth": "^4.24.10",
     "react": "19.0.0-rc-69d4b800-20241021",

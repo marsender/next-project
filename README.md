@@ -8,6 +8,9 @@ cd next-project
 npm install @directus/sdk
 npm add next-auth # server session
 npm add react-hot-toast
+npm add lucide-react
+npm add @radix-ui/react-navigation-menu
+npm add --dev clsx
 ```
 
 Inspiration for the components comes from [Digest.club application](https://github.com/premieroctet/digestclub)
