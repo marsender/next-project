@@ -28,7 +28,7 @@ export default function NavList() {
 	const navItems = mainNavigation.filter((item) => !item.requireAuth || (item.requireAuth && status === 'authenticated'))
 
 	return (
-		<div className="relatve">
+		<div className="relative">
 			<div className="hidden sm:flex flex-row gap-2 sm:gap-4 items-center">
 				{navItems.map((item, index) => (
 					<Fragment key={`${item.route}-nav-list-fragment`}>
