@@ -10,6 +10,7 @@ npm add next-auth # server session
 npm add react-hot-toast
 npm add lucide-react
 npm add @radix-ui/react-navigation-menu
+npm add class-variance-authority
 npm add --dev clsx
 ```
 

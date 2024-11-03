@@ -5,6 +5,8 @@ import './globals.css'
 import { getSession } from '@/lib/sessions'
 import Header from '@/components/layout/Header'
 
+export const dynamic = 'force-dynamic'
+
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
 	variable: '--font-geist-sans',
