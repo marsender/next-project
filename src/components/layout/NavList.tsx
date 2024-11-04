@@ -27,8 +27,10 @@ const MenuItem = ({ pathName, route, label }: { pathName: string | null; route: 
  */
 export default function NavList() {
 	const pathName = usePathname()
-	const { status } = useSession()
-	const navItems = mainNavigation.filter((item) => !item.requireAuth || (item.requireAuth && status === 'authenticated'))
+	const { data: session, status } = useSession()
+	const navItems = mainNavigation.filter((item) => (!item.requireAuth && (status === 'unauthenticated' || !item.hideAuth)) || (item.requireAuth && status === 'authenticated'))
+
+	console.log('Session status: %o', status)
 
 	return (
 		<div className="relative">

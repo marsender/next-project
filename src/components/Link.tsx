@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { ReactNode, forwardRef } from 'react'
 //import { AiOutlineLoading3Quarters as LoadingIcon } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters';
 import clsx from 'clsx'
 import { VariantProps, cva } from 'class-variance-authority'
@@ -25,7 +25,7 @@ const linkVariants = cva('rounded-md font-semibold focus-visible:outline focus-v
 
 export interface LinkProps extends React.ComponentPropsWithoutRef<'a'>, VariantProps<typeof linkVariants> {
 	fullWidth?: boolean
-	icon?: React.ReactNode
+	icon?: ReactNode
 }
 
 const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {

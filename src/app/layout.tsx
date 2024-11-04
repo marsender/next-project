@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import Providers from './providers'
@@ -19,7 +20,7 @@ const geistSans = localFont({
 // })
 
 type Props = {
-	children: React.ReactNode
+	children: ReactNode
 }
 
 const title = `Opale-concept`
@@ -59,7 +60,7 @@ export default async function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} antialiased`}>
-				<Providers>
+				<Providers session={session}>
 					<Header user={session?.user} />
 					{children}
 				</Providers>

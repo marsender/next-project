@@ -1,5 +1,6 @@
 'use client'
 
+import { ReactNode } from 'react'
 //import { AiOutlineLoading3Quarters as LoadingIcon } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters'
 import { VariantProps, cva } from 'class-variance-authority'
 import clsx from 'clsx'
@@ -39,7 +40,7 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'>, V
 	isLoading?: boolean
 	loadingText?: string
 	fullWidth?: boolean
-	icon?: React.ReactNode
+	icon?: ReactNode
 	variant?: any
 	size?: any
 }

@@ -10,6 +10,8 @@ interface CustomSession extends Session {
 }
 
 /**
+ * All requests to /api/auth/* (signIn, callback, signOut, etc.) will automatically be handled by NextAuth.js
+ *
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
@@ -37,7 +39,7 @@ export const authOptions: NextAuthOptions = {
 	secret: process.env.NEXTAUTH_SECRET,
 	pages: {
 		signIn: routes.LOGIN,
-		// signOut: '/logout',
+		signOut: routes.LOGOUT,
 		// error: '/auth/error', // Error code passed in query string as ?error=
 		// verifyRequest: '/reset-password',
 		// newUser: '/new-user', // New users will be directed here on first sign in

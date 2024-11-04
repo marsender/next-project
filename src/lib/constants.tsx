@@ -3,6 +3,7 @@ import { LogIn, User } from 'lucide-react'
 export const routes = {
 	HOME: '/',
 	LOGIN: '/login',
+	LOGOUT: '/logout',
 	ACCOUNT: '/account',
 	ABOUT: '/about',
 }
@@ -11,21 +12,31 @@ export const mainNavigation = [
 	{
 		route: routes.HOME,
 		label: 'Home',
+		hideAuth: false,
 		requireAuth: false,
 	},
 	{
-		route: routes.LOGIN,
-		label: 'Login',
+		route: routes.ABOUT,
+		label: 'About',
+		hideAuth: false,
 		requireAuth: false,
 	},
 	{
 		route: routes.ACCOUNT,
 		label: 'Account',
+		hideAuth: false,
 		requireAuth: true,
 	},
 	{
-		route: routes.ABOUT,
-		label: 'About',
+		route: routes.LOGIN,
+		label: 'Login',
+		hideAuth: true,
+		requireAuth: false,
+	},
+	{
+		route: routes.LOGOUT,
+		label: 'Logout',
+		hideAuth: false,
 		requireAuth: true,
 	},
 ] as const

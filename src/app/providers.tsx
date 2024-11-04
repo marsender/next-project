@@ -1,14 +1,20 @@
 'use client'
 
+import { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { SessionProvider } from 'next-auth/react'
 import { customToastOptions } from '@/hooks/useCustomToast'
 
 const locale = 'en'
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+type Props = {
+	session: any
+	children: ReactNode
+}
+
+export default function Providers({ session, children }: Props) {
 	return (
-		<SessionProvider>
+		<SessionProvider session={session}>
 			{children}
 			<Toaster toastOptions={customToastOptions} />
 		</SessionProvider>

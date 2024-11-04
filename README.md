@@ -6,7 +6,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 npx create-next-app@latest next-project --ts --app --src-dir --eslint --turbopack --tailwind --import-alias "@/*"
 cd next-project
 npm install @directus/sdk
-npm add next-auth # server session
+npm add next-auth
 npm add react-hot-toast
 npm add lucide-react
 npm add @radix-ui/react-navigation-menu

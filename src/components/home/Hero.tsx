@@ -19,11 +19,18 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 				<h2 className="mt-4 text-2xl font-[300]">{global.description}</h2>
 				<div className="pt-10 justify-center lg:justify-start flex gap-4">
 					{isConnected ? (
-						<Link href="/teams">
-							<Button type="button" size="lg">
-								Go to Dashboard
-							</Button>
-						</Link>
+						<>
+							<Link href="/teams">
+								<Button type="button" size="lg">
+									Go to Dashboard
+								</Button>
+							</Link>
+							<Link href={routes.LOGOUT}>
+								<Button type="button" size="lg">
+									Logout
+								</Button>
+							</Link>
+						</>
 					) : (
 						<Link href={routes.LOGIN}>
 							<Button type="button" size="lg">
