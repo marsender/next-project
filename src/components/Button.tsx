@@ -88,7 +88,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 							{children}
 						</span>
 					)}
-					{icon && !isLoading && <span className={clsx('flex  items-center justify-center', iconVariants({ size }))}>{icon}</span>}
+					{icon && !isLoading && <span className={clsx('flex items-center justify-center', iconVariants({ size }))}>{icon}</span>}
 				</span>
 			)}
 		</button>

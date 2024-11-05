@@ -12,33 +12,33 @@ export const mainNavigation = [
 	{
 		route: routes.HOME,
 		label: 'Home',
-		hideAuth: false,
-		requireAuth: false,
+		displayWenAuthenticated: true,
+		displayWenUnauthenticated: true,
 	},
 	{
 		route: routes.ABOUT,
 		label: 'About',
-		hideAuth: false,
-		requireAuth: false,
+		displayWenAuthenticated: true,
+		displayWenUnauthenticated: true,
 	},
-	{
-		route: routes.ACCOUNT,
-		label: 'Account',
-		hideAuth: false,
-		requireAuth: true,
-	},
-	{
-		route: routes.LOGIN,
-		label: 'Login',
-		hideAuth: true,
-		requireAuth: false,
-	},
-	{
-		route: routes.LOGOUT,
-		label: 'Logout',
-		hideAuth: false,
-		requireAuth: true,
-	},
+	// {
+	// 	route: routes.ACCOUNT,
+	// 	label: 'Account',
+	// 	displayWenAuthenticated: true,
+	// 	displayWenUnauthenticated: false,
+	// },
+	// {
+	// 	route: routes.LOGIN,
+	// 	label: 'Login',
+	// 	displayWenAuthenticated: false,
+	// 	displayWenUnauthenticated: true,
+	// },
+	// {
+	// 	route: routes.LOGOUT,
+	// 	label: 'Logout',
+	// 	displayWenAuthenticated: true,
+	// 	displayWenUnauthenticated: false,
+	// },
 ] as const
 
 export type Route = keyof typeof routes

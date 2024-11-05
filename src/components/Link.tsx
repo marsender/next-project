@@ -48,7 +48,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
 			{...rest}
 		>
 			<span className="flex items-center justify-center gap-2">
-				{icon && <span className="h-4 w-4 flex  items-center justify-center ">{icon}</span>}
+				{icon && <span className="h-4 w-4 flex items-center justify-center">{icon}</span>}
 				{children && children}
 			</span>
 		</NextLink>

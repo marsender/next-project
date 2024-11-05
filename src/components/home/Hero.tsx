@@ -25,11 +25,6 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 									Go to Dashboard
 								</Button>
 							</Link>
-							<Link href={routes.LOGOUT}>
-								<Button type="button" size="lg">
-									Logout
-								</Button>
-							</Link>
 						</>
 					) : (
 						<Link href={routes.LOGIN}>
@@ -40,7 +35,7 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 					)}
 					<Link href={routes.ABOUT}>
 						<Button type="button" size="lg" variant="outline">
-							Abtout
+							About
 						</Button>
 					</Link>
 				</div>
