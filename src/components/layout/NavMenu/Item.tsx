@@ -48,7 +48,7 @@ const Item: Overload = (props: AnchorProps | ButtonProps) => {
 					</NavigationMenu.Link>
 				</div>
 			) : (
-				<div className="flex items-center py-[6px] px-3 " {...otherProps}>
+				<div className="flex items-center py-[6px] px-3" {...otherProps}>
 					<span className="absolute inset-0"></span>
 					<span className="flex h-4 w-4 flex-none items-stretch justify-center mr-3" aria-hidden>
 						{icon}
