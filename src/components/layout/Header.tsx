@@ -3,7 +3,7 @@ import { Session } from 'next-auth'
 import Link from 'next/link'
 import Logo from './Logo'
 import NavList from './NavList'
-import Button from '../Button'
+import Button from '@/components/Button'
 import { NavMenu } from './NavMenu/NavMenu'
 
 type Props = { user?: Session['user'] }

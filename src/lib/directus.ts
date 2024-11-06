@@ -11,7 +11,7 @@ const directus = createDirectus(url)
 	.with(rest({ onRequest: (options) => ({ ...options, cache: 'no-store' }) }))
 
 export async function getDirectusClient() {
-	//console.log('Email: %s', email)
+	console.log('Directus server auth with Email: %s', email)
 	if (email && password) {
 		await directus.auth.login({ email, password })
 	} else if (token) {

@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
 			async authorize(credentials) {
 				const email: string = credentials?.email ?? ''
 				const password: string = credentials?.password ?? ''
-				//console.log('Directus login with email=%s password=%s', email, password)
+				console.log('Directus login with email=%s password=%s', email, password)
 				try {
 					const user = await directus.login(email, password)
 					return user as any
