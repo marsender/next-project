@@ -7,6 +7,7 @@ const Logo = (props: { className?: string; isWhite?: boolean }) => {
 
 	return (
 		<span className={clsx('flex items-center cursor-pointer gap-2')}>
+			{/* Pierre hack: fill='currentColor' */}
 			<BrandIcon fill={devMode ? '#dc2828' : props.isWhite ? 'white' : 'black'} />
 
 			{devMode && (

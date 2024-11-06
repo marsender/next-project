@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import directus from '@/lib/directus'
 import { readItems } from '@directus/sdk'
-import Button from '@/components/Button'
+import CustomLink from '@/components/CustomLink'
+import { User } from 'lucide-react'
 
 async function getGlobals() {
 	return directus.request(readItems('global'))
@@ -19,25 +20,17 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 				<h2 className="mt-4 text-2xl font-[300]">{global.description}</h2>
 				<div className="pt-10 justify-center lg:justify-start flex gap-4">
 					{isConnected ? (
-						<>
-							<Link href="/teams">
-								<Button type="button" size="lg">
-									Go to Dashboard
-								</Button>
-							</Link>
-						</>
+						<CustomLink href="/teams" size="lg" icon={<User size={48} />}>
+							Go to Dashboard
+						</CustomLink>
 					) : (
-						<Link href={routes.LOGIN}>
-							<Button type="button" size="lg">
-								Login
-							</Button>
-						</Link>
+						<CustomLink href={routes.LOGIN} size="lg">
+							Login
+						</CustomLink>
 					)}
-					<Link href={routes.ABOUT}>
-						<Button type="button" size="lg" variant="outline">
-							About
-						</Button>
-					</Link>
+					<CustomLink href={routes.ABOUT} size="lg" variant="outline">
+						About
+					</CustomLink>
 				</div>
 			</section>
 			<section className="flex-1 flex justify-center lg:justify-end max-lg:mt-12">

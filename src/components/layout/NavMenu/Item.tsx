@@ -1,7 +1,4 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
-// import Link from 'next/link';
-import React from 'react'
-import Button from '@/components/Button'
 
 interface MenuItemProps {
 	icon?: React.ReactNode
@@ -51,13 +48,13 @@ const Item: Overload = (props: AnchorProps | ButtonProps) => {
 					</NavigationMenu.Link>
 				</div>
 			) : (
-				<button className="flex items-center py-[6px] px-3 " {...otherProps}>
+				<div className="flex items-center py-[6px] px-3 " {...otherProps}>
 					<span className="absolute inset-0"></span>
 					<span className="flex h-4 w-4 flex-none items-stretch justify-center mr-3" aria-hidden>
 						{icon}
 					</span>
 					<span className="whitespace-nowrap text-sm 2xl:text-base">{children}</span>
-				</button>
+				</div>
 			)}
 		</NavigationMenu.Item>
 	)
