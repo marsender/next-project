@@ -17,7 +17,7 @@ const buttonVariants = cva('rounded-md font-semibold focus-visible:outline focus
 		},
 		size: {
 			sm: 'py-1 px-4 text-sm',
-			md: 'py-2 px-5 text-sm',
+			md: 'py-2 px-5 text-base',
 			lg: 'px-6 py-3 text-lg',
 		},
 	},
