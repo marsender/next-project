@@ -1,3 +1,4 @@
+//import React from 'react'
 import { cva } from 'class-variance-authority'
 
 export const buttonVariants = cva('rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center justify-center gap-2 cursor-pointer', {

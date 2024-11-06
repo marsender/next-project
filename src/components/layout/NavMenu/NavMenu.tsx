@@ -8,7 +8,7 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { signOut } from 'next-auth/react'
 import Divider from './Divider'
 import Item from './Item'
-import CustomButton from '@/components/CustomButton'
+import CustomDiv from '@/components/CustomDiv'
 
 type Props = { user?: Session['user'] }
 
@@ -25,9 +25,7 @@ export const NavMenu = ({ user }: Props) => {
 						<NavigationMenu.Item asChild>
 							<div className="flex items-stretch">
 								<NavigationMenu.Trigger onPointerMove={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()}>
-									<CustomButton type="button" variant="ghost">
-										User name todo
-									</CustomButton>
+									<CustomDiv variant="ghost">User name todo</CustomDiv>
 								</NavigationMenu.Trigger>
 								<NavigationMenu.Content onPointerEnter={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="absolute right-0 :right-auto left-auto lg:left-[-100%] xl:left-[0] top-[130%] w-fit md:w-fit z-10 animate-in fade-in duration-300">
 									<div className="w-auto min-w-[150px] sm:min-w-[224px] flex-auto overflow-hidden rounded-md bg-white text-sm 2xl:text-base leading-6 shadow-lg ring-1 ring-gray-900/5">

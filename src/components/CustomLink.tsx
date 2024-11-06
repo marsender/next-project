@@ -3,7 +3,7 @@ import { ReactNode, forwardRef } from 'react'
 import { VariantProps, cva } from 'class-variance-authority'
 import clsx from 'clsx'
 import NextLink from 'next/link'
-import { buttonVariants, iconVariants } from '@/lib/variants'
+import { buttonVariants, iconVariants } from '@/app/variants'
 
 export interface LinkProps extends React.ComponentPropsWithoutRef<'a'>, VariantProps<typeof buttonVariants> {
 	fullWidth?: boolean

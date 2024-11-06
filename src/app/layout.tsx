@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import Providers from './providers'
-import './globals.css'
+import Providers from '@/app/providers'
+import '@/app/globals.css'
 import { getSession } from '@/lib/sessions'
 import Header from '@/components/layout/Header'
 

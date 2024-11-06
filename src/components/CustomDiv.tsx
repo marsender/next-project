@@ -4,7 +4,7 @@ import { VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 import { buttonVariants, iconVariants } from '@/app/variants'
 
-export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'>, VariantProps<typeof buttonVariants> {
+export interface DivProps extends React.ComponentPropsWithoutRef<'div'>, VariantProps<typeof buttonVariants> {
 	isLoading?: boolean
 	loadingText?: string
 	fullWidth?: boolean
@@ -13,13 +13,11 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'>, V
 	size?: any
 }
 
-const CustomButton = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-	const { isLoading = false, children, loadingText, disabled, fullWidth = false, className = '', variant = 'default', size = 'md', icon, ...rest } = props
-
-	const disabledClass = 'opacity-50 cursor-not-allowed pointer-events-none'
+const CustomDiv = forwardRef<HTMLDivElement, DivProps>((props, ref) => {
+	const { isLoading = false, children, loadingText, fullWidth = false, className = '', variant = 'default', size = 'md', icon, ...rest } = props
 
 	return (
-		<button
+		<div
 			ref={ref}
 			className={clsx(
 				buttonVariants({
@@ -27,14 +25,10 @@ const CustomButton = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
 					size,
 				}),
 				{
-					[disabledClass]: disabled,
-				},
-				{
 					'w-full box-border': fullWidth,
 				},
 				className
 			)}
-			disabled={disabled || isLoading}
 			{...rest}
 		>
 			{isLoading ? (
@@ -59,9 +53,9 @@ const CustomButton = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
 					{icon && !isLoading && <span className={clsx('flex items-center justify-center', iconVariants({ size }))}>{icon}</span>}
 				</span>
 			)}
-		</button>
+		</div>
 	)
 })
 
-CustomButton.displayName = 'CustomButton'
-export default CustomButton
+CustomDiv.displayName = 'CustomDiv'
+export default CustomDiv

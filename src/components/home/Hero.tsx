@@ -1,6 +1,5 @@
 import { routes } from '@/lib/constants'
 import Image from 'next/image'
-import Link from 'next/link'
 import directus from '@/lib/directus'
 import { readItems } from '@directus/sdk'
 import CustomLink from '@/components/CustomLink'
