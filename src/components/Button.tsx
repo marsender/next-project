@@ -1,10 +1,7 @@
-'use client'
-
-import { ReactNode } from 'react'
+import { ReactNode, forwardRef } from 'react'
 //import { AiOutlineLoading3Quarters as LoadingIcon } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters'
 import { VariantProps, cva } from 'class-variance-authority'
 import clsx from 'clsx'
-import React, { forwardRef } from 'react'
 
 const buttonVariants = cva('rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center justify-center gap-2 cursor-pointer', {
 	variants: {
