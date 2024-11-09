@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
 
 const ListItem = ({ pathName, route, label }: { pathName: string | null; route: string; label: string }) => (
-	<Link className={clsx(' hover:text-gray-700 py-3 md:py-2 text-xs sm:text-sm 2xl:text-base', pathName && pathName.split('/')[1] === route.split('/')[1] ? 'text-gray-900' : 'text-gray-400')} href={route}>
+	<Link className={clsx('hover:text-gray-700 py-3 md:py-2 text-lg', pathName && pathName.split('/')[1] === route.split('/')[1] ? 'text-gray-900' : 'text-gray-400')} href={route}>
 		{label}
 	</Link>
 )
@@ -38,7 +38,7 @@ export default function NavList() {
 				{navItems.map((item, index) => (
 					<Fragment key={`${item.route}-nav-list-fragment`}>
 						<ListItem pathName={pathName} {...item} />
-						{index !== navItems.length - 1 && <span className="text-gray-400 text-sm">|</span>}
+						{index !== navItems.length - 1 && <span className="text-gray-400">|</span>}
 					</Fragment>
 				))}
 			</div>
@@ -49,7 +49,7 @@ export default function NavList() {
 							<NavigationMenu.Trigger onPointerMove={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="group p-2 flex flex-row gap-2 items-center hover:text-violet-600 data-[state=open]:text-violet-600"></NavigationMenu.Trigger>
 
 							<NavigationMenu.Content onPointerEnter={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="absolute left-0 top-[44px] left-100 z-30 animate-in fade-in duration-300">
-								<div className="w-auto sm:min-w-[224px] flex-auto overflow-hidden rounded-md bg-white text-sm 2xl:text-base leading-6 shadow-lg ring-1 ring-gray-900/5">
+								<div className="w-auto sm:min-w-[224px] flex-auto overflow-hidden rounded-md bg-white 2xl:text-base leading-6 shadow-lg ring-1 ring-gray-900/5">
 									<ul className="p-2 flex flex-col gap-2">
 										{mainNavigation.map((item, index) => (
 											<Fragment key={`${item.route}-nav-menu-fragment`}>

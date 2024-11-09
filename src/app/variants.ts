@@ -11,7 +11,7 @@ export const buttonVariants = cva('rounded-md font-semibold focus-visible:outlin
 			success: 'border-1 shadow-sm bg-[#4ade80] hover:bg-[#3dba6b] text-white border-[#4ade80] hover:border-[#3dba6b]',
 			ghost: 'bg-transparent text-violet-700 border-1 border-transparent hover:bg-violet-100 hover:border-violet-100',
 			destructiveGhost: 'bg-transparent text-red-700 border-1 border-transparent hover:bg-red-100 hover:border-red-100',
-			link: 'border-0 text-gray-700 text-sm underline hover:text-gray-400 !px-0 !font-normal',
+			link: 'border-0 text-gray-700 underline hover:text-gray-400 !px-0 !font-normal',
 		},
 		size: {
 			sm: 'py-1 px-4 text-sm',

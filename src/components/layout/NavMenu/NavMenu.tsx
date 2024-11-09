@@ -21,7 +21,7 @@ export const NavMenu = ({ user }: Props) => {
 		<>
 			{!user && (
 				<Link href={routes.LOGIN}>
-					<div className="flex items-center justify-between gap-0.5 rounded px-3 py-2 text-[15px] font-medium text-gray-900">Login</div>
+					<div className="text-lg flex items-center justify-between gap-0.5 rounded px-3 py-2 font-medium text-gray-900">Login</div>
 				</Link>
 			)}
 			{user && (
@@ -32,7 +32,7 @@ export const NavMenu = ({ user }: Props) => {
 								<NavigationMenu.Item asChild>
 									<div className="flex items-stretch">
 										<NavigationMenu.Trigger onPointerMove={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="group  select-none leading-none">
-											<span className="flex items-center justify-between gap-0.5 rounded px-3 py-2 text-[15px] font-medium text-gray-900">
+											<span className="text-lg flex items-center justify-between gap-0.5 rounded px-3 py-2 font-medium text-gray-900">
 												User name todo
 												<CaretDownIcon className="relative top-px text-violet10 transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180" aria-hidden />
 											</span>

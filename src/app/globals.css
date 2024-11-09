@@ -24,7 +24,7 @@
 }
 
 .btn-add-link {
-	@apply p-3 md:py-2 md:px-3 shadow-md text-white bg-gradient-to-tl from-[#06b6d4] to-[#4ade80] hover:from-[#4ade80] hover:to-[#06b6d4] font-semibold rounded-lg text-xs 2xl:text-sm flex items-center justify-center gap-2;
+	@apply p-3 md:py-2 md:px-3 shadow-md text-white bg-gradient-to-tl from-[#06b6d4] to-[#4ade80] hover:from-[#4ade80] hover:to-[#06b6d4] font-semibold rounded-lg flex items-center justify-center gap-2;
 	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 

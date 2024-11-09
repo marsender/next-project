@@ -41,7 +41,7 @@ const Item: Overload = (props: AnchorProps | ButtonProps) => {
 						</span>
 					)}
 					<NavigationMenu.Link asChild>
-						<a href={href} className="whitespace-nowrap text-sm 2xl:text-base" {...otherProps}>
+						<a href={href} className="whitespace-nowrap 2xl:text-base" {...otherProps}>
 							{children}
 						</a>
 					</NavigationMenu.Link>
@@ -53,7 +53,7 @@ const Item: Overload = (props: AnchorProps | ButtonProps) => {
 							{icon}
 						</span>
 					)}
-					<span className="whitespace-nowrap text-sm 2xl:text-base">{children}</span>
+					<span className="whitespace-nowrap 2xl:text-base">{children}</span>
 				</div>
 			)}
 		</NavigationMenu.Item>
