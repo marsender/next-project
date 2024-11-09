@@ -3,7 +3,6 @@ import { Session } from 'next-auth'
 import Link from 'next/link'
 import Logo from './Logo'
 import NavList from './NavList'
-import CustomButton from '@/components/CustomButton'
 import { NavMenu } from './NavMenu/NavMenu'
 
 type Props = { user?: Session['user'] }
@@ -19,14 +18,7 @@ export default function Header({ user }: Props) {
 					<NavList />
 				</div>
 				<div className=" flex flex-row items-center">
-					{user && <NavMenu user={user} />}
-					{!user && (
-						<Link href={routes.LOGIN}>
-							<CustomButton type="button" variant="ghost">
-								Login
-							</CustomButton>
-						</Link>
-					)}
+					<NavMenu user={user} />
 				</div>
 			</div>
 		</div>

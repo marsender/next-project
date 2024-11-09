@@ -36,23 +36,23 @@ const Item: Overload = (props: AnchorProps | ButtonProps) => {
 			{hasHref(props) ? (
 				<div className="flex items-center py-[6px] px-3">
 					{icon && (
-						<span className="flex h-4 w-4 flex-none items-stretch justify-center mr-3" aria-hidden>
+						<span className="flex items-center justify-center h-4 w-4 mr-3" aria-hidden>
 							{icon}
 						</span>
 					)}
 					<NavigationMenu.Link asChild>
 						<a href={href} className="whitespace-nowrap text-sm 2xl:text-base" {...otherProps}>
 							{children}
-							<span className="absolute inset-0"></span>
 						</a>
 					</NavigationMenu.Link>
 				</div>
 			) : (
 				<div className="flex items-center py-[6px] px-3" {...otherProps}>
-					<span className="absolute inset-0"></span>
-					<span className="flex h-4 w-4 flex-none items-stretch justify-center mr-3" aria-hidden>
-						{icon}
-					</span>
+					{icon && (
+						<span className="flex items-center justify-center h-4 w-4 mr-3" aria-hidden>
+							{icon}
+						</span>
+					)}
 					<span className="whitespace-nowrap text-sm 2xl:text-base">{children}</span>
 				</div>
 			)}
