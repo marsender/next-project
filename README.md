@@ -31,5 +31,24 @@ Frontend libraries
 ```bash
 git clone git@github.com:marsender/next-project.git
 cd next-project
+npm install
+```
+
+## Build for dev
+
+```bash
 npm run dev
+```
+
+## Build for prod
+
+```bash
+npm run build
+npm run start
+```
+
+## Lint code
+
+```bash
+npm run lint
 ```

@@ -5,8 +5,14 @@ import { readItems } from '@directus/sdk'
 import CustomLink from '@/components/CustomLink'
 import { User } from 'lucide-react'
 
-async function getGlobals() {
-	return directus.request(readItems('global'))
+interface Global {
+	title: string
+	description: string
+}
+
+async function getGlobals(): Promise<Global> {
+	const response = await directus.request(readItems('global'))
+	return response as any
 }
 
 export default async function Hero({ isConnected }: { isConnected: boolean }) {

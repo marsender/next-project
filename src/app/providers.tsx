@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast'
 import { SessionProvider } from 'next-auth/react'
 import { customToastOptions } from '@/hooks/useCustomToast'
 
-const locale = 'en'
+//const locale = 'en'
 
 type Props = {
 	session: any

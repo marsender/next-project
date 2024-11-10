@@ -17,7 +17,7 @@ export default function RequestResetForm({ token }: { token: string }) {
 		e.preventDefault()
 
 		try {
-			const response = await directus.request(passwordReset(reset_token, newPassword))
+			await directus.request(passwordReset(reset_token, newPassword))
 			setSuccess('Password successfully reset, redirecting you to login page...')
 			setTimeout(() => router.push(routes.LOGIN), 1000)
 		} catch (e: any) {

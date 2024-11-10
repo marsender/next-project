@@ -1,6 +1,6 @@
 import { ReactNode, forwardRef } from 'react'
 //import { AiOutlineLoading3Quarters as LoadingIcon } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters'
-import { VariantProps, cva } from 'class-variance-authority'
+import { VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 import NextLink from 'next/link'
 import { buttonVariants, iconVariants } from '@/app/variants'
