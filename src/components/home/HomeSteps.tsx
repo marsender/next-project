@@ -10,7 +10,7 @@ type StepProps = {
 
 const Step = ({ title, img, description }: StepProps) => (
 	<div className="flex flex-col space-y-8 xs:flex-row xs:space-x-8 lg:space-x-0 lg:space-y-8 lg:flex-col max-xs:items-center">
-		<Image width={70} height={0} className="relative w-3/5 xs:w-[13rem] " src={img} alt="Digest" />
+		<Image width={70} height={0} className="relative w-3/5 xs:w-[13rem] " src={img} alt={img} />
 		<div className="text-center xs:text-left">
 			<span className="font-[800] text-2xl pt-4 pb-1 border-b-black border-b-4 mb-3 inline-block pr-5">{title}</span>
 			<div className="text-base">{description}</div>
