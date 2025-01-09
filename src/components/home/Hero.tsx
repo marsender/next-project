@@ -39,7 +39,7 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 				</div>
 			</section>
 			<section className="flex-1 flex justify-center lg:justify-end max-lg:mt-12">
-				<Image priority src="/hero.svg" className=" object-cover h-auto relative w-full max-w-[496px]" width={100} height={0} alt="Hero svg" />
+				<Image priority src="/window.svg" className=" object-cover h-auto relative w-full max-w-[496px]" width={100} height={0} alt="Hero svg" />
 			</section>
 		</div>
 	)
