@@ -5,6 +5,7 @@ import Providers from '@/app/providers'
 import '@/app/globals.css'
 import { getSession } from '@/lib/sessions'
 import Header from '@/components/layout/Header'
+import Script from 'next/script'
 
 export const dynamic = 'force-dynamic'
 
@@ -59,6 +60,9 @@ export default async function RootLayout({ children }: Props) {
 	const session = await getSession()
 	return (
 		<html lang="en">
+			<head>
+				<Script defer data-domain="opale.localhost" src="http://localhost:3012/js/script.js" strategy="afterInteractive" />
+			</head>
 			<body className={`${geistSans.variable} antialiased`}>
 				<Providers session={session}>
 					<Header user={session?.user} />

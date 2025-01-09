@@ -14,6 +14,7 @@ Backend is provided by [Directus](https://directus.io/)
 - [Directus Page Components](https://docs.directus.io/guides/headless-cms/reusable-components.html)
 - [Directus JavaScript SDK](https://docs.directus.io/guides/sdk/getting-started.html)
 - [Using Directus Auth with NextAuth.js](https://docs.directus.io/blog/directus-auth-nextauth.html)
+- [Using Directus Auth in Next.js](https://docs.directus.io/blog/implement-directus-auth-in-next-js-14.html)
 
 Frontend libraries
 
