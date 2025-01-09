@@ -42,6 +42,10 @@ export default async function DynamicPage(props: { params: Params }) {
 	const params = await props.params
 	const slug = params.slug
 	const page = await getPage(slug)
-	console.log('Directus dynamic page: %o', page)
+	if (!page) {
+		console.log('Directus incorrect page slug "%s"', slug)
+		return null
+	}
+	console.log('Directus dynamic page for slug "%s": %o', slug, page)
 	return <Page page={page} />
 }

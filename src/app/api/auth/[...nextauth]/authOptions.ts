@@ -61,7 +61,7 @@ export const authOptions: NextAuthOptions = {
 			if (user) {
 				session.user = user
 			}
-			console.log('Next auth session callback user: %o', user)
+			// console.log('Next auth session callback user: %o', user)
 			return session
 		},
 	},
@@ -88,7 +88,7 @@ export const authOptions: NextAuthOptions = {
 		},
 		/* session is active */
 		async session(message) {
-			console.log('Next auth session message: %o', message)
+			// console.log('Next auth session message: %o', message)
 		},
 	},
 }
