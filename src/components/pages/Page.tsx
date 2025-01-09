@@ -1,5 +1,6 @@
 import HomeFooter from '@/components/home/HomeFooter'
-import { getAssetURL } from '@/lib/get-asset-url'
+import { getAssetURL } from '@/lib/directus'
+import Image from 'next/image'
 
 const Page = ({ page }: any) => {
 	return (
@@ -11,7 +12,7 @@ const Page = ({ page }: any) => {
 						<div dangerouslySetInnerHTML={{ __html: page.content }}></div>
 					</section>
 					<section className="flex-1 flex justify-center lg:justify-end max-lg:mt-12">
-						<img src={getAssetURL(page.blocks[0].item.image)} alt="" loading="lazy" />
+						<Image src={getAssetURL(page.blocks[0].item.image)} alt="" className=" object-cover h-auto relative w-full max-w-[496px]" width={100} height={0} sizes="100vw" loading="lazy" />
 					</section>
 				</div>
 			</section>
