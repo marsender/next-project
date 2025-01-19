@@ -2,17 +2,20 @@
 
 import { Session } from 'next-auth'
 import { LogOut, User } from 'lucide-react'
-import { routes } from '@/lib/constants'
+import { routes, getNavigationLabel } from '@/lib/constants'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { CaretDownIcon } from '@radix-ui/react-icons'
 import { signOut } from 'next-auth/react'
 import Divider from './Divider'
 import Item from './Item'
 import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 
 type Props = { user?: Session['user'] }
 
 export const NavMenu = ({ user }: Props) => {
+	const t = useTranslations('Navigation')
+
 	function onSignOut() {
 		signOut({ callbackUrl: '/' })
 	}
@@ -40,11 +43,11 @@ export const NavMenu = ({ user }: Props) => {
 										<NavigationMenu.Content onPointerEnter={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="absolute left-0 top-0 w-full sm:w-auto">
 											<ul className="m-0 list-none sm:w-[600px]">
 												<Item href={routes.ACCOUNT} icon={<User color="red" size={48} />}>
-													My Account
+													{t(getNavigationLabel(routes.ACCOUNT))}
 												</Item>
 												<Divider />
 												<Item onClick={onSignOut} icon={<LogOut color="red" size={48} />}>
-													Logout
+													{t(getNavigationLabel(routes.LOGOUT))}
 												</Item>
 											</ul>
 										</NavigationMenu.Content>

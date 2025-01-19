@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 import { Link } from '@/i18n/routing'
 import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
+import { useTranslations } from 'next-intl'
 
 const ListItem = ({ pathName, route, label }: { pathName: string | null; route: string; label: string }) => (
 	<Link className={clsx('hover:text-gray-700 py-3 md:py-2 text-lg', pathName && pathName.split('/')[1] === route.split('/')[1] ? 'text-gray-900' : 'text-gray-400')} href={route}>
@@ -27,6 +28,7 @@ const MenuItem = ({ pathName, route, label }: { pathName: string | null; route: 
  */
 export default function NavList() {
 	const pathName = usePathname()
+	const t = useTranslations('Navigation')
 	const { status } = useSession()
 	const navItems = mainNavigation.filter((item) => (item.displayWenUnauthenticated && status === 'unauthenticated') || (item.displayWenAuthenticated && status === 'authenticated'))
 
@@ -36,8 +38,8 @@ export default function NavList() {
 		<div className="relative">
 			<div className="hidden sm:flex flex-row gap-2 sm:gap-4 items-center">
 				{navItems.map((item, index) => (
-					<Fragment key={`${item.route}-nav-list-fragment`}>
-						<ListItem pathName={pathName} {...item} />
+					<Fragment key={`${index}-nav-list-fragment`}>
+						<ListItem pathName={pathName} route={item.route} label={t(item.label)} />
 						{index !== navItems.length - 1 && <span className="text-gray-400">|</span>}
 					</Fragment>
 				))}
@@ -47,14 +49,13 @@ export default function NavList() {
 					<NavigationMenu.Item asChild>
 						<div className="flex items-stretch">
 							<NavigationMenu.Trigger onPointerMove={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="group p-2 flex flex-row gap-2 items-center hover:text-violet-600 data-[state=open]:text-violet-600"></NavigationMenu.Trigger>
-
 							<NavigationMenu.Content onPointerEnter={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="absolute left-0 top-[44px] left-100 z-30 animate-in fade-in duration-300">
 								<div className="w-auto sm:min-w-[224px] flex-auto overflow-hidden rounded-md bg-white 2xl:text-base leading-6 shadow-lg ring-1 ring-gray-900/5">
 									<ul className="p-2 flex flex-col gap-2">
-										{mainNavigation.map((item, index) => (
-											<Fragment key={`${item.route}-nav-menu-fragment`}>
-												<MenuItem {...item} pathName={pathName} />
-												{index !== mainNavigation.length - 1 && <span className="border-b border-gray-200"></span>}
+										{navItems.map((item, index) => (
+											<Fragment key={`${index}-nav-list-menu-fragment`}>
+												<MenuItem pathName={pathName} route={item.route} label={t(item.label)} />
+												{index !== navItems.length - 1 && <span className="border-b border-gray-200"></span>}
 											</Fragment>
 										))}
 									</ul>

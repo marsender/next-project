@@ -16,7 +16,7 @@ import { useTranslations, useLocale } from 'next-intl'
 import { CaretDownIcon } from '@radix-ui/react-icons'
 import Item from './Item'
 import { routing } from '@/i18n/routing'
-//import {Link} from '@/i18n/routing'
+import { Fragment } from 'react'
 
 export const LocaleSwitcher = () => {
 	const router = useRouter()
@@ -30,6 +30,7 @@ export const LocaleSwitcher = () => {
 
 	//console.log('LocaleSwitcher locale: %o', locale)
 
+	/*
 	function onChange(value: string) {
 		const nextLocale = value as Locale
 
@@ -40,6 +41,7 @@ export const LocaleSwitcher = () => {
 			router.refresh()
 		})
 	}
+	*/
 
 	return (
 		<div className="relative flex items-stretch">
@@ -56,8 +58,10 @@ export const LocaleSwitcher = () => {
 								</NavigationMenu.Trigger>
 								<NavigationMenu.Content onPointerEnter={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="absolute left-0 top-0 w-full sm:w-auto">
 									<ul className="m-0 list-none sm:w-[600px]">
-										{locales.map((val) => (
-											<Item key={val}>{t(val)}</Item>
+										{locales.map((val, index) => (
+											<Fragment key={`${index}-nav-locale-menu-fragment`}>
+												<Item key={val}>{t(val)}</Item>
+											</Fragment>
 										))}
 									</ul>
 								</NavigationMenu.Content>

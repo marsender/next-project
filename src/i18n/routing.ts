@@ -1,5 +1,6 @@
 import { defineRouting } from 'next-intl/routing'
 import { createNavigation } from 'next-intl/navigation'
+import { routes } from '@/lib/constants'
 
 export const routing = defineRouting({
 	// A list of all locales that are supported
@@ -7,6 +8,14 @@ export const routing = defineRouting({
 
 	// Used when no locale matches
 	defaultLocale: 'en',
+
+	pathnames: {
+		'/': '/',
+		'/about': {
+			en: routes.ABOUT,
+			fr: '/apropos',
+		},
+	},
 })
 
 export type Locale = (typeof routing.locales)[number]

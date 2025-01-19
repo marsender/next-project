@@ -9,11 +9,9 @@ import { getMessages, getLocale } from 'next-intl/server'
 export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	//const t = useTranslations()
 	//const locale = useLocale()
-	const locale = await getLocale()
 	const messages = (await getMessages()) as any
 	//console.log('Messages: %o', messages)
 	//<div>{t('hello')}</div>
-	//const locale = 'fr'
 	const global = await getDirectusGlobals()
 
 	return (
@@ -28,11 +26,11 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 						</CustomLink>
 					) : (
 						<CustomLink href={routes.LOGIN} size="lg">
-							Login
+							{messages.Navigation.login}
 						</CustomLink>
 					)}
-					<CustomLink href={'/' + locale + routes.ABOUT} size="lg" variant="outline">
-						About
+					<CustomLink href={routes.ABOUT} size="lg" variant="outline">
+						{messages.Navigation.about}
 					</CustomLink>
 				</div>
 			</section>

@@ -2,6 +2,13 @@
 	"Metadata": {
 		"title": "Welcome to Our App"
 	},
+	"Navigation": {
+		"home": "Home",
+		"login": "Login",
+		"logout": "Logout",
+		"account": "My account",
+		"about": "About"
+	},
 	"LocaleSwitcher": {
 		"fr": "Français",
 		"en": "English"

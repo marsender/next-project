@@ -11,36 +11,51 @@ export const routes = {
 export const mainNavigation = [
 	{
 		route: routes.HOME,
-		label: 'Home',
+		label: 'home',
 		displayWenAuthenticated: true,
 		displayWenUnauthenticated: true,
+		displayNavWenAuthenticated: false,
+		displayNavWenUnauthenticated: false,
+	},
+	{
+		route: routes.LOGIN,
+		label: 'login',
+		displayWenAuthenticated: false,
+		displayWenUnauthenticated: false,
+		displayNavWenAuthenticated: false,
+		displayNavWenUnauthenticated: false,
+	},
+	{
+		route: routes.ACCOUNT,
+		label: 'account',
+		displayWenAuthenticated: false,
+		displayWenUnauthenticated: false,
+		displayNavWenAuthenticated: true,
+		displayNavWenUnauthenticated: false,
 	},
 	{
 		route: routes.ABOUT,
-		label: 'About',
+		label: 'about',
 		displayWenAuthenticated: true,
 		displayWenUnauthenticated: true,
+		displayNavWenAuthenticated: false,
+		displayNavWenUnauthenticated: false,
+	},
+	{
+		route: routes.LOGOUT,
+		label: 'logout',
+		displayWenAuthenticated: false,
+		displayWenUnauthenticated: false,
+		displayNavWenAuthenticated: true,
+		displayNavWenUnauthenticated: false,
 	},
 ] as const
 
-// {
-// 	route: routes.ACCOUNT,
-// 	label: 'Account',
-// 	displayWenAuthenticated: true,
-// 	displayWenUnauthenticated: false,
-// },
-// {
-// 	route: routes.LOGIN,
-// 	label: 'Login',
-// 	displayWenAuthenticated: false,
-// 	displayWenUnauthenticated: true,
-// },
-// {
-// 	route: routes.LOGOUT,
-// 	label: 'Logout',
-// 	displayWenAuthenticated: true,
-// 	displayWenUnauthenticated: false,
-// },
+// Function to get the label for a route key
+export function getNavigationLabel(route: string): string | undefined {
+	const navigationItem = mainNavigation.find((item) => item.route === route)
+	return navigationItem?.label
+}
 
 /*
 export type Route = keyof typeof routes
