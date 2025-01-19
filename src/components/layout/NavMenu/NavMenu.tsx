@@ -8,7 +8,7 @@ import { CaretDownIcon } from '@radix-ui/react-icons'
 import { signOut } from 'next-auth/react'
 import Divider from './Divider'
 import Item from './Item'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 
 type Props = { user?: Session['user'] }
 

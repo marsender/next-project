@@ -1,9 +1,10 @@
 import { routes } from '@/lib/constants'
 import { Session } from 'next-auth'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Logo from './Logo'
 import NavList from './NavList'
 import { NavMenu } from './NavMenu/NavMenu'
+import { LocaleSwitcher } from './NavMenu/LocaleSwitcher'
 
 type Props = { user?: Session['user'] }
 
@@ -18,6 +19,7 @@ export default function Header({ user }: Props) {
 					<NavList />
 				</div>
 				<div className=" flex flex-row items-center">
+					<LocaleSwitcher />
 					<NavMenu user={user} />
 				</div>
 			</div>

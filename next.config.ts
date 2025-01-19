@@ -1,6 +1,8 @@
 import type { NextConfig } from 'next'
+import createNextIntlPlugin from 'next-intl/plugin'
 
 const parsed = new URL(`${process.env.DIRECTUS_URL}`)
+const withNextIntl = createNextIntlPlugin()
 
 const nextConfig: NextConfig = {
 	reactStrictMode: true,
@@ -25,4 +27,4 @@ const nextConfig: NextConfig = {
 	},
 }
 
-export default nextConfig
+export default withNextIntl(nextConfig)

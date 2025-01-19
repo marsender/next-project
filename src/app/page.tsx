@@ -1,11 +1,6 @@
-import Homepage from '@/components/pages/Homepage'
-import { getCurrentUser } from '@/lib/sessions'
-export const dynamic = 'force-dynamic'
+import {redirect} from 'next/navigation';
 
-const Home = async () => {
-	const user = await getCurrentUser()
-
-	return <Homepage user={user} />
+// This page only renders when the app is built statically (output: 'export')
+export default function RootPage() {
+  redirect('/en');
 }
-
-export default Home

@@ -1,4 +1,4 @@
-import { LogIn, User } from 'lucide-react'
+//import { LogIn, User } from 'lucide-react'
 
 export const routes = {
 	HOME: '/',
@@ -21,26 +21,28 @@ export const mainNavigation = [
 		displayWenAuthenticated: true,
 		displayWenUnauthenticated: true,
 	},
-	// {
-	// 	route: routes.ACCOUNT,
-	// 	label: 'Account',
-	// 	displayWenAuthenticated: true,
-	// 	displayWenUnauthenticated: false,
-	// },
-	// {
-	// 	route: routes.LOGIN,
-	// 	label: 'Login',
-	// 	displayWenAuthenticated: false,
-	// 	displayWenUnauthenticated: true,
-	// },
-	// {
-	// 	route: routes.LOGOUT,
-	// 	label: 'Logout',
-	// 	displayWenAuthenticated: true,
-	// 	displayWenUnauthenticated: false,
-	// },
 ] as const
 
+// {
+// 	route: routes.ACCOUNT,
+// 	label: 'Account',
+// 	displayWenAuthenticated: true,
+// 	displayWenUnauthenticated: false,
+// },
+// {
+// 	route: routes.LOGIN,
+// 	label: 'Login',
+// 	displayWenAuthenticated: false,
+// 	displayWenUnauthenticated: true,
+// },
+// {
+// 	route: routes.LOGOUT,
+// 	label: 'Logout',
+// 	displayWenAuthenticated: true,
+// 	displayWenUnauthenticated: false,
+// },
+
+/*
 export type Route = keyof typeof routes
 
 export enum AvailableRoles {
@@ -82,3 +84,4 @@ export const COOKIES = {
 export const FEATURE_FLAGS = {
 	hasAITagsGeneration: true,
 }
+*/

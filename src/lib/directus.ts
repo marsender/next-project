@@ -1,9 +1,11 @@
 import getConfig from 'next/config'
-import { createDirectus, rest, authentication, registerUser, withToken, readMe, readAssetRaw, AssetsQuery } from '@directus/sdk'
+import { createDirectus, rest, authentication, readAssetRaw, AssetsQuery } from '@directus/sdk'
+//import { createDirectus, rest, authentication, registerUser, withToken, readMe, readAssetRaw, AssetsQuery } from '@directus/sdk'
 
-const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
+const { publicRuntimeConfig } = getConfig()
+//const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 const { url } = publicRuntimeConfig
-const { email, password, token } = serverRuntimeConfig
+//const { email, password, token } = serverRuntimeConfig
 //console.log('Directus url: %s', url)
 
 const directus = createDirectus(url)
@@ -13,12 +15,14 @@ const directus = createDirectus(url)
 
 // Unused func
 // https://docs.directus.io/blog/implement-directus-auth-in-next-js-14.html
+/*
 export async function getDirectusClient() {
-	console.log('Directus server auth with Email: %s', email)
 	if (email && password) {
+		console.log('Directus server auth with email: %s', email)
 		//await directus.auth.login({ email, password })
 		await directus.request(registerUser(email, password))
 	} else if (token) {
+		console.log('Directus server auth with token: %s', email)
 		//await directus.auth.static(token)
 		await directus.request(
 			withToken(
@@ -32,6 +36,7 @@ export async function getDirectusClient() {
 
 	return directus
 }
+*/
 
 // Directus url must be allowed in NextConfig images remotePatterns
 export function getAssetURL(id: string) {

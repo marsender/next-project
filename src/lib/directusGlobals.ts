@@ -41,8 +41,6 @@ async function getDirectusGlobals(): Promise<Translation | null> {
 			return null
 		}
 		const translation = globalSettings.translations[0]
-		console.log('translation: %o', translation)
-
 		// Return the fetched global settings
 		return translation as Translation
 	} catch (error) {
@@ -51,4 +49,5 @@ async function getDirectusGlobals(): Promise<Translation | null> {
 	}
 }
 
+export type { Translation }
 export default getDirectusGlobals

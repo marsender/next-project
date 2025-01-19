@@ -1,0 +1,16 @@
+{
+	"Metadata": {
+		"title": "Bienvenue sur notre application"
+	},
+	"LocaleSwitcher": {
+		"fr": "Français",
+		"en": "English"
+	},
+	"Hero": {
+		"hello": "Bonjour",
+		"welcome": "Bonjour, {name} !",
+		"button": {
+			"submit": "Soumettre"
+		}
+	}
+}

@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { FormEvent, useState } from 'react'
 import { passwordRequest } from '@directus/sdk'
 import directus from '@/lib/directus'

@@ -1,3 +1,4 @@
+import { Link } from '@/i18n/routing'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
 interface MenuItemProps {
@@ -41,9 +42,9 @@ const Item: Overload = (props: AnchorProps | ButtonProps) => {
 						</span>
 					)}
 					<NavigationMenu.Link asChild>
-						<a href={href} className="whitespace-nowrap 2xl:text-base" {...otherProps}>
+						<Link href={href} className="whitespace-nowrap 2xl:text-base" {...otherProps}>
 							{children}
-						</a>
+						</Link>
 					</NavigationMenu.Link>
 				</div>
 			) : (

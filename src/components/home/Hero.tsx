@@ -3,8 +3,17 @@ import Image from 'next/image'
 import getDirectusGlobals from '@/lib/directusGlobals'
 import CustomLink from '@/components/CustomLink'
 import { User } from 'lucide-react'
+//import { useTranslations, useLocale } from 'next-intl'
+import { getMessages, getLocale } from 'next-intl/server'
 
 export default async function Hero({ isConnected }: { isConnected: boolean }) {
+	//const t = useTranslations()
+	//const locale = useLocale()
+	const locale = await getLocale()
+	const messages = (await getMessages()) as any
+	//console.log('Messages: %o', messages)
+	//<div>{t('hello')}</div>
+	//const locale = 'fr'
 	const global = await getDirectusGlobals()
 
 	return (
@@ -15,14 +24,14 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 				<div className="pt-10 justify-center lg:justify-start flex gap-4">
 					{isConnected ? (
 						<CustomLink href="/teams" size="lg" icon={<User size={48} />}>
-							Go to Dashboard
+							Go to Dashboard: {messages.Hero.hello}
 						</CustomLink>
 					) : (
 						<CustomLink href={routes.LOGIN} size="lg">
 							Login
 						</CustomLink>
 					)}
-					<CustomLink href={routes.ABOUT} size="lg" variant="outline">
+					<CustomLink href={'/' + locale + routes.ABOUT} size="lg" variant="outline">
 						About
 					</CustomLink>
 				</div>

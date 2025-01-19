@@ -4,7 +4,7 @@ import { mainNavigation } from '@/lib/constants'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import clsx from 'clsx'
 import { useSession } from 'next-auth/react'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
 
