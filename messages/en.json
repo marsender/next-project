@@ -20,6 +20,10 @@
 			"submit": "Submit"
 		}
 	},
+	"AccountPage": {
+		"title": "My account",
+		"description": "<p>This is where we put youer <strong>preferences</strong></p>"
+	},
 	"NotFoundPage": {
 		"title": "Not found page",
 		"description": "The page you requested does not exists"

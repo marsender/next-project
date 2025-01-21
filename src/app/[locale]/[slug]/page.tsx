@@ -36,11 +36,12 @@ async function getPage(slug: string) {
 	}
 }
 
-type Params = Promise<{ slug: string }>
+type Props = {
+	params: Promise<{ slug: string }>
+}
 
-export default async function DynamicPage(props: { params: Params }) {
-	const params = await props.params
-	const slug = params.slug
+export default async function SlugPage({ params }: Props) {
+	const { slug } = await params
 	const page = await getPage(slug)
 	if (!page) {
 		console.log('Directus incorrect page slug "%s"', slug)

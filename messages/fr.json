@@ -20,6 +20,10 @@
 			"submit": "Soumettre"
 		}
 	},
+	"AccountPage": {
+		"title": "Mon compte",
+		"description": "<p>C'est là où l'on met les <strong>préférences</strong></p>"
+	},
 	"NotFoundPage": {
 		"title": "Page non trouvée",
 		"description": "La page que vous avez demandé n'existe pas"

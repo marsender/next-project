@@ -2,11 +2,12 @@ import { redirect } from 'next/navigation'
 import ResetPasswordForm from './form'
 import { routes } from '@/lib/constants'
 
-type Params = Promise<{ token: string }>
+type Props = {
+	params: Promise<{ token: string }>
+}
 
-export default async function ResetPasswordPage(props: { params: Params }) {
-	const params = await props.params
-	const token = params.token
+export default async function ResetPasswordPage({ params }: Props) {
+	const { token } = await params
 	if (!token) {
 		redirect(routes.LOGIN)
 	}
