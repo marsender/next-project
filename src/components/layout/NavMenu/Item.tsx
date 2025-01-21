@@ -1,6 +1,7 @@
 import { Link } from '@/i18n/routing'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { RouteHref } from '@/lib/constants'
+import { JSX } from 'react/jsx-runtime'
 
 interface MenuItemProps {
 	icon?: React.ReactNode
