@@ -58,12 +58,13 @@ export async function generateMetadata({ params }: MetadataProps) {
 	}
 }
 
+// Generate static routes for all locales (optional)
 export function generateStaticParams() {
 	return routing.locales.map((locale) => ({ locale }))
 }
 
 // RootLayout or LocaleLayout for i18n
-export default async function RootLayout({ children, params }: RootProps) {
+export default async function RootLayout({ children, params }: Readonly<RootProps>) {
 	const { locale } = await params
 
 	// Ensure that the incoming `locale` is valid

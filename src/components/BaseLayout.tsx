@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import localFont from 'next/font/local'
+//import localFont from 'next/font/local'
 import Providers from '@/app/providers'
 import '@/app/globals.css'
 import { getSession } from '@/lib/sessions'
