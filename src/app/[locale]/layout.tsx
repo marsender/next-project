@@ -5,8 +5,6 @@ import { routing } from '@/i18n/routing'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import BaseLayout from '@/components/BaseLayout'
 
-export const dynamic = 'force-dynamic'
-
 type MetadataProps = {
 	params: Promise<{ locale: string }>
 }

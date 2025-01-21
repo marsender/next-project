@@ -28,7 +28,8 @@ const geistSans = localFont({
 export default async function BaseLayout({ children, locale }: RootProps) {
 	const session = await getSession()
 	// Provide all messages to the client
-	const messages = await getMessages() // ? or getMessages({ locale })
+	const messages = await getMessages({ locale })
+	console.log('The locale: %o', locale)
 
 	return (
 		<html lang={locale}>
