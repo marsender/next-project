@@ -8,6 +8,8 @@ export const routes = {
 	ABOUT: '/about',
 }
 
+export type RouteHref = (typeof routes)[keyof typeof routes]
+
 export const mainNavigation = [
 	{
 		route: routes.HOME,

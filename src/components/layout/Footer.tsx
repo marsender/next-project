@@ -21,36 +21,38 @@ const Footer = () => {
 	const currentYear = new Date().getFullYear()
 
 	return (
-		<div className="bg-black py-12 text-white px-8 lg:px-4">
-			<div className="max-w-5xl flex flex-col m-auto xs:flex-row">
-				<section className="flex-1">
-					<div className="flex flex-col">
-						<Logo className="text-white" isWhite />
-						<Link href="https://www.premieroctet.com/" target="_blank">
-							<span className="text-sm mt-2">Premier Octet © {currentYear}</span>
-						</Link>
-					</div>
-				</section>
-				<div className="flex flex-row gap-8 flex-1 justify-start xs:justify-end">
-					<ListSection title="Navigation">
-						{mainNavigation.map((item) => (
-							<li key={item.route}>
-								<Link href={item.route}>{item.label}</Link>
+		<div className="flex-1 flex flex-col h-full">
+			<div className="bg-black py-12 text-white px-8 lg:px-4">
+				<div className="max-w-5xl flex flex-col m-auto xs:flex-row">
+					<section className="flex-1">
+						<div className="flex flex-col">
+							<Logo className="text-white" isWhite />
+							<Link href="https://www.premieroctet.com/" target="_blank">
+								<span className="text-sm mt-2">Premier Octet © {currentYear}</span>
+							</Link>
+						</div>
+					</section>
+					<div className="flex flex-row gap-8 flex-1 justify-start xs:justify-end">
+						<ListSection title="Navigation">
+							{mainNavigation.map((item) => (
+								<li key={item.route}>
+									<Link href={item.route}>{item.label}</Link>
+								</li>
+							))}
+						</ListSection>
+						<ListSection title="Social">
+							<li>
+								<Link href="https://twitter.com/DigestClub" target="_blank">
+									Twitter
+								</Link>
 							</li>
-						))}
-					</ListSection>
-					<ListSection title="Social">
-						<li>
-							<Link href="https://twitter.com/DigestClub" target="_blank">
-								Twitter
-							</Link>
-						</li>
-						<li>
-							<Link href="https://github.com/premieroctet/digestclub" target="_blank">
-								GitHub
-							</Link>
-						</li>
-					</ListSection>
+							<li>
+								<Link href="https://github.com/premieroctet/digestclub" target="_blank">
+									GitHub
+								</Link>
+							</li>
+						</ListSection>
+					</div>
 				</div>
 			</div>
 		</div>
