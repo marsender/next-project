@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/routing'
 import { FormEvent, useRef } from 'react'
+import { RouteHref } from '@/lib/constants'
 
 interface Data {
 	first_name?: string
@@ -51,7 +52,7 @@ export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHr
 			<button>{buttonText}</button>
 			<p>
 				{linkDescription}
-				<Link href={linkHref}>{linkText}</Link>
+				<Link href={linkHref as RouteHref}>{linkText}</Link>
 			</p>
 		</form>
 	)

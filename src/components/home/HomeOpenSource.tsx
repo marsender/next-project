@@ -1,5 +1,5 @@
 import Section from './Section'
-import { Link } from '@/i18n/routing'
+import Link from 'next/link'
 
 const HomeOpenSource = () => {
 	return (

@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/routing'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import { RouteHref } from '@/lib/constants'
 
 interface MenuItemProps {
 	icon?: React.ReactNode
@@ -42,7 +43,7 @@ const Item: Overload = (props: AnchorProps | ButtonProps) => {
 						</span>
 					)}
 					<NavigationMenu.Link asChild>
-						<Link href={href} className="whitespace-nowrap 2xl:text-base" {...otherProps}>
+						<Link href={href as RouteHref} className="whitespace-nowrap 2xl:text-base" {...otherProps}>
 							{children}
 						</Link>
 					</NavigationMenu.Link>

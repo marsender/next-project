@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+//import Head from 'next/head'
 import Providers from '@/app/providers'
 import '@/app/globals.css'
 import { getSession } from '@/lib/sessions'
@@ -44,9 +45,7 @@ export default async function BaseLayout({ children, locale }: Props) {
 
 	return (
 		<html lang={locale}>
-			<head>
-				<Script defer data-domain="opale.localhost" src="http://localhost:3012/js/script.js" strategy="afterInteractive" />
-			</head>
+			<Script defer data-domain="opale.localhost" src="http://localhost:3012/js/script.js" strategy="afterInteractive" />
 			<body>
 				<NextIntlClientProvider messages={messages}>
 					<Providers session={session}>

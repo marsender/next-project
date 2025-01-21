@@ -4,6 +4,7 @@ import { VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 import { Link } from '@/i18n/routing'
 import { buttonVariants, iconVariants } from '@/app/variants'
+import { RouteHref } from '@/lib/constants'
 
 export interface LinkProps extends React.ComponentPropsWithoutRef<'a'>, VariantProps<typeof buttonVariants> {
 	fullWidth?: boolean
@@ -16,7 +17,7 @@ const CustomLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
 	return (
 		<Link
 			ref={ref}
-			href={href}
+			href={href as RouteHref}
 			className={clsx(
 				buttonVariants({
 					variant,

@@ -1,6 +1,6 @@
 'use client'
 
-import { mainNavigation } from '@/lib/constants'
+import { RouteHref, mainNavigation } from '@/lib/constants'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import clsx from 'clsx'
 import { useSession } from 'next-auth/react'
@@ -10,7 +10,7 @@ import { Fragment } from 'react'
 import { useTranslations } from 'next-intl'
 
 const ListItem = ({ pathName, route, label }: { pathName: string | null; route: string; label: string }) => (
-	<Link className={clsx('hover:text-gray-700 py-3 md:py-2 text-lg', pathName && pathName.split('/')[1] === route.split('/')[1] ? 'text-gray-900' : 'text-gray-400')} href={route}>
+	<Link href={route as RouteHref} className={clsx('hover:text-gray-700 py-3 md:py-2 text-lg', pathName && pathName.split('/')[1] === route.split('/')[1] ? 'text-gray-900' : 'text-gray-400')}>
 		{label}
 	</Link>
 )
@@ -18,7 +18,7 @@ const ListItem = ({ pathName, route, label }: { pathName: string | null; route: 
 const MenuItem = ({ pathName, route, label }: { pathName: string | null; route: string; label: string }) => (
 	<li className={clsx('p-2', pathName && pathName.split('/')[1] === route.split('/')[1] ? 'text-gray-900' : 'text-gray-400')}>
 		<NavigationMenu.Link asChild active={Boolean(pathName && pathName.split('/')[1] === route.split('/')[1])}>
-			<Link href={route}>{label}</Link>
+			<Link href={route as RouteHref}>{label}</Link>
 		</NavigationMenu.Link>
 	</li>
 )

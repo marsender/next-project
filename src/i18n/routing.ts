@@ -11,10 +11,14 @@ export const routing = defineRouting({
 
 	pathnames: {
 		'/': '/',
+		'/login': routes.LOGIN,
+		'/logout': routes.LOGOUT,
+		'/account': routes.ACCOUNT,
 		'/about': {
 			en: routes.ABOUT,
 			fr: '/apropos',
 		},
+		'/request-reset-password': routes.REQUEST_RESET_PASSWORD,
 	},
 })
 

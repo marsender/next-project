@@ -8,10 +8,11 @@
 //   DropdownMenuRadioItem,
 //   DropdownMenuTrigger,
 // } from "@components/ui/dropdown-menu";
+//import React, { useTransition } from 'react'
+// import { useSearchParams } from 'next/navigation'
+// import { Locale, usePathname, useRouter } from '../../../i18n/routing'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
-import React, { useTransition } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { Locale, usePathname, useRouter } from '../../../i18n/routing'
+import React from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import { CaretDownIcon } from '@radix-ui/react-icons'
 import Item from './Item'
@@ -19,10 +20,10 @@ import { routing } from '@/i18n/routing'
 import { Fragment } from 'react'
 
 export const LocaleSwitcher = () => {
-	const router = useRouter()
-	const [isPending, startTransition] = useTransition()
-	const pathname = usePathname()
-	const searchParams = useSearchParams()
+	// const router = useRouter()
+	// const [isPending, startTransition] = useTransition()
+	// const pathname = usePathname()
+	// const searchParams = useSearchParams()
 	const t = useTranslations('LocaleSwitcher')
 	const locale = useLocale()
 

@@ -1,11 +1,12 @@
 //import { LogIn, User } from 'lucide-react'
 
 export const routes = {
-	HOME: '/',
-	LOGIN: '/login',
-	LOGOUT: '/logout',
-	ACCOUNT: '/account',
-	ABOUT: '/about',
+	HOME: '/' as const,
+	LOGIN: '/login' as const,
+	LOGOUT: '/logout' as const,
+	ACCOUNT: '/account' as const,
+	ABOUT: '/about' as const,
+	REQUEST_RESET_PASSWORD: '/request-reset-password' as const,
 }
 
 export type RouteHref = (typeof routes)[keyof typeof routes]
@@ -49,6 +50,14 @@ export const mainNavigation = [
 		displayWenAuthenticated: false,
 		displayWenUnauthenticated: false,
 		displayNavWenAuthenticated: true,
+		displayNavWenUnauthenticated: false,
+	},
+	{
+		route: routes.REQUEST_RESET_PASSWORD,
+		label: 'request-reset-password',
+		displayWenAuthenticated: false,
+		displayWenUnauthenticated: false,
+		displayNavWenAuthenticated: false,
 		displayNavWenUnauthenticated: false,
 	},
 ] as const

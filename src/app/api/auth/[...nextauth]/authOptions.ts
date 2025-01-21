@@ -75,20 +75,16 @@ export const authOptions: NextAuthOptions = {
 			console.log('Next auth signOut message: %o', message)
 		},
 		/* user created */
-		async createUser(message) {
-			console.log('Next auth createUser message: %o', message)
-		},
+		// async createUser(message) {
+		// 	console.log('Next auth createUser message: %o', message)
+		// },
 		/* user updated - e.g. their email was verified */
-		async updateUser(message) {
-			console.log('Next auth updateUser message: %o', message)
-		},
-		/* account (e.g. Twitter) linked to a user */
-		async linkAccount(message) {
-			console.log('Next auth linkAccount message: %o', message)
-		},
+		// async updateUser(message) {
+		// 	console.log('Next auth updateUser message: %o', message)
+		// },
 		/* session is active */
-		async session(message) {
-			// console.log('Next auth session message: %o', message)
-		},
+		// async session(message) {
+		// 	console.log('Next auth session message: %o', message)
+		// },
 	},
 }

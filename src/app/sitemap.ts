@@ -7,7 +7,7 @@ import { routes, RouteHref } from '@/lib/constants'
  * Test via: curl http://localhost:3002/sitemap.xml
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-	const routesToSkip = [routes.LOGIN, routes.LOGOUT, routes.ACCOUNT]
+	const routesToSkip: RouteHref[] = [routes.LOGIN, routes.LOGOUT, routes.ACCOUNT]
 
 	return Object.values(routes)
 		.filter((href) => !routesToSkip.includes(href))

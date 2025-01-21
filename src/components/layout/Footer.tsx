@@ -1,7 +1,7 @@
 'use client'
 
 import { mainNavigation } from '@/lib/constants'
-import { Link } from '@/i18n/routing'
+import Link from 'next/link'
 import { PropsWithChildren, memo } from 'react'
 import Logo from '@/components/layout/Logo'
 
