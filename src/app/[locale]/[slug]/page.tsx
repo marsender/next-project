@@ -1,7 +1,7 @@
 import directus from '@/lib/directus'
 import { notFound } from 'next/navigation'
 import { readItems } from '@directus/sdk'
-import Page from '@/components/pages/Page'
+import SlugPageLayout from '@/components/pages/SlugPageLayout'
 
 async function getPage(slug: string) {
 	try {
@@ -45,8 +45,8 @@ export default async function SlugPage({ params }: Props) {
 	const page = await getPage(slug)
 	if (!page) {
 		console.log('Directus incorrect page slug "%s"', slug)
-		return null
+		notFound()
 	}
 	//console.log('Directus dynamic page for slug "%s": %o', slug, page)
-	return <Page page={page} />
+	return <SlugPageLayout page={page} />
 }

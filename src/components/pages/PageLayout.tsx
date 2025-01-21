@@ -2,8 +2,8 @@ import { useTranslations } from 'next-intl'
 import { ReactNode } from 'react'
 
 type Props = {
-	children?: ReactNode
 	title: ReactNode
+	children?: ReactNode
 }
 
 export default function PageLayout({ children, title }: Props) {

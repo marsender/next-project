@@ -1,7 +1,7 @@
 import { getAssetURL } from '@/lib/directus'
 import Image from 'next/image'
 
-const Page = ({ page }: any) => {
+const SlugPageLayout = ({ page }: any) => {
 	return (
 		<div className="flex-1 flex flex-col h-full">
 			<section className="bg-white flex flex-1 justify-center">
@@ -19,4 +19,4 @@ const Page = ({ page }: any) => {
 	)
 }
 
-export default Page
+export default SlugPageLayout
