@@ -1,4 +1,3 @@
-import HomeFooter from '@/components/home/HomeFooter'
 import { getAssetURL } from '@/lib/directus'
 import Image from 'next/image'
 
@@ -16,7 +15,6 @@ const Page = ({ page }: any) => {
 					</section>
 				</div>
 			</section>
-			<HomeFooter />
 		</div>
 	)
 }

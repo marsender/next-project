@@ -17,7 +17,7 @@ const ListSection = ({ title, children }: PropsWithChildren & { title: string })
 	)
 }
 
-const HomeFooter = () => {
+const Footer = () => {
 	const currentYear = new Date().getFullYear()
 
 	return (
@@ -57,4 +57,4 @@ const HomeFooter = () => {
 	)
 }
 
-export default memo(HomeFooter)
+export default memo(Footer)

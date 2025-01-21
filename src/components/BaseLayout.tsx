@@ -4,6 +4,7 @@ import Providers from '@/app/providers'
 import '@/app/globals.css'
 import { getSession } from '@/lib/sessions'
 import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 import Script from 'next/script'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
@@ -40,6 +41,7 @@ export default async function BaseLayout({ children, locale }: RootProps) {
 					<Providers session={session}>
 						<Header user={session?.user} />
 						{children}
+						<Footer />
 					</Providers>
 				</NextIntlClientProvider>
 			</body>
