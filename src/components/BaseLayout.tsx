@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-//import localFont from 'next/font/local'
 import Providers from '@/app/providers'
 import '@/app/globals.css'
 import { getSession } from '@/lib/sessions'
@@ -8,8 +7,9 @@ import Footer from '@/components/layout/Footer'
 import Script from 'next/script'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
+//import localFont from 'next/font/local'
 
-type RootProps = {
+type Props = {
 	children: ReactNode
 	locale: string
 }
@@ -29,7 +29,7 @@ const geistSans = localFont({
 // 	weight: '100 900',
 // })
 
-export default async function BaseLayout({ children, locale }: RootProps) {
+export default async function BaseLayout({ children, locale }: Props) {
 	const session = await getSession()
 	// Provide all messages to the client
 	const messages = await getMessages({ locale })
