@@ -1,29 +1,11 @@
 import { ReactNode } from 'react'
 //import type { Metadata } from 'next'
-import localFont from 'next/font/local'
-import Providers from '@/app/providers'
-import '@/app/globals.css'
-import { getSession } from '@/lib/sessions'
-import Header from '@/components/layout/Header'
-import Script from 'next/script'
 import { notFound } from 'next/navigation'
-import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
+import BaseLayout from '@/components/BaseLayout'
 
 export const dynamic = 'force-dynamic'
-
-const geistSans = localFont({
-	src: './fonts/GeistVF.woff',
-	variable: '--font-geist-sans',
-	weight: '100 900',
-})
-// const geistMono = localFont({
-// 	src: './fonts/GeistMonoVF.woff',
-// 	variable: '--font-geist-mono',
-// 	weight: '100 900',
-// })
 
 type MetadataProps = {
 	params: Promise<{ locale: string }>
@@ -94,21 +76,5 @@ export default async function RootLayout({ children, params }: RootProps) {
 	// Enable static rendering
 	setRequestLocale(locale)
 
-	const session = await getSession()
-	const messages = await getMessages({ locale })
-	return (
-		<html lang={locale}>
-			<head>
-				<Script defer data-domain="opale.localhost" src="http://localhost:3012/js/script.js" strategy="afterInteractive" />
-			</head>
-			<body className={`${geistSans.variable} antialiased`}>
-				<NextIntlClientProvider messages={messages}>
-					<Providers session={session}>
-						<Header user={session?.user} />
-						{children}
-					</Providers>
-				</NextIntlClientProvider>
-			</body>
-		</html>
-	)
+	return <BaseLayout locale={locale}>{children}</BaseLayout>
 }

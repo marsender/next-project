@@ -19,5 +19,9 @@
 		"button": {
 			"submit": "Submit"
 		}
+	},
+	"NotFoundPage": {
+		"title": "Not found page",
+		"description": "The page you requested does not exists"
 	}
 }

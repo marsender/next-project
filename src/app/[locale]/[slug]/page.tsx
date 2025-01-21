@@ -46,6 +46,6 @@ export default async function DynamicPage(props: { params: Params }) {
 		console.log('Directus incorrect page slug "%s"', slug)
 		return null
 	}
-	console.log('Directus dynamic page for slug "%s": %o', slug, page)
+	//console.log('Directus dynamic page for slug "%s": %o', slug, page)
 	return <Page page={page} />
 }

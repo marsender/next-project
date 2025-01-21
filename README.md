@@ -24,9 +24,17 @@ Frontend libraries
 
 - [Radix UI](https://www.radix-ui.com/primitives)
 
-Architecture
+## Architecture
 
-- Directus requests are made from Next.js on server side, not from client side
+Next
+
+- page.tsx files are used to define a specific routes for the application
+  and typically exports a React component that represents the content of that page
+- layout.tsx files applies a layout for the current and all subfolders pages.tsx files
+
+Directus
+
+- requests are made from Next.js on server side, not from client side
 
 ## Install
 

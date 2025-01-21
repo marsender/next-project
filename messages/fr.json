@@ -19,5 +19,9 @@
 		"button": {
 			"submit": "Soumettre"
 		}
+	},
+	"NotFoundPage": {
+		"title": "Page non trouvée",
+		"description": "La page que vous avez demandé n'existe pas"
 	}
 }
