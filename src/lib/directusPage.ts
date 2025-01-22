@@ -1,9 +1,18 @@
-import directus from '@/lib/directus'
+import directus, { getLanguageCode } from '@/lib/directus'
 import { readItems } from '@directus/sdk'
-import { notFound } from 'next/navigation'
 
+/**
+ * Fetch directus page slug for the current locale
+ *
+ * Usage:
+ * const page = await getDirectusPage(slug)
+ * then get properties: page.title page.content
+ *
+ * @returns object with page properties translated or null if error
+ */
 async function getDirectusPage(slug: string) {
 	try {
+		//const languageCode = await getLanguageCode()
 		//const page = await directus.request(readItem('pages', slug))
 		const pages = await directus.request(
 			readItems('pages', {
@@ -27,11 +36,14 @@ async function getDirectusPage(slug: string) {
 				limit: 1,
 			})
 		)
+		if (pages.length !== 1) {
+			return null
+		}
 		const page = pages[0]
 		return page
 	} catch (e: any) {
 		console.log(e)
-		notFound()
+		return null
 	}
 }
 

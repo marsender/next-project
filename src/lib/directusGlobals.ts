@@ -1,6 +1,5 @@
-import directus from '@/lib/directus'
+import directus, { getLanguageCode } from '@/lib/directus'
 import { readItems } from '@directus/sdk'
-import { getLocale } from 'next-intl/server'
 
 interface Translation {
 	languages_code: string
@@ -13,10 +12,17 @@ interface Global {
 	translations: Translation[]
 }
 
-// Fetch directus global for the current locale
+/**
+ * Fetch directus global for the current locale
+ *
+ * Usage:
+ * const global = await getDirectusGlobals()
+ * then get properties: global?.title global?.description
+ *
+ * @returns object with global properties translated or null if error
+ */
 async function getDirectusGlobals(): Promise<Translation | null> {
-	const locale = getLocale()
-	const languageCode = (await locale) === 'en' ? 'en-US' : 'fr-FR'
+	const languageCode = await getLanguageCode()
 
 	try {
 		const response = await directus.request(
@@ -41,9 +47,9 @@ async function getDirectusGlobals(): Promise<Translation | null> {
 		if (globalSettings.translations.length !== 1) {
 			return null
 		}
-		const translation = globalSettings.translations[0]
+		const global = globalSettings.translations[0]
 		// Return the fetched global settings
-		return translation as Translation
+		return global as Translation
 	} catch (error) {
 		console.error('Error fetching global settings:', error)
 		return null

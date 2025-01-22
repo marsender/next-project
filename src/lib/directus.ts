@@ -1,5 +1,6 @@
 import getConfig from 'next/config'
 import { createDirectus, rest, authentication, readAssetRaw, AssetsQuery } from '@directus/sdk'
+import { getLocale } from 'next-intl/server'
 //import { createDirectus, rest, authentication, registerUser, withToken, readMe, readAssetRaw, AssetsQuery } from '@directus/sdk'
 
 const { publicRuntimeConfig } = getConfig()
@@ -46,6 +47,11 @@ export function getAssetURL(id: string) {
 // https://docs.directus.io/reference/files.html
 export async function readAsset(key: string, query?: AssetsQuery) {
 	return await directus.request(readAssetRaw(key, query))
+}
+
+export async function getLanguageCode() {
+	const locale = getLocale()
+	return (await locale) === 'fr' ? 'fr-FR' : 'en-US'
 }
 
 export default directus
