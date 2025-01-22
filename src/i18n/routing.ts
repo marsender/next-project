@@ -9,6 +9,9 @@ export const routing = defineRouting({
 	// Used when no locale matches
 	defaultLocale: 'en',
 
+	// Make the default lang as root
+	//localePrefix: 'as-needed',
+
 	pathnames: {
 		'/': '/',
 		'/login': routes.LOGIN,
