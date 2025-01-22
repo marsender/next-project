@@ -1,5 +1,6 @@
 import directus from '@/lib/directus'
 import { readItems } from '@directus/sdk'
+import { getLocale } from 'next-intl/server'
 
 interface Translation {
 	languages_code: string
@@ -12,10 +13,10 @@ interface Global {
 	translations: Translation[]
 }
 
-// Async function to fetch global settings for a specific locale
+// Fetch directus global for the current locale
 async function getDirectusGlobals(): Promise<Translation | null> {
-	const languageCode = 'en-US'
-	//const languageCode = 'fr-FR'
+	const locale = getLocale()
+	const languageCode = (await locale) === 'en' ? 'en-US' : 'fr-FR'
 
 	try {
 		const response = await directus.request(
