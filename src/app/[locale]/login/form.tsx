@@ -1,12 +1,13 @@
 'use client'
 
-import { Link } from '@/i18n/routing'
-import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import AuthForm from '@/components/auth/AuthForm'
+import { signIn } from 'next-auth/react'
 import { useState } from 'react'
+
+import AuthForm from '@/components/auth/AuthForm'
 import useCustomToast from '@/hooks/useCustomToast'
 import useTransitionRefresh from '@/hooks/useTransitionRefresh'
+import { Link } from '@/i18n/routing'
 import { routes } from '@/lib/constants'
 
 interface Data {

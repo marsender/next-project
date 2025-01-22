@@ -1,5 +1,6 @@
-import directus, { getLanguageCode } from '@/lib/directus'
 import { readItems } from '@directus/sdk'
+
+import directus, { getLanguageCode } from '@/lib/directus'
 
 interface Translation {
 	languages_code: string

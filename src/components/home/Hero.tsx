@@ -1,10 +1,11 @@
-import { routes } from '@/lib/constants'
-import Image from 'next/image'
-import getDirectusGlobals from '@/lib/directusGlobals'
-import CustomLink from '@/components/CustomLink'
 import { User } from 'lucide-react'
+import Image from 'next/image'
 //import { useTranslations, useLocale } from 'next-intl'
-import { getTranslations, getLocale } from 'next-intl/server'
+import { getLocale,getTranslations } from 'next-intl/server'
+
+import CustomLink from '@/components/CustomLink'
+import { routes } from '@/lib/constants'
+import getDirectusGlobals from '@/lib/directusGlobals'
 
 export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	//const t = useTranslations()

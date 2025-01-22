@@ -1,6 +1,7 @@
 import type { NextAuthOptions, Session } from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
 import { JWT } from 'next-auth/jwt'
+import CredentialsProvider from 'next-auth/providers/credentials'
+
 import { routes } from '@/lib/constants'
 import directus from '@/lib/directus'
 

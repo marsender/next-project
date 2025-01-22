@@ -1,6 +1,8 @@
 import { redirect } from 'next/navigation'
-import ResetPasswordForm from './form'
+
 import { routes } from '@/lib/constants'
+
+import ResetPasswordForm from './form'
 
 type Props = {
 	params: Promise<{ token: string }>

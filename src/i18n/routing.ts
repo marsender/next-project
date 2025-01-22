@@ -1,5 +1,6 @@
-import { defineRouting } from 'next-intl/routing'
 import { createNavigation } from 'next-intl/navigation'
+import { defineRouting } from 'next-intl/routing'
+
 import { routes } from '@/lib/constants'
 
 export const routing = defineRouting({

@@ -1,9 +1,10 @@
 'use client'
 
-import { mainNavigation } from '@/lib/constants'
 import Link from 'next/link'
-import { PropsWithChildren, memo } from 'react'
+import { memo,PropsWithChildren } from 'react'
+
 import Logo from '@/components/layout/Logo'
+import { mainNavigation } from '@/lib/constants'
 
 const ListSection = ({ title, children }: PropsWithChildren & { title: string }) => {
 	return (

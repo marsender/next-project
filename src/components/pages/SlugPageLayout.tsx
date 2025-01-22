@@ -1,5 +1,6 @@
-import { getAssetURL } from '@/lib/directus'
 import Image from 'next/image'
+
+import { getAssetURL } from '@/lib/directus'
 
 const SlugPageLayout = ({ page }: any) => {
 	return (

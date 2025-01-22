@@ -1,10 +1,11 @@
 'use client'
 
-import { Link } from '@/i18n/routing'
-import { FormEvent, useState } from 'react'
 import { passwordRequest } from '@directus/sdk'
-import directus from '@/lib/directus'
+import { FormEvent, useState } from 'react'
+
+import { Link } from '@/i18n/routing'
 import { routes } from '@/lib/constants'
+import directus from '@/lib/directus'
 
 export default function RequestResetPasswordForm() {
 	const [email, setEmail] = useState('')

@@ -1,5 +1,6 @@
-import Hero from '@/components/home/Hero'
 import { Session } from 'next-auth'
+
+import Hero from '@/components/home/Hero'
 import HomeOpenSource from '@/components/home/HomeOpenSource'
 import HomeSteps from '@/components/home/HomeSteps'
 

@@ -1,10 +1,11 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
 import { passwordReset } from '@directus/sdk'
-import directus from '@/lib/directus'
 import { useRouter } from 'next/navigation'
+import { FormEvent, useState } from 'react'
+
 import { routes } from '@/lib/constants'
+import directus from '@/lib/directus'
 
 export default function RequestResetForm({ token }: { token: string }) {
 	const [newPassword, setNewPassword] = useState('')

@@ -1,5 +1,6 @@
-import directus, { getLanguageCode } from '@/lib/directus'
 import { readItems } from '@directus/sdk'
+
+import directus, { getLanguageCode } from '@/lib/directus'
 
 /**
  * Fetch directus page slug for the current locale

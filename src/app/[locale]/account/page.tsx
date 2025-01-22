@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server'
+
 import PageLayout from '@/components/pages/PageLayout'
 
 type Props = {

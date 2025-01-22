@@ -1,6 +1,7 @@
-import getDirectusPage from '@/lib/directusPage'
 import { notFound } from 'next/navigation'
+
 import SlugPageLayout from '@/components/pages/SlugPageLayout'
+import getDirectusPage from '@/lib/directusPage'
 
 type Props = {
 	params: Promise<{ slug: string }>

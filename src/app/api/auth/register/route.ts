@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server'
 import { registerUser } from '@directus/sdk'
+import { NextResponse } from 'next/server'
+
 import directus from '@/lib/directus'
 
 export async function POST(request: Request) {

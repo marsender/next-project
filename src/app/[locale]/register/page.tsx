@@ -1,5 +1,7 @@
 import { redirect } from 'next/navigation'
+
 import { getSession } from '@/lib/sessions'
+
 import RegistrationForm from './form'
 
 export const dynamic = 'force-dynamic'

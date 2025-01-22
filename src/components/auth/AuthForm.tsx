@@ -1,5 +1,6 @@
-import { Link } from '@/i18n/routing'
 import { FormEvent, useRef } from 'react'
+
+import { Link } from '@/i18n/routing'
 import { RouteHref } from '@/lib/constants'
 
 interface Data {

@@ -1,9 +1,10 @@
-import { ReactNode } from 'react'
 //import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { routing } from '@/i18n/routing'
-import { setRequestLocale, getTranslations } from 'next-intl/server'
+import { getTranslations,setRequestLocale } from 'next-intl/server'
+import { ReactNode } from 'react'
+
 import BaseLayout from '@/components/BaseLayout'
+import { routing } from '@/i18n/routing'
 
 type MetadataProps = {
 	params: Promise<{ locale: string }>

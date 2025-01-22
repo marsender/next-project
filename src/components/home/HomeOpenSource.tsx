@@ -1,5 +1,6 @@
-import Section from './Section'
 import Link from 'next/link'
+
+import Section from './Section'
 
 const HomeOpenSource = () => {
 	return (

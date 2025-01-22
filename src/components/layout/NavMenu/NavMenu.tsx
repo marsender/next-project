@@ -1,15 +1,17 @@
 'use client'
 
-import { Session } from 'next-auth'
-import { LogOut, User } from 'lucide-react'
-import { routes, getNavigationLabel } from '@/lib/constants'
-import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { CaretDownIcon } from '@radix-ui/react-icons'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import { LogOut, User } from 'lucide-react'
+import { Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
+
+import { Link } from '@/i18n/routing'
+import { getNavigationLabel,routes } from '@/lib/constants'
+
 import Divider from './Divider'
 import Item from './Item'
-import { Link } from '@/i18n/routing'
-import { useTranslations } from 'next-intl'
 
 type Props = { user?: Session['user'] }
 

@@ -1,13 +1,15 @@
-import { ReactNode } from 'react'
-//import Head from 'next/head'
-import Providers from '@/app/providers'
 import '@/app/globals.css'
-import { getSession } from '@/lib/sessions'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+
 import Script from 'next/script'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
+import { ReactNode } from 'react'
+
+//import Head from 'next/head'
+import Providers from '@/app/providers'
+import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/Header'
+import { getSession } from '@/lib/sessions'
 //import localFont from 'next/font/local'
 
 type Props = {

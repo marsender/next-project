@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+
 import BrandIcon from './BrandIcon'
 
 const Logo = (props: { className?: string; isWhite?: boolean }) => {

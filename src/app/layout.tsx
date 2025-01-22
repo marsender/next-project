@@ -1,5 +1,6 @@
-import { ReactNode } from 'react'
 import '@/app/globals.css'
+
+import { ReactNode } from 'react'
 
 type RootProps = {
 	children: ReactNode

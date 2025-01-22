@@ -1,10 +1,12 @@
-import { routes } from '@/lib/constants'
 import { Session } from 'next-auth'
+
 import { Link } from '@/i18n/routing'
+import { routes } from '@/lib/constants'
+
 import Logo from './Logo'
 import NavList from './NavList'
-import { NavMenu } from './NavMenu/NavMenu'
 import { LocaleSwitcher } from './NavMenu/LocaleSwitcher'
+import { NavMenu } from './NavMenu/NavMenu'
 
 type Props = { user?: Session['user'] }
 

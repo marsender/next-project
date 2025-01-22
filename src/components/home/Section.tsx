@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { ReactNode } from 'react'
+
 import SectionTitle from './SectionTitle'
 
 const Section = ({ children, title, caption, className }: { children: ReactNode; title: ReactNode; caption?: ReactNode; className?: string }) => {

@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
-import { Locale, getPathname, routing } from '@/i18n/routing'
-import { routes, RouteHref } from '@/lib/constants'
+
+import { getPathname, Locale, routing } from '@/i18n/routing'
+import { RouteHref,routes } from '@/lib/constants'
 
 /**
  * Build the sitemap

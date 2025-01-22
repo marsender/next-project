@@ -11,13 +11,15 @@
 //import React, { useTransition } from 'react'
 // import { useSearchParams } from 'next/navigation'
 // import { Locale, usePathname, useRouter } from '../../../i18n/routing'
-import * as NavigationMenu from '@radix-ui/react-navigation-menu'
-import React from 'react'
-import { useTranslations, useLocale } from 'next-intl'
 import { CaretDownIcon } from '@radix-ui/react-icons'
-import Item from './Item'
-import { routing } from '@/i18n/routing'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import { useLocale,useTranslations } from 'next-intl'
+import React from 'react'
 import { Fragment } from 'react'
+
+import { routing } from '@/i18n/routing'
+
+import Item from './Item'
 
 export const LocaleSwitcher = () => {
 	// const router = useRouter()
