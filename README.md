@@ -61,4 +61,5 @@ npm run start
 
 ```bash
 npm run lint
+npm run lint:fix # to fix
 ```
