@@ -12,7 +12,8 @@ import { readItems } from '@directus/sdk'
  */
 async function getDirectusPage(slug: string) {
 	try {
-		//const languageCode = await getLanguageCode()
+		const languageCode = await getLanguageCode()
+		if (languageCode == null) return null
 		//const page = await directus.request(readItem('pages', slug))
 		const pages = await directus.request(
 			readItems('pages', {
