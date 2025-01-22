@@ -14,6 +14,7 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	//console.log('Messages: %o', messages)
 	//<div>{t('hello')}</div>
 	const global = await getDirectusGlobals()
+	const name = 'marsender'
 
 	return (
 		<div className="p-4 m-auto max-w-5xl pt-20 pb-20 text-gray-900 w-full h-full flex max-lg:flex-col">
@@ -23,7 +24,7 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 				<div className="pt-10 justify-center lg:justify-start flex gap-4">
 					{isConnected ? (
 						<CustomLink href="/teams" size="lg" icon={<User size={48} />}>
-							Go to Dashboard: {t('Hero.hello')}
+							Go to Dashboard: {t('Hero.welcome', { name })}
 						</CustomLink>
 					) : (
 						<CustomLink href={routes.LOGIN} size="lg">
