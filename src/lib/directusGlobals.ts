@@ -8,7 +8,7 @@ interface Translation {
 	description: string
 }
 
-interface Global {
+interface Translations {
 	id: string
 	translations: Translation[]
 }
@@ -41,16 +41,16 @@ async function getDirectusGlobals(): Promise<Translation | null> {
 				limit: 1,
 			})
 		)
-		// Convert the respone to Global
+		// Convert the respone to Translations
 		const unknownResponse: unknown = response
-		const globalSettings = unknownResponse as Global
+		const translations = unknownResponse as Translations
 		// Access the translations property
-		if (globalSettings.translations.length !== 1) {
+		if (translations.translations.length !== 1) {
 			return null
 		}
-		const global = globalSettings.translations[0]
-		// Return the fetched global settings
-		return global as Translation
+		const translation = translations.translations[0] as Translation
+		// Return the fetched translation
+		return translation
 	} catch (error) {
 		console.error('Error fetching global settings:', error)
 		return null

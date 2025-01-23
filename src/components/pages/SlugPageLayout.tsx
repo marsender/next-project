@@ -12,7 +12,7 @@ const SlugPageLayout = ({ page }: any) => {
 						<div dangerouslySetInnerHTML={{ __html: page.content }}></div>
 					</section>
 					<section className="flex-1 flex justify-center lg:justify-end max-lg:mt-12">
-						<Image src={getAssetURL(page.blocks[0].item.image)} alt="" className=" object-cover h-auto relative w-full max-w-[496px]" width={100} height={0} sizes="100vw" loading="lazy" />
+						<Image src={getAssetURL(page.hero.item.image)} alt="" className=" object-cover h-auto relative w-full max-w-[496px]" width={100} height={0} sizes="100vw" loading="lazy" />
 					</section>
 				</div>
 			</section>

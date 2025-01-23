@@ -20,7 +20,7 @@ export const routing = defineRouting({
 		'/account': routes.ACCOUNT,
 		'/about': {
 			en: routes.ABOUT,
-			fr: '/apropos',
+			fr: '/a-propos',
 		},
 		'/request-reset-password': routes.REQUEST_RESET_PASSWORD,
 	},

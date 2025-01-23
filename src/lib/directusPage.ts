@@ -2,6 +2,28 @@ import { readItems } from '@directus/sdk'
 
 import directus, { getLanguageCode } from '@/lib/directus'
 
+interface Translation {
+	languages_code: string
+	slug: string
+	title: string
+	content: string
+	hero: Block
+}
+
+interface Item {
+	image: string
+}
+
+interface Block {
+	item: Item
+}
+
+interface Translations {
+	id: string
+	translations: Translation[]
+	blocks: Block[]
+}
+
 /**
  * Fetch directus page slug for the current locale
  *
@@ -11,18 +33,30 @@ import directus, { getLanguageCode } from '@/lib/directus'
  *
  * @returns object with page properties translated or null if error
  */
-async function getDirectusPage(slug: string) {
+async function getDirectusPage(slug: string): Promise<Translation | null> {
 	try {
 		const languageCode = await getLanguageCode()
-		if (languageCode == null) return null
-		//const page = await directus.request(readItem('pages', slug))
-		const pages = await directus.request(
+
+		//const response = await directus.request(readItem('pages', slug))
+		const response = await directus.request(
 			readItems('pages', {
-				filter: {
-					slug: { _eq: slug },
+				deep: {
+					translations: {
+						_filter: {
+							_and: [
+								{
+									languages_code: { _eq: languageCode },
+								},
+								{
+									pages_slug: { _eq: slug },
+								},
+							],
+						},
+					},
 				},
 				fields: [
 					'*',
+					{ translations: ['*'] },
 					{
 						blocks: [
 							'*',
@@ -38,11 +72,20 @@ async function getDirectusPage(slug: string) {
 				limit: 1,
 			})
 		)
-		if (pages.length !== 1) {
+		if (response.length !== 1) {
 			return null
 		}
-		const page = pages[0]
-		return page
+		const translations = response[0] as Translations
+		const hero = translations.blocks[0] as Block
+		// Access the translations property
+		if (translations.translations.length !== 1) {
+			return null
+		}
+		let translation = translations.translations[0] as Translation
+		translation.hero = hero
+		// Return the fetched translation
+		console.log('translation: %o', translation)
+		return translation
 	} catch (e: any) {
 		console.log(e)
 		return null
