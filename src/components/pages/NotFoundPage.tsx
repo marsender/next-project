@@ -6,7 +6,7 @@ export default function NotFoundPage() {
 	const t = useTranslations('NotFoundPage')
 
 	return (
-		<PageLayout title={t('title')}>
+		<PageLayout title={t('title')} subtitle={t('subtitle')}>
 			<p className="max-w-[460px]">{t('description')}</p>
 		</PageLayout>
 	)

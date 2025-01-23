@@ -7,7 +7,7 @@ interface Translation {
 	slug: string
 	title: string
 	content: string
-	hero: Block
+	hero: Item
 }
 
 interface Item {
@@ -81,10 +81,10 @@ async function getDirectusPage(slug: string): Promise<Translation | null> {
 		if (translations.translations.length !== 1) {
 			return null
 		}
-		let translation = translations.translations[0] as Translation
-		translation.hero = hero
+		const translation = translations.translations[0] as Translation
+		translation.hero = hero.item
 		// Return the fetched translation
-		console.log('translation: %o', translation)
+		//console.log('translation: %o', translation)
 		return translation
 	} catch (e: any) {
 		console.log(e)

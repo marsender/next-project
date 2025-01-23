@@ -1,24 +1,23 @@
-import { useTranslations } from 'next-intl'
 import { ReactNode } from 'react'
 
 type Props = {
 	title: ReactNode
+	subtitle?: ReactNode
 	children?: ReactNode
 }
 
-export default function PageLayout({ children, title }: Props) {
-	const t = useTranslations('Navigation')
-
+export default function PageLayout({ title, subtitle, children }: Props) {
 	return (
-		<div className="relative flex grow flex-col bg-slate-850 py-36">
-			<div className="absolute inset-0 overflow-hidden">
-				<div className="absolute left-0 top-1 size-[20500px] translate-x-[-47.5%] rounded-full bg-gradient-to-b from-slate-900 via-cyan-500" />
-			</div>
-			<div className="container relative flex grow flex-col px-4">
-				<h1 className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">{title}</h1>
-				<div className="mt-6 text-gray-400 md:text-lg">{children}</div>
-				<div className="mt-auto grid grid-cols-1 gap-4 pt-20 md:grid-cols-2 lg:gap-12">PageLayout todo, with i18n: {t('account')}</div>
-			</div>
+		<div className="flex-1 flex flex-col h-full">
+			<section className="bg-white flex flex-1 justify-center">
+				<div className="p-4 m-auto max-w-5xl pt-20 pb-20 text-gray-900 w-full h-full flex max-lg:flex-col">
+					<section className="pr-8 flex justify-center lg:text-start text-center flex-col flex-1 h-full">
+						<h1 className="text-4xl xl:text-5xl font-black leading-normal">{title}</h1>
+						{subtitle && <h2 className="mt-4 text-2xl font-[300]">{subtitle}</h2>}
+						{children && <div className="mt-6 md:text-lg">{children}</div>}
+					</section>
+				</div>
+			</section>
 		</div>
 	)
 }

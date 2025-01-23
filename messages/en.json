@@ -22,10 +22,12 @@
 	},
 	"AccountPage": {
 		"title": "My account",
-		"description": "<p>This is where we put youer <strong>preferences</strong></p>"
+		"subtitle": "My account subtitle",
+		"description": "<p>Translation with html formating for the <strong>preferences</strong></p>"
 	},
 	"NotFoundPage": {
 		"title": "Not found page",
+		"subtitle": "Oh no !",
 		"description": "The page you requested does not exists"
 	}
 }

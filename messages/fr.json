@@ -22,10 +22,12 @@
 	},
 	"AccountPage": {
 		"title": "Mon compte",
-		"description": "<p>C'est là où l'on met les <strong>préférences</strong></p>"
+		"subtitle": "Mon compte soustitre",
+		"description": "<p>Traduction avec formattage html pour les <strong>préférences</strong></p>"
 	},
 	"NotFoundPage": {
 		"title": "Page non trouvée",
+		"subtitle": "Oh non !",
 		"description": "La page que vous avez demandé n'existe pas"
 	}
 }
