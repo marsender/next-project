@@ -1,17 +1,17 @@
 import { MetadataRoute } from 'next'
 
 import { getPathname, Locale, routing } from '@/i18n/routing'
-import { RouteHref,routes } from '@/lib/constants'
+import { RouteHref, routes } from '@/lib/constants'
 
 /**
  * Build the sitemap
  * Test via: curl http://localhost:3002/sitemap.xml
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-	const routesToSkip: RouteHref[] = [routes.LOGIN, routes.LOGOUT, routes.ACCOUNT]
+	const routesToSkip: Set<RouteHref> = new Set([routes.LOGIN, routes.LOGOUT, routes.ACCOUNT])
 
 	return Object.values(routes)
-		.filter((href) => !routesToSkip.includes(href))
+		.filter((href) => !routesToSkip.has(href))
 		.map(getEntry)
 }
 

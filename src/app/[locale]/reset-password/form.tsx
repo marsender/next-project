@@ -14,15 +14,15 @@ export default function RequestResetForm({ token }: { token: string }) {
 	const reset_token = token
 	const router = useRouter()
 
-	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
+	const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
 
 		try {
 			await directus.request(passwordReset(reset_token, newPassword))
 			setSuccess('Password successfully reset, redirecting you to login page...')
 			setTimeout(() => router.push(routes.LOGIN), 1000)
-		} catch (e: any) {
-			console.log(e)
+		} catch (error: any) {
+			console.log(error)
 			setError('The reset password token is invalid, please request for a new password reset link!')
 		}
 	}
@@ -32,7 +32,7 @@ export default function RequestResetForm({ token }: { token: string }) {
 			{success && <p>{success}</p>}
 			{error && <p>{error}</p>}
 			<p>Enter your new password for your account</p>
-			<input type="password" placeholder="Enter your new password" name="password" required onChange={(e) => setNewPassword(e.target.value)} autoComplete="new-password" />
+			<input type="password" placeholder="Enter your new password" name="password" required onChange={(event) => setNewPassword(event.target.value)} autoComplete="new-password" />
 			<button>Create new password</button>
 		</form>
 	)

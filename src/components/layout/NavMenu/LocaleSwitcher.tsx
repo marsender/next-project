@@ -13,9 +13,8 @@
 // import { Locale, usePathname, useRouter } from '../../../i18n/routing'
 import { CaretDownIcon } from '@radix-ui/react-icons'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
-import { useLocale,useTranslations } from 'next-intl'
-import React from 'react'
-import { Fragment } from 'react'
+import { useLocale, useTranslations } from 'next-intl'
+import React, { Fragment } from 'react'
 
 import { routing } from '@/i18n/routing'
 
@@ -61,9 +60,9 @@ export const LocaleSwitcher = () => {
 								</NavigationMenu.Trigger>
 								<NavigationMenu.Content onPointerEnter={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="absolute left-0 top-0 w-full sm:w-auto">
 									<ul className="m-0 list-none sm:w-[600px]">
-										{locales.map((val, index) => (
+										{locales.map((value, index) => (
 											<Fragment key={`${index}-nav-locale-menu-fragment`}>
-												<Item key={val}>{t(val)}</Item>
+												<Item key={value}>{t(value)}</Item>
 											</Fragment>
 										))}
 									</ul>
@@ -98,9 +97,9 @@ export const LocaleSwitcher = () => {
           value={locale}
           onValueChange={onChange}
         >
-          {locales.map((val) => (
-            <DropdownMenuRadioItem key={val.value} value={val.value}>
-              {val.label}
+          {locales.map((value) => (
+            <DropdownMenuRadioItem key={value.value} value={value.value}>
+              {value.label}
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>

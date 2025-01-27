@@ -8,19 +8,19 @@ import { signOut } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 
 import { Link } from '@/i18n/routing'
-import { getNavigationLabel,routes } from '@/lib/constants'
+import { getNavigationLabel, routes } from '@/lib/constants'
 
 import Divider from './Divider'
 import Item from './Item'
 
 type Props = { user?: Session['user'] }
 
+const onSignOut = (callbackUrl: string) => {
+	signOut({ callbackUrl })
+}
+
 export const NavMenu = ({ user }: Props) => {
 	const t = useTranslations('Navigation')
-
-	function onSignOut() {
-		signOut({ callbackUrl: '/' })
-	}
 
 	return (
 		<>
@@ -48,7 +48,7 @@ export const NavMenu = ({ user }: Props) => {
 													{t(getNavigationLabel(routes.ACCOUNT))}
 												</Item>
 												<Divider />
-												<Item onClick={onSignOut} icon={<LogOut color="red" size={48} />}>
+												<Item onClick={() => onSignOut('/')} icon={<LogOut color="red" size={48} />}>
 													{t(getNavigationLabel(routes.LOGOUT))}
 												</Item>
 											</ul>

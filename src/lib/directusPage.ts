@@ -86,8 +86,8 @@ async function getDirectusPage(slug: string): Promise<Translation | null> {
 		// Return the fetched translation
 		//console.log('translation: %o', translation)
 		return translation
-	} catch (e: any) {
-		console.log(e)
+	} catch (error: any) {
+		console.log(error)
 		return null
 	}
 }

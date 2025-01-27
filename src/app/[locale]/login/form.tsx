@@ -27,14 +27,15 @@ export default function LoginForm() {
 			password: data.password,
 			redirect: false,
 		})
-		if (!response?.error) {
+		if (response && !response.error) {
 			successToast('Authentication success')
 			router.push('/')
-			//router.refresh()
 			refresh()
+		} else if (response && response.status === 401 && response.error) {
+			// 401 Unauthorized
+			setError(response.error)
 		} else {
-			const authError: string = response.status === 401 && response.error ? response.error : 'Unknown authentication error'
-			setError(authError)
+			setError('Unknown authentication error')
 		}
 	}
 

@@ -13,15 +13,15 @@ export default function RequestResetPasswordForm() {
 	const [error, setError] = useState('')
 	const reset_url = `${process.env.NEXT_PUBLIC_URL}/reset-password`
 
-	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
+	const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
 
 		try {
 			await directus.request(passwordRequest(email, reset_url))
 			setSuccess('An email with a password reset link has been sent to your email!')
-		} catch (e: any) {
-			console.log(e)
-			if (e) {
+		} catch (error: any) {
+			console.log(error)
+			if (error) {
 				setError('An error occurred, please try again!')
 			}
 		}
@@ -33,7 +33,7 @@ export default function RequestResetPasswordForm() {
 			{success && <p>{success}</p>}
 			{error && <p>{error}</p>}
 			<p>Enter your registered email and a reset password link will be sent to you</p>
-			<input type="email" placeholder="Email Address" name="email" required onChange={(e) => setEmail(e.target.value)} />
+			<input type="email" placeholder="Email Address" name="email" required onChange={(event) => setEmail(event.target.value)} />
 			<button>Send Reset Link</button>
 			<Link href={routes.LOGIN}>Login page</Link>
 		</form>

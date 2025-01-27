@@ -1,9 +1,27 @@
 {
-	"extends": ["next/core-web-vitals", "next/typescript"],
+	"extends": ["next/core-web-vitals", "next/typescript", "plugin:unicorn/recommended", "plugin:import/recommended"],
 	"plugins": ["simple-import-sort"],
 	"rules": {
 		"simple-import-sort/exports": "error",
 		"simple-import-sort/imports": "error",
-		"@typescript-eslint/no-explicit-any": "off"
+		"@typescript-eslint/no-explicit-any": "off",
+		"unicorn/no-null": "off",
+		"unicorn/filename-case": "off",
+		"unicorn/no-array-callback-reference": "off",
+		"unicorn/no-array-for-each": "off",
+		"unicorn/no-array-reduce": "off",
+		"unicorn/prevent-abbreviations": [
+			"error",
+			{
+				"allowList": {
+					"e2e": true
+				},
+				"replacements": {
+					"props": false,
+					"ref": false,
+					"params": false
+				}
+			}
+		]
 	}
 }

@@ -8,9 +8,9 @@ export async function POST(request: Request) {
 		const { first_name, last_name, email, password } = await request.json()
 		await directus.request(registerUser(email, password, { first_name, last_name }))
 		return NextResponse.json({ message: 'Account Created!' }, { status: 201 })
-	} catch (e: any) {
-		console.log(e)
-		const code = e.errors[0].extensions.code
+	} catch (error: any) {
+		console.log(error)
+		const code = error.errors[0].extensions.code
 		if (code === 'RECORD_NOT_UNIQUE') {
 			return NextResponse.json({ message: 'This user already exist' }, { status: 409 })
 		}

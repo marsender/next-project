@@ -27,8 +27,8 @@ export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHr
 	const emailRef = useRef<HTMLInputElement>(null)
 	const passwordRef = useRef<HTMLInputElement>(null)
 
-	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
+	const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
 		// Collect values from refs
 		const formData = {
 			first_name: firstNameRef.current?.value || '',
