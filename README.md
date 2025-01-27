@@ -19,6 +19,7 @@ Backend is provided by [Directus](https://directus.io/)
 - [App Router setup with i18n routing](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing)
 - [next-intl example app](https://github.com/amannn/next-intl/tree/main/examples/example-app-router)
 - [Translate i18next JSON resources/files](https://translate.i18next.com/)
+- [How to set up Next.js for production](https://janhesters.com/blog/how-to-set-up-nextjs-15-for-production-in-2025)
 
 Frontend libraries
 
