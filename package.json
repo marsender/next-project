@@ -30,6 +30,7 @@
 		"@types/react-dom": "^19",
 		"eslint": "^9",
 		"eslint-config-next": "15.1.4",
+		"eslint-plugin-playwright": "^2.2.0",
 		"eslint-plugin-simple-import-sort": "^12.1.1",
 		"eslint-plugin-unicorn": "^56.0.1",
 		"postcss": "^8",
