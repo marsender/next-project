@@ -1,6 +1,7 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { getLanguageCode } from '@/lib/directus'
 import { getLocale } from 'next-intl/server'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { getLanguageCode } from '@/lib/directus'
 
 vi.mock('next/config', () => ({
 	default: () => ({

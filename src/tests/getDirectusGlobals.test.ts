@@ -1,6 +1,7 @@
-import { describe, it, expect, afterAll, vi } from 'vitest'
-import getDirectusGlobals from '@/lib/directusGlobals'
 import { getLocale } from 'next-intl/server'
+import { afterAll, describe, expect, it, vi } from 'vitest'
+
+import getDirectusGlobals from '@/lib/directusGlobals'
 
 vi.mock('next/config', () => ({
 	default: () => ({
