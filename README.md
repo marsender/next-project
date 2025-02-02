@@ -45,6 +45,13 @@ cd next-project
 npm install
 ```
 
+## Adjut env for dev and test
+
+```bash
+nano .env.local
+nano .env.test
+```
+
 ## Build for dev
 
 ```bash
@@ -63,4 +70,10 @@ npm run start
 ```bash
 npm run lint
 npm run lint:fix # to fix lint errors
+```
+
+## Run tests
+
+```bash
+npm test
 ```

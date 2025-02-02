@@ -7,7 +7,8 @@
 		"build": "next build",
 		"start": "next start -p 3002",
 		"lint": "next lint",
-		"lint:fix": "next lint --fix"
+		"lint:fix": "next lint --fix",
+		"test": "NODE_ENV=test env $(cat .env.test | xargs) vitest --reporter=verbose"
 	},
 	"dependencies": {
 		"@directus/sdk": "^18.0.3",
@@ -35,6 +36,7 @@
 		"eslint-plugin-unicorn": "^56.0.1",
 		"postcss": "^8",
 		"tailwindcss": "^3.4.1",
-		"typescript": "^5"
+		"typescript": "^5",
+		"vitest": "^3.0.4"
 	}
 }
