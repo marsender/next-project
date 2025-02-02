@@ -5,7 +5,6 @@
 		"simple-import-sort/exports": "error",
 		"simple-import-sort/imports": "error",
 		"@typescript-eslint/no-explicit-any": "off",
-		"playwright/no-standalone-expect": "off",
 		"unicorn/no-null": "off",
 		"unicorn/filename-case": "off",
 		"unicorn/no-array-callback-reference": "off",
