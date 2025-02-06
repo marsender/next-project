@@ -20,6 +20,8 @@ Backend is provided by [Directus](https://directus.io/)
 - [next-intl example app](https://github.com/amannn/next-intl/tree/main/examples/example-app-router)
 - [Translate i18next JSON resources/files](https://translate.i18next.com/)
 - [How to set up Next.js for production](https://janhesters.com/blog/how-to-set-up-nextjs-15-for-production-in-2025)
+- [Vitest tests](https://vitest.dev/)
+- [Playwright end-to-end tests](https://playwright.dev/)
 
 Frontend libraries
 
@@ -74,6 +76,15 @@ npm run lint:fix # to fix lint errors
 
 ## Run tests
 
+Vitest tests
+
 ```bash
 npm test
+```
+
+Playwright end-to-end tests
+
+```bash
+npm run test:e2e # Console tests
+npm run test:e2e:ui # UI tests
 ```
