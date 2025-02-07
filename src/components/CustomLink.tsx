@@ -1,5 +1,5 @@
 //import { AiOutlineLoading3Quarters as LoadingIcon } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters'
-import VariantProps from 'class-variance-authority'
+import type { VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 import { forwardRef, ReactNode } from 'react'
 
