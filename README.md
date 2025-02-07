@@ -1,20 +1,12 @@
 # Next-project
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) :
+![CI](https://github.com/marsender/next-project/workflows/CI/badge.svg)
 
-```bash
-npx create-next-app@latest next-project --ts --app --src-dir --eslint --turbopack --tailwind --import-alias "@/*"
-```
+This is a [Next.js](https://nextjs.org) project with [Directus](https://directus.io/) backend
 
-Inspiration for the architecture and components comes from [Digest.club application](https://github.com/premieroctet/digestclub)
+Next.js
 
-Backend is provided by [Directus](https://directus.io/)
-
-- [Directus Next.js example](https://github.com/directus-labs/examples/tree/main/nextjs)
-- [Directus page components](https://docs.directus.io/guides/headless-cms/reusable-components.html)
-- [Directus JavaScript SDK](https://docs.directus.io/guides/sdk/getting-started.html)
-- [Using Directus Auth with NextAuth.js](https://docs.directus.io/blog/directus-auth-nextauth.html)
-- [Using Directus Auth in Next.js](https://docs.directus.io/blog/implement-directus-auth-in-next-js-14.html)
+- [Bootstrap next project with `create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
 - [Internationalization](https://nextjs.org/docs/pages/building-your-application/routing/internationalization)
 - [App Router setup with i18n routing](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing)
 - [next-intl example app](https://github.com/amannn/next-intl/tree/main/examples/example-app-router)
@@ -27,7 +19,17 @@ Frontend libraries
 
 - [Radix UI](https://www.radix-ui.com/primitives)
 
+Backend is provided by Directus
+
+- [Directus Next.js example](https://github.com/directus-labs/examples/tree/main/nextjs)
+- [Directus page components](https://docs.directus.io/guides/headless-cms/reusable-components.html)
+- [Directus JavaScript SDK](https://docs.directus.io/guides/sdk/getting-started.html)
+- [Using Directus Auth with NextAuth.js](https://docs.directus.io/blog/directus-auth-nextauth.html)
+- [Using Directus Auth in Next.js](https://docs.directus.io/blog/implement-directus-auth-in-next-js-14.html)
+
 ## Architecture
+
+Inspiration for the architecture and components comes from [Digest.club application](https://github.com/premieroctet/digestclub)
 
 Next
 
