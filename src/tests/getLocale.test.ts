@@ -20,14 +20,12 @@ describe('getLanguageCode', () => {
 	})
 
 	it('should return "fr-FR" when locale is "fr"', async () => {
-		const mockedGetLocale = getLocale as vi.Mock
-		mockedGetLocale.mockResolvedValue('fr')
+		vi.mocked(getLocale).mockResolvedValue('fr')
 		await expect(getLanguageCode()).resolves.toBe('fr-FR')
 	})
 
 	it('should return "en-US" when locale is not "fr"', async () => {
-		const mockedGetLocale = getLocale as vi.Mock
-		mockedGetLocale.mockResolvedValue('xx')
+		vi.mocked(getLocale).mockResolvedValue('xx')
 		await expect(getLanguageCode()).resolves.toBe('en-US')
 	})
 })

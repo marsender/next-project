@@ -42,7 +42,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: 🔎 Type check
-        run: npm run type-check-TODO --if-present
+        run: npm run type-check --if-present
 
   vitest:
     name: ⚡ Vitest

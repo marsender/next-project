@@ -19,9 +19,7 @@ describe('getDirectusGlobals', () => {
 	})
 
 	it('Fetch global translations for the french locale', async () => {
-		//;(getLocale as vi.Mock).mockResolvedValue('fr')
-		const mockedGetLocale = getLocale as vi.Mock
-		mockedGetLocale.mockResolvedValue('fr')
+		vi.mocked(getLocale).mockResolvedValue('fr')
 
 		const result = await getDirectusGlobals()
 
