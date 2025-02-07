@@ -72,9 +72,16 @@ npm run start
 ```bash
 npm run lint
 npm run lint:fix # to fix lint errors
+npm run type-check
 ```
 
 ## Run tests
+
+Copy env and adjust
+
+```bash
+cp .env.test .env.test.local
+```
 
 Vitest tests
 
