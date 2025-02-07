@@ -14,12 +14,9 @@ Next.js
 - [How to set up Next.js for production](https://janhesters.com/blog/how-to-set-up-nextjs-15-for-production-in-2025)
 - [Vitest tests](https://vitest.dev/)
 - [Playwright end-to-end tests](https://playwright.dev/)
-
-Frontend libraries
-
 - [Radix UI](https://www.radix-ui.com/primitives)
 
-Backend is provided by Directus
+Directus
 
 - [Directus Next.js example](https://github.com/directus-labs/examples/tree/main/nextjs)
 - [Directus page components](https://docs.directus.io/guides/headless-cms/reusable-components.html)
