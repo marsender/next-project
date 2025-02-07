@@ -82,6 +82,12 @@ Vitest tests
 npm test
 ```
 
+Vitest coverage
+
+```bash
+npm run coverage
+```
+
 Playwright end-to-end tests
 
 ```bash

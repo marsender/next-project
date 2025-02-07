@@ -7,8 +7,10 @@
 		"build": "next build",
 		"start": "next start -p 3002",
 		"lint": "next lint",
+		"type-check": "tsc -b",
 		"lint:fix": "next lint --fix",
 		"test": "NODE_ENV=test env $(cat .env.test | xargs) vitest --reporter=verbose",
+		"coverage": "NODE_ENV=test env $(cat .env.test | xargs) vitest run --coverage",
 		"test:e2e": "npx playwright test",
 		"test:e2e:ui": "npx playwright test --ui"
 	},
@@ -32,6 +34,7 @@
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
+		"@vitest/coverage-v8": "^3.0.5",
 		"eslint": "^9",
 		"eslint-config-next": "15.1.4",
 		"eslint-plugin-playwright": "^2.2.0",
