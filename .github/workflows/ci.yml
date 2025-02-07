@@ -60,7 +60,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: ⚡ Run vitest
-        run: npm run test-ci -- --coverage
+        run: npm run test -- --coverage
 
   playwright:
     name: 🎭 Playwright
