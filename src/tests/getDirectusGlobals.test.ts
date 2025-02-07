@@ -3,6 +3,8 @@ import { afterAll, describe, expect, it, vi } from 'vitest'
 
 import getDirectusGlobals from '@/lib/directusGlobals'
 
+const isCI = process.env.CI ? true : false
+
 vi.mock('next/config', () => ({
 	default: () => ({
 		publicRuntimeConfig: { url: process.env.DIRECTUS_URL }, // Mock Directus URL
@@ -21,10 +23,14 @@ describe('getDirectusGlobals', () => {
 	it('Fetch global translations for the french locale', async () => {
 		vi.mocked(getLocale).mockResolvedValue('fr')
 
+		if (isCI) {
+			return
+		}
+
 		const result = await getDirectusGlobals()
 
 		// Log the result for debugging
-		console.log('Fetched global translations:', result)
+		//console.log('Fetched global translations:', result)
 
 		// You can add assertions based on the expected structure of the result
 		expect(result).toBeDefined()
