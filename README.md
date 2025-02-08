@@ -15,6 +15,7 @@ Next.js
 - [Vitest tests](https://vitest.dev/)
 - [Playwright end-to-end tests](https://playwright.dev/)
 - [Radix UI](https://www.radix-ui.com/primitives)
+- [Shadcn UI](https://ui.shadcn.com/)
 
 Directus
 
