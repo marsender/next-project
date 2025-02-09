@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 
 import PageLayout from '@/components/pages/PageLayout'
+
 import LoginForm from './form'
 
 export const dynamic = 'force-dynamic'
