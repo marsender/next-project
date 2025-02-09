@@ -2,6 +2,8 @@ import { getTranslations } from 'next-intl/server'
 
 import PageLayout from '@/components/pages/PageLayout'
 
+import AccountForm from './form'
+
 type Props = {
 	params: Promise<{ locale: string }>
 }
@@ -13,6 +15,7 @@ export default async function AccountPage({ params }: Props) {
 
 	return (
 		<PageLayout title={t('title')} subtitle={t('subtitle')}>
+			<AccountForm />
 			<div className="max-w-[490px]">
 				{t.rich('description', {
 					p: (chunks) => <p className="mt-4">{chunks}</p>,
