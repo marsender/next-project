@@ -20,6 +20,9 @@
 			"submit": "Soumettre"
 		}
 	},
+	"LoginPage": {
+		"title": "Connexion"
+	},
 	"AccountPage": {
 		"title": "Mon compte",
 		"subtitle": "Mon compte soustitre",

@@ -20,6 +20,9 @@
 			"submit": "Submit"
 		}
 	},
+	"LoginPage": {
+		"title": "Login"
+	},
 	"AccountPage": {
 		"title": "My account",
 		"subtitle": "My account subtitle",
