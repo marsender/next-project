@@ -38,7 +38,7 @@ export default function AccountForm() {
 						<FormItem>
 							<FormLabel>Username</FormLabel>
 							<FormControl>
-								<Input placeholder="shadcn" {...field} />
+								<Input disabled type="email" placeholder="Email" {...field} />
 							</FormControl>
 							<FormDescription>This is your public display name.</FormDescription>
 							<FormMessage />
