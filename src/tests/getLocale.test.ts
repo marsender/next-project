@@ -1,5 +1,4 @@
 import { getLocale } from 'next-intl/server'
-//import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getLanguageCode } from '@/lib/directus'
 

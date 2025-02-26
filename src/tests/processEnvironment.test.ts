@@ -1,5 +1,3 @@
-//import { describe, expect, test } from 'vitest'
-
 describe('Environment Variables', () => {
 	test('should load DIRECTUS_URL from .env.test or .env.test.local environment file', () => {
 		expect(process.env.DIRECTUS_URL).toBeDefined()
