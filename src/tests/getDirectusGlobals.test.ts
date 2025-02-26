@@ -1,5 +1,5 @@
 import { getLocale } from 'next-intl/server'
-import { afterAll, describe, expect, it, vi } from 'vitest'
+//import { afterAll, describe, expect, it, vi } from 'vitest'
 
 import getDirectusGlobals from '@/lib/directusGlobals'
 
@@ -37,8 +37,8 @@ describe('getDirectusGlobals', () => {
 		expect(result).toHaveProperty('id', 2)
 		expect(result).toHaveProperty('global_id', 1)
 		expect(result).toHaveProperty('languages_code', 'fr-FR')
-		expect(result).toHaveProperty('title', 'Développement web')
-		expect(result).toHaveProperty('description', 'Conception et développement d’applications web')
+		expect(result).toHaveProperty('title', 'Développeur Web Freelance')
+		expect(result).toHaveProperty('description', 'Création de sites modernes & performants')
 	})
 
 	// it('should return null if there are no translations', async () => {

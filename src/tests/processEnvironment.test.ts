@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'vitest'
+//import { describe, expect, test } from 'vitest'
 
 describe('Environment Variables', () => {
 	test('should load DIRECTUS_URL from .env.test or .env.test.local environment file', () => {
