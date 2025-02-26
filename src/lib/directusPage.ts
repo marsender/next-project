@@ -53,6 +53,13 @@ async function getDirectusPage(slug: string): Promise<Translation | null> {
 							],
 						},
 					},
+					blocks: {
+						item: {
+							translations: {
+								_filter: { languages_code: { _eq: languageCode } },
+							},
+						},
+					},
 				},
 				fields: [
 					'*',
@@ -61,10 +68,7 @@ async function getDirectusPage(slug: string): Promise<Translation | null> {
 						blocks: [
 							'*',
 							{
-								item: {
-									block_hero: ['*'],
-									block_richtext: ['*'],
-								},
+								item: ['*', { translations: ['*'] }],
 							},
 						],
 					},
@@ -76,6 +80,7 @@ async function getDirectusPage(slug: string): Promise<Translation | null> {
 			return null
 		}
 		const translations = response[0] as Translations
+		console.log('Directus response: %o', translations)
 		const hero = translations.blocks[0] as Block
 		// Access the translations property
 		if (translations.translations.length !== 1) {
