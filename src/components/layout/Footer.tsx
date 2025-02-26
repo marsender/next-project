@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { memo, PropsWithChildren } from 'react'
 
 import Logo from '@/components/layout/Logo'
-import { mainNavigation } from '@/lib/constants'
+//import { mainNavigation } from '@/lib/constants'
 
 const ListSection = ({ title, children }: PropsWithChildren & { title: string }) => {
 	return (
