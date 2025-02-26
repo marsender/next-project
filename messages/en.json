@@ -9,6 +9,9 @@
 		"account": "My account",
 		"about": "About"
 	},
+	"Footer": {
+		"networks": "Networks"
+	},
 	"LocaleSwitcher": {
 		"fr": "Français",
 		"en": "English"

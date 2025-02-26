@@ -7,7 +7,7 @@ const Logo = (props: { className?: string; isWhite?: boolean }) => {
 	const color = props.isWhite ? 'white' : 'black'
 
 	return (
-		<span className={clsx('flex items-center cursor-pointer gap-2 pt-2')}>
+		<span className={clsx('flex items-center gap-2 pt-2')}>
 			{/* Pierre hack: fill='currentColor' */}
 			<BrandIcon fill={developmentMode ? '#dc2828' : color} />
 

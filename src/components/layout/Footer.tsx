@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { memo, PropsWithChildren } from 'react'
 
 import Logo from '@/components/layout/Logo'
@@ -19,6 +20,7 @@ const ListSection = ({ title, children }: PropsWithChildren & { title: string })
 }
 
 const Footer = () => {
+	const t = useTranslations('Footer')
 	const currentYear = new Date().getFullYear()
 
 	return (
@@ -41,7 +43,7 @@ const Footer = () => {
 								</li>
 							))}
 						</ListSection>*/}
-						<ListSection title="Social">
+						<ListSection title={t('networks')}>
 							<li>
 								<Link href="https://github.com/marsender" target="_blank">
 									GitHub

@@ -18,12 +18,12 @@ describe('getLanguageCode', () => {
 		vi.clearAllMocks()
 	})
 
-	it('should return "fr-FR" when locale is "fr"', async () => {
+	test('should return "fr-FR" when locale is "fr"', async () => {
 		vi.mocked(getLocale).mockResolvedValue('fr')
 		await expect(getLanguageCode()).resolves.toBe('fr-FR')
 	})
 
-	it('should return "en-US" when locale is not "fr"', async () => {
+	test('should return "en-US" when locale is not "fr"', async () => {
 		vi.mocked(getLocale).mockResolvedValue('xx')
 		await expect(getLanguageCode()).resolves.toBe('en-US')
 	})
