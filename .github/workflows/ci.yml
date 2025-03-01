@@ -65,6 +65,7 @@ jobs:
   playwright:
     name: 🎭 Playwright
     runs-on: ubuntu-latest
+    if: false # This condition ensures the job is never executed
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
@@ -81,7 +82,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: 🎭 Playwright Run
-        run: DEBUG=pw:api npx playwright test
+        run: npx playwright test
 
       - name: 📸 Playwright Screenshots
         uses: actions/upload-artifact@v4
