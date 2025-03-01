@@ -2,7 +2,7 @@ import { getLocale } from 'next-intl/server'
 
 import directusGlobal, { Global } from '@/lib/directusGlobal'
 
-const isCI = process.env.CI ? true : false
+//const isCI = process.env.CI ? true : false
 
 vi.mock('next/config', () => ({
 	default: () => ({
@@ -22,9 +22,9 @@ describe('directusGlobal', () => {
 	it('Fetch global translations for the french locale', async () => {
 		vi.mocked(getLocale).mockResolvedValue('fr')
 
-		if (isCI) {
-			return
-		}
+		// if (isCI) {
+		// 	return
+		// }
 
 		const result: Global = await directusGlobal()
 
