@@ -1,8 +1,13 @@
 import Image from 'next/image'
 
 import { getAssetURL } from '@/lib/directus'
+import { Page } from '@/lib/directusPage'
 
-const SlugPageLayout = ({ page }: any) => {
+type Props = {
+	page: Page
+}
+
+const SlugPageLayout = ({ page }: Props) => {
 	return (
 		<div className="flex-1 flex flex-col h-full">
 			<section className="bg-white flex flex-1 justify-center">
