@@ -11,7 +11,7 @@
 		"lint:fix": "next lint --fix",
 		"test": "NODE_ENV=test env $(cat .env.test.local 2>/dev/null || cat .env.test | xargs) vitest --reporter=verbose",
 		"coverage": "NODE_ENV=test env $(cat .env.test.local 2>/dev/null || cat .env.test | xargs) vitest run --coverage",
-		"test:e2e": "NODE_ENV=test env $(cat .env.test.local 2>/dev/null || cat .env.test | xargs) npx playwright test",
+		"test:e2e": "npx playwright test",
 		"test:e2e:ui": "npx playwright test --ui"
 	},
 	"dependencies": {
