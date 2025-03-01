@@ -39,7 +39,7 @@ export const NavMenu = ({ user }: Props) => {
 										<NavigationMenu.Trigger onPointerMove={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="group  select-none leading-none">
 											<span className="text-lg flex items-center justify-between gap-0.5 rounded px-3 py-2 font-medium text-gray-900">
 												User name todo
-												<CaretDownIcon className="relative top-px text-violet10 transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180" aria-hidden />
+												<CaretDownIcon className="relative top-px text-violet10 transition-transform duration-250 ease-in group-data-[state=open]:-rotate-180" aria-hidden />
 											</span>
 										</NavigationMenu.Trigger>
 										<NavigationMenu.Content onPointerEnter={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="absolute left-0 top-0 w-full sm:w-auto">
