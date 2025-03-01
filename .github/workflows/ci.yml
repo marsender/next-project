@@ -65,7 +65,6 @@ jobs:
   playwright:
     name: 🎭 Playwright
     runs-on: ubuntu-latest
-    if: false # This condition ensures the job is never executed
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
