@@ -65,7 +65,6 @@ jobs:
   playwright:
     name: 🎭 Playwright
     runs-on: ubuntu-latest
-    if: false # This condition ensures the job is never executed
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
@@ -77,6 +76,9 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
+
+      - name: Install extra dependencies
+        run: sudo apt-get install -y libnss3 libatk1.0-0 libx11-xcb1
 
       - name: 🌐 Install Playwright Browsers
         run: npx playwright install --with-deps
