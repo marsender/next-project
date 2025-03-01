@@ -1,6 +1,6 @@
 import { getLocale } from 'next-intl/server'
 
-import getDirectusGlobals from '@/lib/directusGlobals'
+import directusGlobal, { Global } from '@/lib/directusGlobal'
 
 const isCI = process.env.CI ? true : false
 
@@ -14,7 +14,7 @@ vi.mock('next-intl/server', () => ({
 	getLocale: vi.fn(),
 }))
 
-describe('getDirectusGlobals', () => {
+describe('directusGlobal', () => {
 	afterAll(() => {
 		// Any cleanup logic if necessary
 	})
@@ -26,7 +26,7 @@ describe('getDirectusGlobals', () => {
 			return
 		}
 
-		const result = await getDirectusGlobals()
+		const result: Global = await directusGlobal()
 
 		// Log the result for debugging
 		//console.log('Fetched global translations:', result)
@@ -42,7 +42,7 @@ describe('getDirectusGlobals', () => {
 
 	// it('should return null if there are no translations', async () => {
 	// 	// You may need to set up the Directus API to ensure it returns no translations for this test
-	// 	const result = await getDirectusGlobals()
+	// 	const result = await directusGlobal()
 
 	// 	// Check if the result is null when there are no translations
 	// 	expect(result).toBeNull()
@@ -50,7 +50,7 @@ describe('getDirectusGlobals', () => {
 
 	// it('should return null if there is an error', async () => {
 	// 	// You may need to simulate an error condition in the Directus API for this test
-	// 	const result = await getDirectusGlobals()
+	// 	const result = await directusGlobal()
 
 	// 	// Check if the result is null when there is an error
 	// 	expect(result).toBeNull()

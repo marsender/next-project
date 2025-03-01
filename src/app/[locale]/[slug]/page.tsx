@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 
 import SlugPageLayout from '@/components/pages/SlugPageLayout'
-import getDirectusPage from '@/lib/directusPage'
+import getDirectusPage, { Page } from '@/lib/directusPage'
 
 type Props = {
 	params: Promise<{ slug: string }>
@@ -9,7 +9,7 @@ type Props = {
 
 export default async function SlugPage({ params }: Props) {
 	const { slug } = await params
-	const page = await getDirectusPage(slug)
+	const page: Page = await getDirectusPage(slug)
 	if (!page) {
 		console.log('Directus incorrect page slug "%s"', slug)
 		notFound()

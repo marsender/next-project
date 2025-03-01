@@ -2,12 +2,24 @@ import { readItems } from '@directus/sdk'
 
 import directus, { getLanguageCode } from '@/lib/directus'
 
-interface Translation {
+interface Page {
 	languages_code: string
 	slug: string
 	title: string
 	content: string
 	hero: Item
+}
+
+const emptyItem: Item = {
+	image: '',
+}
+
+const emptyPage: Page = {
+	languages_code: '',
+	slug: '',
+	title: '',
+	content: '',
+	hero: emptyItem,
 }
 
 interface Item {
@@ -18,9 +30,9 @@ interface Block {
 	item: Item
 }
 
-interface Translations {
+interface Pages {
 	id: string
-	translations: Translation[]
+	translations: Page[]
 	blocks: Block[]
 }
 
@@ -28,12 +40,12 @@ interface Translations {
  * Fetch directus page slug for the current locale
  *
  * Usage:
- * const page = await getDirectusPage(slug)
+ * const page = await directusPage(slug)
  * then get properties: page.title page.content
  *
  * @returns object with page properties translated or null if error
  */
-async function getDirectusPage(slug: string): Promise<Translation | null> {
+async function directusPage(slug: string): Promise<Page> {
 	try {
 		const languageCode = await getLanguageCode()
 
@@ -77,24 +89,25 @@ async function getDirectusPage(slug: string): Promise<Translation | null> {
 			})
 		)
 		if (response.length !== 1) {
-			return null
+			return emptyPage
 		}
-		const translations = response[0] as Translations
-		console.log('Directus response: %o', translations)
-		const hero = translations.blocks[0] as Block
+		const pages = response[0] as Pages
+		console.log('Directus response: %o', pages)
+		const block = pages.blocks[0] as Block
 		// Access the translations property
-		if (translations.translations.length !== 1) {
-			return null
+		if (pages.translations.length !== 1) {
+			return emptyPage
 		}
-		const translation = translations.translations[0] as Translation
-		translation.hero = hero.item
-		// Return the fetched translation
-		//console.log('translation: %o', translation)
-		return translation
+		const page = pages.translations[0] as Page
+		page.hero = block.item
+		// Return the fetched page
+		//console.log('page: %o', page)
+		return page
 	} catch (error: any) {
 		console.log(error)
-		return null
+		return emptyPage
 	}
 }
 
-export default getDirectusPage
+export type { Item, Page }
+export default directusPage

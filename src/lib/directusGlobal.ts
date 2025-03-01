@@ -2,27 +2,33 @@ import { readItems } from '@directus/sdk'
 
 import directus, { getLanguageCode } from '@/lib/directus'
 
-interface Translation {
+interface Global {
 	languages_code: string
 	title: string
 	description: string
 }
 
+const emptyTranslation: Global = {
+	languages_code: '',
+	title: '',
+	description: '',
+}
+
 interface Translations {
 	id: string
-	translations: Translation[]
+	translations: Global[]
 }
 
 /**
  * Fetch directus global for the current locale
  *
  * Usage:
- * const global = await getDirectusGlobals()
- * then get properties: global?.title global?.description
+ * const global = await directusGlobal()
+ * then get properties: global.title global.description
  *
  * @returns object with global properties translated or null if error
  */
-async function getDirectusGlobals(): Promise<Translation | null> {
+async function directusGlobal(): Promise<Global> {
 	const languageCode = await getLanguageCode()
 
 	try {
@@ -46,16 +52,16 @@ async function getDirectusGlobals(): Promise<Translation | null> {
 		const translations = unknownResponse as Translations
 		// Access the translations property
 		if (translations.translations.length !== 1) {
-			return null
+			return emptyTranslation
 		}
-		const translation = translations.translations[0] as Translation
+		const translation = translations.translations[0] as Global
 		// Return the fetched translation
 		return translation
 	} catch (error) {
 		console.error('Error fetching global settings:', error)
-		return null
+		return emptyTranslation
 	}
 }
 
-export type { Translation }
-export default getDirectusGlobals
+export type { Global }
+export default directusGlobal

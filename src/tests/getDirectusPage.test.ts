@@ -1,6 +1,6 @@
 import { getLocale } from 'next-intl/server'
 
-import getDirectusPage from '@/lib/directusPage'
+import directusPage from '@/lib/directusPage'
 
 const isCI = process.env.CI ? true : false
 
@@ -14,7 +14,7 @@ vi.mock('next-intl/server', () => ({
 	getLocale: vi.fn(),
 }))
 
-describe('getDirectusPage', () => {
+describe('directusPage', () => {
 	afterAll(() => {
 		// Any cleanup logic if necessary
 	})
@@ -26,7 +26,7 @@ describe('getDirectusPage', () => {
 			return
 		}
 
-		const result = await getDirectusPage('about')
+		const result = await directusPage('about')
 
 		// Log the result for debugging
 		//console.log('Fetched page:', result)
