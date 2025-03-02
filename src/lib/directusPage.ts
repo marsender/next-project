@@ -67,7 +67,8 @@ function filterBlocks(blocks: Blocks[], languageCode: string): (BlockHero | Bloc
 			if (block.collection === 'block_hero') {
 				const heroBlock = block.item as ItemBlockHero
 				const translation = heroBlock.translations.find((t) => t.languages_code === languageCode)
-				return translation ? { ...translation, collection: block.collection, image: heroBlock.image } : null
+				//console.log('translation: %o', translation)
+				return translation ? { ...translation, collection: block.collection, image: heroBlock.image, buttons: translation.buttons ? JSON.parse(translation.buttons) : [] } : null
 			}
 			if (block.collection === 'block_richtext') {
 				const richTextBlock = block.item as ItemBlockRichText
@@ -152,5 +153,5 @@ async function directusPage(slug: string): Promise<Page> {
 	}
 }
 
-export type { BlockHero, BlockRichText,Page }
+export type { BlockHero, BlockRichText, Page }
 export default directusPage
