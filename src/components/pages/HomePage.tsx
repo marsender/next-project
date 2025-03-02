@@ -1,8 +1,8 @@
 import { Session } from 'next-auth'
 
 import Hero from '@/components/home/Hero'
-import HomeOpenSource from '@/components/home/HomeOpenSource'
 import HomeContent from '@/components/home/HomeContent'
+import HomeOpenSource from '@/components/home/HomeOpenSource'
 import HomeSteps from '@/components/home/HomeSteps'
 import { Page } from '@/lib/directusPage'
 
