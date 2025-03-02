@@ -2,16 +2,55 @@ import { readItems } from '@directus/sdk'
 
 import directus, { getLanguageCode } from '@/lib/directus'
 
+interface ItemPage {
+	slug: string
+	blocks: Blocks[]
+	translations: PageTranslation[]
+}
+
+interface Blocks {
+	collection: string
+	item: ItemBlockHero | ItemBlockRichText
+}
+
+interface PageTranslation {
+	languages_code: string
+	slug: string
+	title: string
+	content: string
+}
+
+interface ItemBlockHero {
+	image: string
+	translations: BlockHero[]
+}
+
+interface ItemBlockRichText {
+	translations: BlockRichText[]
+}
+
+interface BlockHero {
+	collection: string
+	image: string
+	languages_code: string
+	buttons?: string
+	content: string
+	headline: string
+}
+
+interface BlockRichText {
+	collection: string
+	languages_code: string
+	content: string
+	headline: string
+}
+
 interface Page {
 	languages_code: string
 	slug: string
 	title: string
 	content: string
-	hero: Item
-}
-
-const emptyItem: Item = {
-	image: '',
+	blocks: (BlockHero | BlockRichText)[]
 }
 
 const emptyPage: Page = {
@@ -19,21 +58,25 @@ const emptyPage: Page = {
 	slug: '',
 	title: '',
 	content: '',
-	hero: emptyItem,
+	blocks: [],
 }
 
-interface Item {
-	image: string
-}
-
-interface Block {
-	item: Item
-}
-
-interface Pages {
-	id: string
-	translations: Page[]
-	blocks: Block[]
+function filterBlocks(blocks: Blocks[], languageCode: string): (BlockHero | BlockRichText)[] {
+	return blocks
+		.map((block) => {
+			if (block.collection === 'block_hero') {
+				const heroBlock = block.item as ItemBlockHero
+				const translation = heroBlock.translations.find((t) => t.languages_code === languageCode)
+				return translation ? { ...translation, collection: block.collection, image: heroBlock.image } : null
+			}
+			if (block.collection === 'block_richtext') {
+				const richTextBlock = block.item as ItemBlockRichText
+				const translation = richTextBlock.translations.find((t) => t.languages_code === languageCode)
+				return translation ? { ...translation, collection: block.collection } : null
+			}
+			return null
+		})
+		.filter(Boolean) as (BlockHero | BlockRichText)[]
 }
 
 /**
@@ -49,7 +92,6 @@ async function directusPage(slug: string): Promise<Page> {
 	try {
 		const languageCode = await getLanguageCode()
 
-		//const response = await directus.request(readItem('pages', slug))
 		const response = await directus.request(
 			readItems('pages', {
 				deep: {
@@ -65,13 +107,14 @@ async function directusPage(slug: string): Promise<Page> {
 							],
 						},
 					},
-					blocks: {
-						item: {
-							translations: {
-								_filter: { languages_code: { _eq: languageCode } },
-							},
-						},
-					},
+					// blocks: {
+					// 	//_filter: { collection: { _eq: 'block_hero' } }, // Reduce the blocks array to only 'block_hero'
+					// 	item: {
+					// 		translations: {
+					// 			_filter: { languages_code: { _eq: languageCode } }, // Keep only 1 translation
+					// 		},
+					// 	},
+					// },
 				},
 				fields: [
 					'*',
@@ -91,17 +134,17 @@ async function directusPage(slug: string): Promise<Page> {
 		if (response.length !== 1) {
 			return emptyPage
 		}
-		const pages = response[0] as Pages
-		console.log('Directus response: %o', pages)
-		const block = pages.blocks[0] as Block
+		const itemPage = response[0] as ItemPage
+		//console.log('Directus itemPage: %o', itemPage)
 		// Access the translations property
-		if (pages.translations.length !== 1) {
+		if (itemPage.translations.length !== 1) {
 			return emptyPage
 		}
-		const page = pages.translations[0] as Page
-		page.hero = block.item
+		const itemPageTranslation = itemPage.translations[0] as PageTranslation
+		const page: Page = { ...itemPageTranslation, blocks: [] }
+		page.blocks = filterBlocks(itemPage.blocks, languageCode)
 		// Return the fetched page
-		//console.log('page: %o', page)
+		console.log('Page: %o', page)
 		return page
 	} catch (error: any) {
 		console.log(error)
@@ -109,5 +152,5 @@ async function directusPage(slug: string): Promise<Page> {
 	}
 }
 
-export type { Item, Page }
+export type { BlockHero, BlockRichText,Page }
 export default directusPage
