@@ -1,7 +1,6 @@
-import Image from 'next/image'
-
-import { getAssetURL } from '@/lib/directus'
-import { Page } from '@/lib/directusPage'
+import SectionHero from '@/components/home/SectionHero'
+import SectionRichText from '@/components/home/SectionRichText'
+import { BlockHero, BlockRichText, Page } from '@/lib/directusPage'
 
 type Props = {
 	page: Page
@@ -16,9 +15,19 @@ const SlugPageLayout = ({ page }: Props) => {
 						<h1 className="text-4xl xl:text-5xl font-black leading-normal">{page.title}</h1>
 						<div dangerouslySetInnerHTML={{ __html: page.content }}></div>
 					</section>
-					<section className="flex-1 flex justify-center lg:justify-end max-lg:mt-12">
-						<Image src={getAssetURL(page.hero.image)} alt="" className=" object-cover h-auto relative w-full max-w-[496px]" width={100} height={0} sizes="100vw" loading="lazy" />
-					</section>
+					{page.blocks.map((block, index) => {
+						switch (block.collection) {
+							case 'block_hero': {
+								return <SectionHero key={index} block={block as BlockHero} />
+							}
+							case 'block_richtext': {
+								return <SectionRichText key={index} block={block as BlockRichText} />
+							}
+							default: {
+								return null
+							}
+						}
+					})}
 				</div>
 			</section>
 		</div>
