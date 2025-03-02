@@ -95,6 +95,9 @@ async function directusPage(slug: string): Promise<Page> {
 
 		const response = await directus.request(
 			readItems('pages', {
+				filter: {
+					slug: { _eq: slug },
+				},
 				deep: {
 					translations: {
 						_filter: {
@@ -138,14 +141,14 @@ async function directusPage(slug: string): Promise<Page> {
 		const itemPage = response[0] as ItemPage
 		//console.log('Directus itemPage: %o', itemPage)
 		// Access the translations property
-		if (itemPage.translations.length !== 1) {
+		if (itemPage.slug != slug || itemPage.translations.length !== 1) {
 			return emptyPage
 		}
 		const itemPageTranslation = itemPage.translations[0] as PageTranslation
 		const page: Page = { ...itemPageTranslation, blocks: [] }
 		page.blocks = filterBlocks(itemPage.blocks, languageCode)
 		// Return the fetched page
-		console.log('Page: %o', page)
+		//console.log('Page: %o', page)
 		return page
 	} catch (error: any) {
 		console.log(error)
