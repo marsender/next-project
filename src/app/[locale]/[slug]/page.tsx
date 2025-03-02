@@ -10,10 +10,8 @@ type Props = {
 export default async function SlugPage({ params }: Props) {
 	const { slug } = await params
 	const page: Page = await getDirectusPage(slug)
-	if (!page) {
-		console.log('Directus incorrect page slug "%s"', slug)
+	if (!page.slug.length) {
 		notFound()
 	}
-	//console.log('Directus dynamic page for slug "%s": %o', slug, page)
 	return <SlugPageLayout page={page} />
 }

@@ -8,8 +8,8 @@ type Props = {
 
 export default function PageLayout({ title, subtitle, children }: Props) {
 	return (
-		<div className="flex-1 flex flex-col h-full">
-			<section className="bg-white flex flex-1 justify-center">
+		<div className="flex flex-1 flex-col h-full">
+			<section className="flex flex-1 justify-center bg-white">
 				<div className="p-4 m-auto max-w-5xl pt-20 pb-20 text-gray-900 w-full h-full flex max-lg:flex-col">
 					<section className="pr-8 flex justify-center lg:text-start text-center flex-col flex-1 h-full">
 						<h1 className="text-4xl xl:text-5xl font-black leading-normal">{title}</h1>

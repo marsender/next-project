@@ -24,7 +24,7 @@ const Footer = () => {
 	const currentYear = new Date().getFullYear()
 
 	return (
-		<div className="flex-1 flex flex-col h-full">
+		<div className="flex flex-1 flex-col h-full">
 			<div className="bg-black py-12 text-white px-8 lg:px-4">
 				<div className="max-w-5xl flex flex-col m-auto xs:flex-row">
 					<section className="flex-1">

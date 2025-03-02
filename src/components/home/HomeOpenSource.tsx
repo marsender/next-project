@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
-import Section from './Section'
+import SectionColumn from './SectionColumn'
 
 const HomeOpenSource = () => {
 	return (
-		<Section title="We are open-source" caption="Feel free to browse, critique, or contribute to our source code on GitHub" className="max-w-5xl gap-8">
+		<SectionColumn title="We are open-source" caption="Feel free to browse, critique, or contribute to our source code on GitHub" className="max-w-5xl gap-8">
 			<Link href="https://github.com/marsender" target="_blank" className="inline-flex rounded-xl bg-black text-white p-4 font-bold gap-2 hover:bg-black/80">
 				View on GitHub
 				<svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-white">
@@ -15,7 +15,7 @@ const HomeOpenSource = () => {
 					></path>
 				</svg>
 			</Link>
-		</Section>
+		</SectionColumn>
 	)
 }
 

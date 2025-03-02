@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-import Section from './Section'
+import SectionColumn from './SectionColumn'
 
 type StepProps = {
 	title: string
@@ -21,13 +21,13 @@ const Step = ({ title, img, description }: StepProps) => (
 
 const HomeSteps = () => {
 	return (
-		<Section title="Supercharge your Team knowledge" caption="Easily capture valuable links, categorize resources for efficient access, and distribute curated content seamlessly with our digest feature." className="max-w-5xl">
+		<SectionColumn title="Supercharge your Team knowledge" caption="Easily capture valuable links, categorize resources for efficient access, and distribute curated content seamlessly with our digest feature." className="max-w-5xl">
 			<div className="flex max-lg:flex-col lg:space-x-10 max-lg:space-y-12">
 				<Step title="1. Collect Links" img="/vercel.svg" description={'Add links manually or synchronize your account with external services'} />
 				<Step title="2. Organize" img="/vercel.svg" description={'Make your personal selection of interesting content you want to share'} />
 				<Step title="3. Share Digest" img="/vercel.svg" description={'Share your digest with a public link or via the newsletter feature'} />
 			</div>
-		</Section>
+		</SectionColumn>
 	)
 }
 

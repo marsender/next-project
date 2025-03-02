@@ -1,11 +1,9 @@
-import Homepage from '@/components/pages/Homepage'
+import HomePage from '@/components/pages/HomePage'
 import { getCurrentUser } from '@/lib/sessions'
 export const dynamic = 'force-dynamic'
 
-const Home = async () => {
+export default async function Home() {
 	const user = await getCurrentUser()
 
-	return <Homepage user={user} />
+	return <HomePage user={user} />
 }
-
-export default Home
