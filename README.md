@@ -42,7 +42,7 @@ Directus
 ## Install
 
 ```bash
-git clone git@github.com:marsender/next-project.git
+git clone https://github.com/marsender/next-project.git
 cd next-project
 npm install
 ```
