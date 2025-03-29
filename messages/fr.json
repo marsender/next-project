@@ -18,7 +18,8 @@
 	},
 	"Hero": {
 		"hello": "Bonjour",
-		"welcome": "Bonjour, {name} !",
+		"contactMe": "Contactez-moi",
+		"welcomeName": "Bienvenue, {name} !",
 		"button": {
 			"submit": "Soumettre"
 		}

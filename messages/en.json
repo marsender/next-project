@@ -18,7 +18,8 @@
 	},
 	"Hero": {
 		"hello": "Hello",
-		"welcome": "Hello, {name}!",
+		"contactMe": "Contact me",
+		"welcomeName": "Welcome, {name}!",
 		"button": {
 			"submit": "Submit"
 		}
