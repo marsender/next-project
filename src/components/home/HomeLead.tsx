@@ -1,5 +1,6 @@
-import SectionColumn from './SectionColumn'
 import { Page } from '@/lib/directusPage'
+
+import SectionColumn from './SectionColumn'
 
 type Props = {
 	page: Page
