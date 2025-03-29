@@ -14,7 +14,7 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	const name = 'marsender'
 
 	return (
-		<div className="p-4 m-auto max-w-5xl pt-20 text-gray-900 w-full h-full flex max-lg:flex-col">
+		<div className="p-4 m-auto max-w-5xl pt-10 text-gray-900 w-full h-full flex max-lg:flex-col">
 			<section className="flex justify-center lg:text-start text-center flex-col flex-1 h-full pt-8 pb-8">
 				<h1 className="text-4xl xl:text-5xl font-black leading-normal mb-4">{global.title}</h1>
 				<h2 className="text-2xl font-[300] mb-4">{global.description}</h2>
@@ -40,7 +40,7 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 					)}
 				</div>
 			</section>
-			<section className="flex flex-1 justify-center lg:justify-end max-lg:mt-12">
+			<section className="flex flex-1 justify-center lg:justify-end max-lg:mt-4">
 				<Image priority src="/window.svg" className=" object-cover h-auto relative w-full max-w-[496px]" width={100} height={0} alt="Hero svg" />
 			</section>
 		</div>
