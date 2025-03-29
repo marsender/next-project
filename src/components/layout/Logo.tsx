@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import BrandIcon from './BrandIcon'
 
 const Logo = (props: { className?: string; isWhite?: boolean }) => {
-	const developmentMode = false //process.env.NODE_ENV === 'development'
+	const developmentMode = process.env.NODE_ENV === 'development'
 	const color = props.isWhite ? 'white' : 'black'
 
 	return (
@@ -11,7 +11,7 @@ const Logo = (props: { className?: string; isWhite?: boolean }) => {
 			{/* Pierre hack: fill='currentColor' */}
 			<BrandIcon fill={developmentMode ? '#dc2828' : color} />
 
-			{developmentMode && (
+			{false && developmentMode && (
 				<span
 					className={clsx(`text-xl font-[800] `, props.className, {
 						'text-red-600': developmentMode,
