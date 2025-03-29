@@ -15,12 +15,12 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	return (
 		<div className="p-4 m-auto max-w-5xl pt-20 pb-20 text-gray-900 w-full h-full flex max-lg:flex-col">
 			<section className="pr-8 flex justify-center lg:text-start text-center flex-col flex-1 h-full">
-				<h1 className="text-4xl xl:text-5xl font-black leading-normal">{global.title}</h1>
-				<h2 className="mt-4 text-2xl font-[300]">{global.description}</h2>
+				<h1 className="text-4xl xl:text-5xl font-black leading-normal mb-4">{global.title}</h1>
+				<h2 className="text-2xl font-[300] mb-4">{global.description}</h2>
 				<div className="pt-10 justify-center lg:justify-start flex gap-4">
 					{isConnected ? (
 						<CustomLink href="/teams" size="lg" icon={<User size={48} />}>
-							Go to Dashboard: {t('Hero.welcome', { name })}
+							{t('Hero.welcome', { name })}
 						</CustomLink>
 					) : (
 						<CustomLink href={routes.LOGIN} size="lg">
