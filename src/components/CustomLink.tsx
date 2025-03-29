@@ -1,4 +1,3 @@
-//import { AiOutlineLoading3Quarters as LoadingIcon } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters'
 import type { VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 import { forwardRef, ReactNode } from 'react'
@@ -10,10 +9,11 @@ import { RouteHref } from '@/lib/constants'
 export interface LinkProps extends React.ComponentPropsWithoutRef<'a'>, VariantProps<typeof buttonVariants> {
 	fullWidth?: boolean
 	icon?: ReactNode
+	blankTarget?: boolean
 }
 
 const CustomLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
-	const { children, fullWidth = false, href = '/', className = '', variant = 'default', size = 'md', icon, ...rest } = props
+	const { children, fullWidth = false, href = '/', className = '', variant = 'default', size = 'md', icon, blankTarget = false, ...rest } = props
 
 	return (
 		<Link
@@ -29,6 +29,7 @@ const CustomLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
 				},
 				className
 			)}
+			target={blankTarget ? '_blank' : undefined}
 			{...rest}
 		>
 			<span className="flex items-center justify-center gap-2">
