@@ -22,7 +22,7 @@ export default function Header({ user }: Props) {
 				</div>
 				<div className=" flex flex-row items-center">
 					<LocaleSwitcher />
-					<NavMenu user={user} />
+					{false && <NavMenu user={user} />}
 				</div>
 			</div>
 		</div>
