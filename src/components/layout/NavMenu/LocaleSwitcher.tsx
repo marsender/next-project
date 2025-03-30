@@ -1,49 +1,39 @@
 'use client'
 
-// import { Button } from "@/components/ui/button";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuRadioGroup,
-//   DropdownMenuRadioItem,
-//   DropdownMenuTrigger,
-// } from "@components/ui/dropdown-menu";
-//import React, { useTransition } from 'react'
-// import { useSearchParams } from 'next/navigation'
-// import { Locale, usePathname, useRouter } from '../../../i18n/routing'
 import { CaretDownIcon } from '@radix-ui/react-icons'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import { useSearchParams } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
-import React, { Fragment } from 'react'
+import React, { Fragment, useTransition } from 'react'
 
-import { routing } from '@/i18n/routing'
+import { Locale, routing, usePathname, useRouter } from '@/i18n/routing'
 
 import Item from './Item'
 
 export const LocaleSwitcher = () => {
-	// const router = useRouter()
-	// const [isPending, startTransition] = useTransition()
-	// const pathname = usePathname()
-	// const searchParams = useSearchParams()
+	const router = useRouter()
+	const [isPending, startTransition] = useTransition()
+	const pathname = usePathname()
+	const searchParams = useSearchParams()
 	const t = useTranslations('LocaleSwitcher')
 	const locale = useLocale()
 
 	const locales = routing.locales
 
-	//console.log('LocaleSwitcher locale: %o', locale)
-
-	/*
 	function onChange(value: string) {
 		const nextLocale = value as Locale
 
 		startTransition(() => {
-			router.replace(`${pathname}?${new URLSearchParams(searchParams)}`, {
-				locale: nextLocale,
-			})
+			router.replace(
+				{
+					pathname,
+					query: Object.fromEntries(new URLSearchParams(searchParams)),
+				},
+				{ locale: nextLocale }
+			)
 			router.refresh()
 		})
 	}
-	*/
 
 	return (
 		<div className="relative flex items-stretch">
@@ -52,9 +42,9 @@ export const LocaleSwitcher = () => {
 					<NavigationMenu.List className="flex items-stretch h-full">
 						<NavigationMenu.Item asChild>
 							<div className="flex items-stretch">
-								<NavigationMenu.Trigger onPointerMove={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className="group  select-none leading-none">
+								<NavigationMenu.Trigger disabled={isPending} onPointerMove={(event) => event.preventDefault()} onPointerLeave={(event) => event.preventDefault()} className={`group select-none leading-none ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}>
 									<span className="text-lg flex items-center justify-between gap-0.5 rounded px-3 py-2 font-medium text-gray-900">
-										Todo language {locale}
+										{t(locale)}
 										<CaretDownIcon className="relative top-px text-violet10 transition-transform duration-250 ease-in group-data-[state=open]:-rotate-180" aria-hidden />
 									</span>
 								</NavigationMenu.Trigger>
@@ -62,7 +52,9 @@ export const LocaleSwitcher = () => {
 									<ul className="m-0 list-none sm:w-[600px]">
 										{locales.map((value, index) => (
 											<Fragment key={`${index}-nav-locale-menu-fragment`}>
-												<Item key={value}>{t(value)}</Item>
+												<Item key={value} onClick={() => onChange(value)}>
+													{t(value)}
+												</Item>
 											</Fragment>
 										))}
 									</ul>
@@ -74,37 +66,10 @@ export const LocaleSwitcher = () => {
 						</NavigationMenu.Indicator>
 					</NavigationMenu.List>
 					<div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-						<NavigationMenu.Viewport className="relative mt-2.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+						<NavigationMenu.Viewport className="relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
 					</div>
 				</NavigationMenu.Root>
 			</div>
 		</div>
 	)
-
-	/*
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button disabled={isPending}>
-          <Languages className="size-4" />
-          <span className="uppercase">{locale}</span>
-          <ChevronDown className="size-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuRadioGroup
-          defaultValue={locale}
-          value={locale}
-          onValueChange={onChange}
-        >
-          {locales.map((value) => (
-            <DropdownMenuRadioItem key={value.value} value={value.value}>
-              {value.label}
-            </DropdownMenuRadioItem>
-          ))}
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-	*/
 }
