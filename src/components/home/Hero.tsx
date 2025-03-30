@@ -20,7 +20,7 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 				<h2 className="text-2xl font-[300] mb-4">{global.description}</h2>
 				<div className="pt-10 justify-center lg:justify-start flex gap-4">
 					<CustomLink href="https://cal.opale-concept.com/didier.corbiere/meeting" size="lg" icon={<User size={48} />} blankTarget={true}>
-						{t('Hero.contactMe')}
+						{t('Hero.contactMe')} &nbsp;
 					</CustomLink>
 					{false && developmentMode && (
 						<>
