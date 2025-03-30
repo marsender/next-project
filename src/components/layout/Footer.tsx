@@ -29,7 +29,7 @@ const Footer = () => {
 				<div className="max-w-5xl flex flex-col m-auto xs:flex-row">
 					<section className="flex-1">
 						<div className="flex flex-col">
-							<Logo className="text-white" isWhite />
+							{false && <Logo className="text-white" isWhite />}
 							<Link href="https://opale-concept.com/" target="_blank">
 								<span className="text-sm mt-2">Opale-concept © {currentYear}</span>
 							</Link>

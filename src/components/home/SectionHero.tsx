@@ -9,7 +9,7 @@ type Props = {
 
 const SectionHero = ({ block }: Props) => {
 	return (
-		<section className="flex flex-1 justify-center p-8 bg-gray-100">
+		<section className="flex flex-1 justify-center p-8 bg-gray-100 rounded-xl">
 			<div className="max-w-5xl w-full">
 				<h2 className="text-3xl font-bold mb-4">{block.headline}</h2>
 				<div dangerouslySetInnerHTML={{ __html: block.content }}></div>
