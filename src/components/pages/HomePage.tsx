@@ -27,11 +27,9 @@ const HomePage = ({ page, user }: Props) => {
 					<HomeSteps />
 				</section>
 			)}
-			{false && (
-				<section className="flex flex-1 justify-center bg-white">
-					<HomeOpenSource />
-				</section>
-			)}
+			<section className="flex flex-1 justify-center bg-slate-100">
+				<HomeOpenSource />
+			</section>
 		</div>
 	)
 }

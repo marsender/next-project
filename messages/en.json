@@ -24,6 +24,10 @@
 			"submit": "Submit"
 		}
 	},
+	"OpenSource": {
+		"title": "We are open-source",
+		"caption": "Feel free to browse, critique, or contribute to our source code on GitHub"
+	},
 	"LoginPage": {
 		"title": "Login"
 	},

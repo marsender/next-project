@@ -24,6 +24,10 @@
 			"submit": "Soumettre"
 		}
 	},
+	"OpenSource": {
+		"title": "Nous sommes open source",
+		"caption": "N'hésitez pas à consulter, critiquer ou contribuer à notre code source sur GitHub"
+	},
 	"LoginPage": {
 		"title": "Connexion"
 	},
