@@ -28,6 +28,14 @@
 	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 
+.blocks ul {
+	@apply rounded-lg border border-gray-300 bg-white py-4 px-8 shadow-sm;
+}
+
+.blocks li {
+	@apply py-2 text-gray-700 hover:text-gray-500 transition-colors;
+}
+
 .TooltipContent {
 	transform-origin: var(--radix-tooltip-content-transform-origin);
 	animation: scaleIn 0.05s ease-out;
@@ -49,7 +57,7 @@ body {
 }
 
 @layer base {
-  :root {
+	:root {
 		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;
 		--card: 0 0% 100%;
@@ -76,7 +84,7 @@ body {
 		--chart-5: 27 87% 67%;
 		--radius: 0.5rem;
 	}
-  .dark {
+	.dark {
 		--background: 222.2 84% 4.9%;
 		--foreground: 210 40% 98%;
 		--card: 222.2 84% 4.9%;
@@ -105,10 +113,10 @@ body {
 }
 
 @layer base {
-  * {
-    @apply border-border;
+	* {
+		@apply border-border;
 	}
-  body {
-    @apply bg-background text-foreground;
+	body {
+		@apply bg-background text-foreground;
 	}
 }

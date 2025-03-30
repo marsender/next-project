@@ -17,7 +17,7 @@ const SlugPageLayout = ({ page }: Props) => {
 					</section>
 				</div>
 			</section>
-			<section className="flex flex-1 justify-center bg-white">
+			<section className="blocks flex flex-1 justify-center bg-white">
 				<div className="p-4 m-auto max-w-5xl pt-10 pb-10 text-gray-900 w-full h-full flex-col">
 					{page.blocks.map((block, index) => {
 						switch (block.collection) {
