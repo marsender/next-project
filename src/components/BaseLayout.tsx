@@ -47,7 +47,7 @@ export default async function BaseLayout({ children, locale }: Props) {
 
 	return (
 		<html lang={locale}>
-			<Script defer data-domain="opale.localhost" src="http://localhost:3012/js/script.js" strategy="afterInteractive" />
+			{process.env.VINCEANALYTICS_URL?.length && <Script defer data-domain="opale-concept.com" src={process.env.VINCEANALYTICS_URL} strategy="afterInteractive" />}
 			<body>
 				<NextIntlClientProvider messages={messages}>
 					<Providers session={session}>
