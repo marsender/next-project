@@ -15,8 +15,8 @@ export const mainNavigation = [
 	{
 		route: routes.HOME,
 		label: 'home',
-		displayWenAuthenticated: true,
-		displayWenUnauthenticated: true,
+		displayWenAuthenticated: false, // true,
+		displayWenUnauthenticated: false, // true,
 		displayNavWenAuthenticated: false,
 		displayNavWenUnauthenticated: false,
 	},
@@ -39,8 +39,8 @@ export const mainNavigation = [
 	{
 		route: routes.ABOUT,
 		label: 'about',
-		displayWenAuthenticated: true,
-		displayWenUnauthenticated: true,
+		displayWenAuthenticated: false, // true,
+		displayWenUnauthenticated: false, // true,
 		displayNavWenAuthenticated: false,
 		displayNavWenUnauthenticated: false,
 	},

@@ -8,7 +8,7 @@ export default async function HomeOpenSource() {
 	const t = await getTranslations({ locale })
 
 	return (
-		<SectionColumn title={t('OpenSource.title')} caption={t('OpenSource.caption')} className="max-w-5xl gap-8">
+		<SectionColumn title={t('OpenSource.title')} caption={t('OpenSource.caption')} dangerousHtml={t('OpenSource.dangerousHtml')} className="max-w-5xl gap-8">
 			<Link href="https://github.com/marsender" target="_blank" className="inline-flex rounded-xl bg-black text-white p-4 font-bold gap-2 hover:bg-black/80">
 				View on GitHub
 				<svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-white">

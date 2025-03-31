@@ -26,7 +26,8 @@
 	},
 	"OpenSource": {
 		"title": "Nous sommes open source",
-		"caption": "N'hésitez pas à consulter, critiquer ou contribuer à notre code source sur GitHub"
+		"caption": "N'hésitez pas à consulter, critiquer ou contribuer à notre code sur GitHub",
+		"dangerousHtml": "Ce site est basé sur un front-end Next.js TypeScript, Tailwind CSS et Radix UI et un back-end Directus"
 	},
 	"LoginPage": {
 		"title": "Connexion"
