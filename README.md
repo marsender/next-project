@@ -39,6 +39,13 @@ Directus
 
 - requests are made from Next.js on server side, not from client side
 
+## Requirements
+
+This project require the following to get started:
+
+- Node.js v22.14 (lts/jod)
+- A directus instance
+
 ## Install
 
 ```bash
