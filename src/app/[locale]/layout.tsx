@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: MetadataProps) {
 			card: 'summary_large_image',
 			title,
 			description,
-			images: [`${process.env.NEXT_PUBLIC_URL}/logo.png`],
+			images: [`${process.env.NEXT_PUBLIC_URL}/preview.png`],
 		},
 		openGraph: {
 			title,
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: MetadataProps) {
 			siteName: title,
 			images: [
 				{
-					url: `${process.env.NEXT_PUBLIC_URL}/logo.png`,
+					url: `${process.env.NEXT_PUBLIC_URL}/preview.png`,
 					width: 160,
 					height: 60,
 				},
