@@ -1,4 +1,5 @@
 import { BlockRichText } from '@/lib/directusPage'
+import DangerousHtml from '@/components/ui/dangerousHtml'
 
 type Props = {
 	block: BlockRichText
@@ -9,7 +10,7 @@ const SectionRichText = ({ block }: Props) => {
 		<section className="flex flex-1 justify-center p-8 bg-white">
 			<div className="max-w-5xl w-full">
 				<h2 className="text-3xl font-bold mb-4">{block.headline}</h2>
-				<div dangerouslySetInnerHTML={{ __html: block.content }}></div>
+				<DangerousHtml html={block.content} />
 			</div>
 		</section>
 	)

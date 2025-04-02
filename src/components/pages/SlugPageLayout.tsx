@@ -1,6 +1,7 @@
 import SectionHero from '@/components/home/SectionHero'
 import SectionRichText from '@/components/home/SectionRichText'
 import { BlockHero, BlockRichText, Page } from '@/lib/directusPage'
+import DangerousHtml from '@/components/ui/dangerousHtml'
 
 type Props = {
 	page: Page
@@ -13,7 +14,7 @@ const SlugPageLayout = ({ page }: Props) => {
 				<div className="p-4 m-auto max-w-5xl text-gray-900 w-full h-full flex-col">
 					<section className="flex justify-center lg:text-start text-center flex-col flex-1 h-full">
 						<h1 className="text-4xl xl:text-5xl font-black leading-normal mb-4">{page.title}</h1>
-						<div dangerouslySetInnerHTML={{ __html: page.content }}></div>
+						<DangerousHtml html={page.content} />
 					</section>
 				</div>
 			</section>
