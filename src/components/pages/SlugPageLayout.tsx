@@ -1,7 +1,7 @@
 import SectionHero from '@/components/home/SectionHero'
 import SectionRichText from '@/components/home/SectionRichText'
-import { BlockHero, BlockRichText, Page } from '@/lib/directusPage'
 import DangerousHtml from '@/components/ui/dangerousHtml'
+import { BlockHero, BlockRichText, Page } from '@/lib/directusPage'
 
 type Props = {
 	page: Page

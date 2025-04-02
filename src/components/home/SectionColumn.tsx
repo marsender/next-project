@@ -1,8 +1,9 @@
 import clsx from 'clsx'
 import { ReactNode } from 'react'
 
-import SectionTitle from './SectionTitle'
 import DangerousHtml from '@/components/ui/dangerousHtml'
+
+import SectionTitle from './SectionTitle'
 
 type Props = {
 	children: ReactNode

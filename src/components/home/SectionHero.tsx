@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
+import DangerousHtml from '@/components/ui/dangerousHtml'
 import { getAssetURL } from '@/lib/directus'
 import { BlockHero } from '@/lib/directusPage'
-import DangerousHtml from '@/components/ui/dangerousHtml'
 
 type Props = {
 	block: BlockHero
