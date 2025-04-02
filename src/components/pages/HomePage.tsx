@@ -22,11 +22,11 @@ const HomePage = ({ page, user }: Props) => {
 				<HomeLead page={page} />
 			</section>
 			<HomeBlocks page={page} />
-			{false && (
+			{false ? (
 				<section className="flex flex-1 justify-center bg-slate-100">
 					<HomeSteps />
 				</section>
-			)}
+			) : null}
 			<section className="flex flex-1 justify-center bg-slate-100">
 				<HomeOpenSource />
 			</section>
