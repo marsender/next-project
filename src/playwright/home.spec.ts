@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test'
 
-test.describe('about page', () => {
+test.describe('home page', () => {
 	test('search text in en page', async ({ page }) => {
-		await page.goto('/en')
+		await page.goto('/')
 		await expect(page.getByRole('heading', { name: 'Web Developer' })).toBeVisible()
 		await expect(page.getByRole('link', { name: 'Contact me' })).toBeVisible()
 		await expect(page.getByText('Hosting')).toBeVisible()
