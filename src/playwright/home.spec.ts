@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test.describe('home page', () => {
+	test.setTimeout(10000)
 	test('search text in en page', async ({ page }) => {
 		await page.goto('/')
 		await expect(page.getByRole('heading', { name: 'Web Developer' })).toBeVisible()
