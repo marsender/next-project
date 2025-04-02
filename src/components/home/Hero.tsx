@@ -22,7 +22,7 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 					<CustomLink href="https://cal.opale-concept.com/didier.corbiere/meeting" size="lg" icon={<User size={48} />} blankTarget={true}>
 						{t('Hero.contactMe')} &nbsp;
 					</CustomLink>
-					{false && developmentMode && (
+					{false && developmentMode ? (
 						<>
 							{isConnected ? (
 								<CustomLink href="/teams" size="lg" icon={<User size={48} />}>
@@ -37,12 +37,11 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 								{t('Navigation.about')}
 							</CustomLink>
 						</>
-					)}
+					) : null}
 				</div>
 			</section>
 			<section className="flex flex-1 justify-center lg:justify-end max-lg:mt-4">
-				{true && <Image priority src="/beach.avif" className=" object-cover h-auto relative w-full max-w-[496px]" width={100} height={0} alt="Hero svg" />}
-				{/*<img src="/beach.avif" className="rounded-xl object-cover h-auto relative w-full max-w-[496px]" alt="Hero" />*/}
+				<Image priority src="/beach.avif" className=" object-cover h-auto relative w-full max-w-[400px] rounded-lg" width={1500} height={1500} alt="Hero svg" />
 			</section>
 		</div>
 	)
