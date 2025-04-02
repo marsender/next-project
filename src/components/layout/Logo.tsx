@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-import BrandIcon from './BrandIcon'
+import BrandLogo from './BrandLogo'
 
 const Logo = (props: { className?: string; isWhite?: boolean }) => {
 	const developmentMode = process.env.NODE_ENV === 'development'
@@ -9,9 +9,9 @@ const Logo = (props: { className?: string; isWhite?: boolean }) => {
 	return (
 		<span className={clsx('flex items-center gap-2 pt-2')}>
 			{/* Pierre hack: fill='currentColor' */}
-			<BrandIcon fill={developmentMode ? '#dc2828' : color} />
+			<BrandLogo fill={developmentMode ? '#dc2828' : color} />
 
-			{false && developmentMode && (
+			{false && developmentMode ? (
 				<span
 					className={clsx(`text-xl font-[800] `, props.className, {
 						'text-red-600': developmentMode,
@@ -20,7 +20,7 @@ const Logo = (props: { className?: string; isWhite?: boolean }) => {
 				>
 					dev mode
 				</span>
-			)}
+			) : null}
 		</span>
 	)
 }

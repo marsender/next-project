@@ -1,6 +1,6 @@
 import { SVGProps } from 'react'
 
-const BrandIcon = (props: SVGProps<SVGSVGElement>) => (
+const BrandLogo = (props: SVGProps<SVGSVGElement>) => (
 	<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width={160} height={60} viewBox="0 0 5060.000000 2337.000000" {...props}>
 		<g transform="translate(0.000000,2337.000000) scale(0.100000,-0.100000)" stroke="none">
 			<path
@@ -133,4 +133,4 @@ c-166 91 -307 166 -312 166 -5 0 -19 -17 -31 -38 -79 -136 -217 -248 -369
 	</svg>
 )
 
-export default BrandIcon
+export default BrandLogo

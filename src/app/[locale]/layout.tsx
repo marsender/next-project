@@ -1,10 +1,11 @@
 //import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getTranslations,setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { ReactNode } from 'react'
 
 import BaseLayout from '@/components/BaseLayout'
 import { routing } from '@/i18n/routing'
+import { getLanguageCode } from '@/lib/directus'
 
 type MetadataProps = {
 	params: Promise<{ locale: string }>
@@ -52,10 +53,35 @@ export const metadata: Metadata = {
 // Use either metadata or generateMetadata
 export async function generateMetadata({ params }: MetadataProps) {
 	const { locale } = await params
+	const languageCode = await getLanguageCode()
 	const t = await getTranslations({ locale, namespace: 'Metadata' })
+	const title = t('title')
+	const description = t('description')
 
 	return {
-		title: t('title'),
+		title: title,
+		description,
+		twitter: {
+			card: 'summary_large_image',
+			title,
+			description,
+			images: [`${process.env.NEXT_PUBLIC_URL}/logo.svg`],
+		},
+		openGraph: {
+			title,
+			description,
+			url: process.env.NEXT_PUBLIC_URL,
+			siteName: title,
+			images: [
+				{
+					url: `${process.env.NEXT_PUBLIC_URL}/logo.svg`,
+					width: 160,
+					height: 60,
+				},
+			],
+			locale: languageCode,
+			type: 'website',
+		},
 	}
 }
 
