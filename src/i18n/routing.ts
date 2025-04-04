@@ -11,7 +11,7 @@ export const routing = defineRouting({
 	defaultLocale: 'en',
 
 	// Make the default lang as root
-	localePrefix: 'as-needed',
+	localePrefix: 'always',
 
 	pathnames: {
 		'/': '/',

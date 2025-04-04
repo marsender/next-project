@@ -9,6 +9,6 @@ export default createMiddleware(routing)
  * Redirections
  */
 export const config = {
-	//matcher: ['/admin/']
-	matcher: ['/', '/(en|fr)/:path*'],
+	// Run middleware on all relevant routes
+	matcher: ['/', '/(fr|en)/:path*'],
 }
