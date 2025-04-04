@@ -10,5 +10,5 @@ export default createMiddleware(routing)
  */
 export const config = {
 	// Run middleware on all relevant routes
-	matcher: ['/', '/(fr|en)/:path*'],
+	matcher: ['/((?!_next|.*\\..*|api).*)'],
 }
