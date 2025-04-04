@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
 		rules: {
 			userAgent: '*',
 			allow: '/',
-			disallow: [routes.LOGIN, `/fr${routes.LOGIN}`, routes.REQUEST_RESET_PASSWORD, `/fr${routes.REQUEST_RESET_PASSWORD}`],
+			disallow: [`/en${routes.LOGIN}`, `/fr${routes.LOGIN}`, `/en${routes.REQUEST_RESET_PASSWORD}`, `/fr${routes.REQUEST_RESET_PASSWORD}`],
 		},
 		sitemap: `${process.env.NEXT_PUBLIC_URL}/sitemap.xml`,
 	}
