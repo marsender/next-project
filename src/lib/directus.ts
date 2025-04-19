@@ -1,4 +1,4 @@
-import { AssetsQuery,authentication, createDirectus, readAssetRaw, rest } from '@directus/sdk'
+import { AssetsQuery, authentication, createDirectus, readAssetRaw, rest } from '@directus/sdk'
 import getConfig from 'next/config'
 import { getLocale } from 'next-intl/server'
 //import { createDirectus, rest, authentication, registerUser, withToken, readMe, readAssetRaw, AssetsQuery } from '@directus/sdk'

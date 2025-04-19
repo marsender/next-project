@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl'
 import { Fragment } from 'react'
 
 import { Link } from '@/i18n/routing'
-import { mainNavigation,RouteHref } from '@/lib/constants'
+import { mainNavigation, RouteHref } from '@/lib/constants'
 
 const ListItem = ({ pathName, route, label }: { pathName: string | null; route: string; label: string }) => (
 	<Link href={route as RouteHref} className={clsx('hover:text-gray-700 py-3 md:py-2 text-lg', pathName && pathName.split('/')[1] === route.split('/')[1] ? 'text-gray-900' : 'text-gray-400')}>
