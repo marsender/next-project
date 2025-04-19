@@ -4,6 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbopack -p 3002",
+		"dev:debug": "NODE_OPTIONS='--inspect=localhost:9400' next dev --turbopack -p 3002",
+		"dev:debugcrossplattform": "cross-env NODE_OPTIONS='--inspect=localhost:9400' next dev",
 		"build": "next build",
 		"start": "next start -p 3020",
 		"lint": "next lint",
