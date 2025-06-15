@@ -13,5 +13,22 @@
 		"prettier.tabWidth": 2,
 		"prettier.singleQuote": true,
 		"prettier.semi": false
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Attach to Next Backend",
+				"port": 9401,
+				"request": "attach",
+				"type": "node",
+				"skipFiles": ["<node_internals>/**"]
+			}
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"esbenp.prettier-vscode",
+		]
 	}
 }
