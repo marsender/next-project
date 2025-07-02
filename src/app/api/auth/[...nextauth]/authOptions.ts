@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
 				const password: string = credentials?.password ?? ''
 				console.log('Directus login with email=%s password=%s', email, password)
 				try {
-					const user = await directus.login(email, password)
+					const user = await directus.login({ email, password })
 					return user as any
 				} catch (error: any) {
 					const directusError: string = error.errors && error.errors.length > 0 ? error.errors[0].message : 'Unknown authentication error'

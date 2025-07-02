@@ -63,9 +63,9 @@ export const mainNavigation = [
 ] as const
 
 // Function to get the label for a route key
-export function getNavigationLabel(route: string): string | undefined {
+export function getNavigationLabel(route: string): string {
 	const navigationItem = mainNavigation.find((item) => item.route === route)
-	return navigationItem?.label
+	return navigationItem?.label ?? 'no-navigation-label'
 }
 
 /*

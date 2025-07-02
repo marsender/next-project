@@ -8,7 +8,7 @@ import directusGlobal, { Global } from '@/lib/directusGlobal'
 
 export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	const developmentMode = process.env.NODE_ENV === 'development'
-	const locale = getLocale()
+	const locale = await getLocale()
 	const t = await getTranslations({ locale })
 	const global: Global = await directusGlobal()
 	const name = 'marsender'

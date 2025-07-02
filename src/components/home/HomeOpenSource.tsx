@@ -4,7 +4,7 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import SectionColumn from './SectionColumn'
 
 export default async function HomeOpenSource() {
-	const locale = getLocale()
+	const locale = await getLocale()
 	const t = await getTranslations({ locale })
 
 	return (

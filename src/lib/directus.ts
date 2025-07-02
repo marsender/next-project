@@ -1,7 +1,8 @@
-import { AssetsQuery, authentication, createDirectus, readAssetRaw, rest } from '@directus/sdk'
+import type { AssetsQuery } from '@directus/sdk'
+import { authentication, createDirectus, readAssetRaw, rest } from '@directus/sdk'
 import getConfig from 'next/config'
 import { getLocale } from 'next-intl/server'
-//import { createDirectus, rest, authentication, registerUser, withToken, readMe, readAssetRaw, AssetsQuery } from '@directus/sdk'
+//import { AssetsQuery, authentication, createDirectus, readAssetRaw, rest, registerUser, readMe, withToken } from '@directus/sdk'
 
 const { publicRuntimeConfig } = getConfig()
 //const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
