@@ -7,18 +7,18 @@ import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { Fragment } from 'react'
 
-import { Link } from '@/i18n/routing'
+import { isRouteActive, Link } from '@/i18n/routing'
 import { mainNavigation, RouteHref } from '@/lib/constants'
 
-const ListItem = ({ pathName, route, label }: { pathName: string | null; route: string; label: string }) => (
-	<Link href={route as RouteHref} className={clsx('hover:text-gray-700 py-3 md:py-2 text-lg', pathName && pathName.split('/')[1] === route.split('/')[1] ? 'text-gray-900' : 'text-gray-400')}>
+const ListItem = ({ pathName, route, label }: { pathName: string; route: string; label: string }) => (
+	<Link href={route as RouteHref} className={clsx('hover:text-gray-700 py-3 md:py-2 text-lg', isRouteActive(pathName, route) ? 'text-gray-900' : 'text-gray-400')}>
 		{label}
 	</Link>
 )
 
-const MenuItem = ({ pathName, route, label }: { pathName: string | null; route: string; label: string }) => (
-	<li className={clsx('p-2', pathName && pathName.split('/')[1] === route.split('/')[1] ? 'text-gray-900' : 'text-gray-400')}>
-		<NavigationMenu.Link asChild active={Boolean(pathName && pathName.split('/')[1] === route.split('/')[1])}>
+const MenuItem = ({ pathName, route, label }: { pathName: string; route: string; label: string }) => (
+	<li className={clsx('p-2', isRouteActive(pathName, route) ? 'text-gray-900' : 'text-gray-400')}>
+		<NavigationMenu.Link asChild active={isRouteActive(pathName, route)}>
 			<Link href={route as RouteHref}>{label}</Link>
 		</NavigationMenu.Link>
 	</li>

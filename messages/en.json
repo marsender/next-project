@@ -5,6 +5,7 @@
 	},
 	"Navigation": {
 		"home": "Home",
+		"achievements-and-partners": "Achievements and partners",
 		"login": "Login",
 		"logout": "Logout",
 		"account": "My account",

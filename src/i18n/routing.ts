@@ -15,6 +15,7 @@ export const routing = defineRouting({
 
 	pathnames: {
 		'/': '/',
+		'/achievements-and-partners': routes.ACHIEVEMENTS_AND_PARTNERS,
 		'/login': routes.LOGIN,
 		'/logout': routes.LOGOUT,
 		'/account': routes.ACCOUNT,
@@ -25,6 +26,17 @@ export const routing = defineRouting({
 		'/request-reset-password': routes.REQUEST_RESET_PASSWORD,
 	},
 })
+
+export function isRouteActive(pathName: string, route: string): boolean {
+	// If the first part of the path is a locale, remove it
+	const segments = pathName.split('/').filter(Boolean)
+	if (segments.length > 0 && (routing.locales as readonly string[]).includes(segments[0])) {
+		segments.shift()
+	}
+	const normalizedPath = '/' + segments.join('/')
+	console.log('Tests: pathName=%s normalizedPath=%s route=%s', pathName, normalizedPath, route)
+	return normalizedPath === route
+}
 
 export type Locale = (typeof routing.locales)[number]
 export type Pathnames = keyof typeof routing.pathnames

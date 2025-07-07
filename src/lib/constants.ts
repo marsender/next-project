@@ -2,6 +2,7 @@
 
 export const routes = {
 	HOME: '/' as const,
+	ACHIEVEMENTS_AND_PARTNERS: '/achievements-and-partners' as const,
 	LOGIN: '/login' as const,
 	LOGOUT: '/logout' as const,
 	ACCOUNT: '/account' as const,
@@ -15,8 +16,16 @@ export const mainNavigation = [
 	{
 		route: routes.HOME,
 		label: 'home',
-		displayWenAuthenticated: false, // true,
-		displayWenUnauthenticated: false, // true,
+		displayWenAuthenticated: true,
+		displayWenUnauthenticated: true,
+		displayNavWenAuthenticated: false,
+		displayNavWenUnauthenticated: false,
+	},
+	{
+		route: routes.ACHIEVEMENTS_AND_PARTNERS,
+		label: 'achievements-and-partners',
+		displayWenAuthenticated: true,
+		displayWenUnauthenticated: true,
 		displayNavWenAuthenticated: false,
 		displayNavWenUnauthenticated: false,
 	},
