@@ -15,9 +15,6 @@ export const routing = defineRouting({
 
 	pathnames: {
 		'/': '/',
-		'/login': routes.LOGIN,
-		'/logout': routes.LOGOUT,
-		'/account': routes.ACCOUNT,
 		'/achievements-and-partners': {
 			en: routes.ACHIEVEMENTS_AND_PARTNERS,
 			fr: '/realisations-et-partenaires',
@@ -26,6 +23,9 @@ export const routing = defineRouting({
 			en: routes.ABOUT,
 			fr: '/a-propos',
 		},
+		'/login': routes.LOGIN,
+		'/logout': routes.LOGOUT,
+		'/account': routes.ACCOUNT,
 		'/request-reset-password': routes.REQUEST_RESET_PASSWORD,
 	},
 })
@@ -42,7 +42,7 @@ export function isRouteActive(pathName: string, route: string): boolean {
 }
 
 export type Locale = (typeof routing.locales)[number]
-export type Pathnames = keyof typeof routing.pathnames
+//export type Pathnames = keyof typeof routing.pathnames
 
 // Lightweight wrappers around Next.js' navigation APIs that will consider the routing configuration
 export const { Link, redirect, usePathname, useRouter, getPathname } = createNavigation(routing)

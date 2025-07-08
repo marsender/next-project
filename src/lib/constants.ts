@@ -3,10 +3,10 @@
 export const routes = {
 	HOME: '/' as const,
 	ACHIEVEMENTS_AND_PARTNERS: '/achievements-and-partners' as const,
+	ABOUT: '/about' as const,
 	LOGIN: '/login' as const,
 	LOGOUT: '/logout' as const,
 	ACCOUNT: '/account' as const,
-	ABOUT: '/about' as const,
 	REQUEST_RESET_PASSWORD: '/request-reset-password' as const,
 }
 
