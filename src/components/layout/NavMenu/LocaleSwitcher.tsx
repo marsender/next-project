@@ -52,7 +52,7 @@ export const LocaleSwitcher = () => {
 									<ul className="m-0 list-none sm:w-[600px]">
 										{locales.map((value, index) => (
 											<Fragment key={`${index}-nav-locale-menu-fragment`}>
-												<Item key={value} onClick={() => onChange(value)}>
+												<Item key={value} onClick={() => onChange(value)} active={value === locale}>
 													{t(value)}
 												</Item>
 											</Fragment>

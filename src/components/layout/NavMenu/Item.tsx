@@ -1,4 +1,5 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import clsx from 'clsx'
 import { JSX } from 'react/jsx-runtime'
 
 import { Link } from '@/i18n/routing'
@@ -6,6 +7,7 @@ import { RouteHref } from '@/lib/constants'
 
 interface MenuItemProps {
 	icon?: React.ReactNode
+	active?: boolean
 }
 
 // Button props
@@ -28,15 +30,16 @@ const hasHref = (props: ButtonProps | AnchorProps): props is AnchorProps => 'hre
 
 interface Props {
 	icon?: React.ReactNode
+	active?: boolean
 	children: React.ReactNode
 	href: string
 }
 
 const Item: Overload = (props: AnchorProps | ButtonProps) => {
-	const { icon, children, href, ...otherProps } = props as Props
+	const { icon, active, children, href, ...otherProps } = props as Props
 
 	return (
-		<NavigationMenu.Item className="group relative gap-x-6 hover:bg-violet-50 list-none text-black">
+		<NavigationMenu.Item className={clsx('group relative gap-x-6 hover:bg-violet-50 list-non', active ? 'text-gray-400' : 'text-gray-700')}>
 			{hasHref(props) ? (
 				<div className="flex items-center py-[6px] px-3">
 					{icon && (
@@ -44,7 +47,7 @@ const Item: Overload = (props: AnchorProps | ButtonProps) => {
 							{icon}
 						</span>
 					)}
-					<NavigationMenu.Link asChild>
+					<NavigationMenu.Link asChild active={active}>
 						<Link href={href as RouteHref} className="whitespace-nowrap 2xl:text-base" {...otherProps}>
 							{children}
 						</Link>
