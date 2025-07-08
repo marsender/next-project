@@ -15,10 +15,13 @@ export const routing = defineRouting({
 
 	pathnames: {
 		'/': '/',
-		'/achievements-and-partners': routes.ACHIEVEMENTS_AND_PARTNERS,
 		'/login': routes.LOGIN,
 		'/logout': routes.LOGOUT,
 		'/account': routes.ACCOUNT,
+		'/achievements-and-partners': {
+			en: routes.ACHIEVEMENTS_AND_PARTNERS,
+			fr: '/realisations-et-partenaires',
+		},
 		'/about': {
 			en: routes.ABOUT,
 			fr: '/a-propos',
