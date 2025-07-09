@@ -2,7 +2,7 @@
 
 export const routes = {
 	HOME: '/' as const,
-	ACHIEVEMENTS_AND_PARTNERS: '/achievements-and-partners' as const,
+	ACHIEVEMENTS: '/achievements' as const,
 	ABOUT: '/about' as const,
 	LOGIN: '/login' as const,
 	LOGOUT: '/logout' as const,
@@ -22,8 +22,8 @@ export const mainNavigation = [
 		displayNavWenUnauthenticated: false,
 	},
 	{
-		route: routes.ACHIEVEMENTS_AND_PARTNERS,
-		label: 'achievements-and-partners',
+		route: routes.ACHIEVEMENTS,
+		label: 'achievements',
 		displayWenAuthenticated: true,
 		displayWenUnauthenticated: true,
 		displayNavWenAuthenticated: false,

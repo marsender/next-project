@@ -15,9 +15,9 @@ export const routing = defineRouting({
 
 	pathnames: {
 		'/': '/',
-		'/achievements-and-partners': {
-			en: routes.ACHIEVEMENTS_AND_PARTNERS,
-			fr: '/realisations-et-partenaires',
+		'/achievements': {
+			en: routes.ACHIEVEMENTS,
+			fr: '/realisations',
 		},
 		'/about': {
 			en: routes.ABOUT,
