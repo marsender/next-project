@@ -30,14 +30,35 @@ export const routing = defineRouting({
 	},
 })
 
+/**
+ * Get the en route path from any localised route
+ *
+ * @param pathName A route path
+ * @returns
+ */
+function getEnPathname(pathName: string): string {
+	for (const key of Object.keys(routing.pathnames) as Array<keyof typeof routing.pathnames>) {
+		const value = routing.pathnames[key]
+		if (typeof value === 'object') {
+			const localized = value as Record<string, string>
+			for (const lang in localized) {
+				if (localized[lang] === pathName) {
+					return value.en
+				}
+			}
+		}
+	}
+	return pathName
+}
+
 export function isRouteActive(pathName: string, route: string): boolean {
 	// If the first part of the path is a locale, remove it
 	const segments = pathName.split('/').filter(Boolean)
 	if (segments.length > 0 && (routing.locales as readonly string[]).includes(segments[0])) {
 		segments.shift()
 	}
-	const normalizedPath = '/' + segments.join('/')
-	console.log('Tests: pathName=%s normalizedPath=%s route=%s', pathName, normalizedPath, route)
+	const normalizedPath = getEnPathname('/' + segments.join('/'))
+	//console.log('Tests: pathName=%s normalizedPath=%s route=%s', pathName, normalizedPath, route)
 	return normalizedPath === route
 }
 
