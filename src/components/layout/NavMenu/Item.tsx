@@ -39,7 +39,7 @@ const Item: Overload = (props: AnchorProps | ButtonProps) => {
 	const { icon, active, children, href, ...otherProps } = props as Props
 
 	return (
-		<NavigationMenu.Item className={clsx('group relative gap-x-6 hover:text-gray-700 list-non', active ? 'text-gray-400' : 'text-gray-900')}>
+		<NavigationMenu.Item className={clsx('group relative gap-x-6 list-non', active ? 'text-gray-400 cursor-default' : 'text-gray-900 hover:text-gray-700 cursor-pointer')}>
 			{hasHref(props) ? (
 				<div className="flex items-center py-[6px] px-3">
 					{icon && (
