@@ -1,6 +1,6 @@
 'use client'
 
-import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+//import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
@@ -16,13 +16,13 @@ const ListItem = ({ pathName, route, label }: { pathName: string; route: string;
 	</Link>
 )
 
-const MenuItem = ({ pathName, route, label }: { pathName: string; route: string; label: string }) => (
-	<li className={clsx('p-2', isRouteActive(pathName, route) ? 'text-gray-400' : 'text-gray-900')}>
-		<NavigationMenu.Link asChild active={isRouteActive(pathName, route)}>
-			<Link href={route as RouteHref}>{label}</Link>
-		</NavigationMenu.Link>
-	</li>
-)
+// const MenuItem = ({ pathName, route, label }: { pathName: string; route: string; label: string }) => (
+// 	<li className={clsx('p-2', isRouteActive(pathName, route) ? 'text-gray-400' : 'text-gray-900')}>
+// 		<NavigationMenu.Link asChild active={isRouteActive(pathName, route)}>
+// 			<Link href={route as RouteHref}>{label}</Link>
+// 		</NavigationMenu.Link>
+// 	</li>
+// )
 
 /**
  * @see https://www.radix-ui.com/primitives/docs/components/navigation-menu
@@ -45,7 +45,7 @@ export default function NavList() {
 					</Fragment>
 				))}
 			</div>
-			<NavigationMenu.Root className="flex sm:hidden h-full content-start items-stretch">
+			{/* <NavigationMenu.Root className="flex sm:hidden h-full content-start items-stretch">
 				<NavigationMenu.List className="flex items-stretch h-full">
 					<NavigationMenu.Item asChild>
 						<div className="flex items-stretch">
@@ -65,7 +65,7 @@ export default function NavList() {
 						</div>
 					</NavigationMenu.Item>
 				</NavigationMenu.List>
-			</NavigationMenu.Root>
+			</NavigationMenu.Root> */}
 		</div>
 	)
 }
