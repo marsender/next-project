@@ -17,10 +17,11 @@ interface AuthFormProps {
 	linkText: string
 	linkDescription: string
 	linkHref: string
+	linkResetPassword?: string
 	isFullForm?: boolean
 }
 
-export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHref, linkDescription, isFullForm = true }: AuthFormProps) {
+export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHref, linkResetPassword, linkDescription, isFullForm = true }: AuthFormProps) {
 	// Refs to capture input values directly
 	const firstNameRef = useRef<HTMLInputElement>(null)
 	const lastNameRef = useRef<HTMLInputElement>(null)
@@ -40,21 +41,34 @@ export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHr
 	}
 
 	return (
-		<form onSubmit={handleFormSubmit}>
-			<h1>{title}</h1>
-			{isFullForm && (
-				<>
-					<input type="text" placeholder="First Name" name="first_name" ref={firstNameRef} required />
-					<input type="text" placeholder="Last Name" name="last_name" ref={lastNameRef} required />
-				</>
-			)}
-			<input type="email" placeholder="Email Address" name="email" ref={emailRef} required />
-			<input type="password" placeholder="Enter your Password" name="password" ref={passwordRef} required />
-			<button>{buttonText}</button>
-			<p>
-				{linkDescription}
-				<Link href={linkHref as RouteHref}>{linkText}</Link>
-			</p>
-		</form>
+		<div className="flex justify-center bg-gradient-to-br py-12 px-4 sm:px-6 lg:px-8 mt-16 mb-16">
+			<form onSubmit={handleFormSubmit} className="w-full max-w-xl p-8 bg-white/90 backdrop-blur rounded-2xl shadow-xl space-y-6 border border-gray-100">
+				<h1 className="text-3xl font-extrabold text-center text-gray-900 tracking-tight mb-2">{title}</h1>
+				{isFullForm && (
+					<div className="flex flex-col md:flex-row gap-4">
+						<input type="text" placeholder="First Name" name="first_name" ref={firstNameRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+						<input type="text" placeholder="Last Name" name="last_name" ref={lastNameRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+					</div>
+				)}
+				<input type="email" placeholder="Email Address" name="email" ref={emailRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+				<input type="password" placeholder="Enter your Password" name="password" ref={passwordRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+				{false && linkResetPassword && (
+					<p className="text-gray-500 text-sm">
+						<Link href={linkResetPassword as RouteHref} className="text-blue-600 hover:underline font-medium transition-colors hover:text-blue-800">
+							Forgot password?
+						</Link>
+					</p>
+				)}
+				<button type="submit" className="w-full rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center justify-center gap-2 cursor-pointer shadow-sm bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 text-lg">
+					{buttonText}
+				</button>
+				<p className="text-center text-gray-500 text-sm">
+					{linkDescription}{' '}
+					<Link href={linkHref as RouteHref} className="text-blue-600 hover:underline font-medium transition-colors hover:text-blue-800">
+						{linkText}
+					</Link>
+				</p>
+			</form>
+		</div>
 	)
 }

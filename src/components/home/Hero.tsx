@@ -29,9 +29,14 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 									{t('Hero.welcomeName', { name })}
 								</CustomLink>
 							) : (
-								<CustomLink href={routes.LOGIN} size="lg">
-									{t('Navigation.login')}
-								</CustomLink>
+								<>
+									<CustomLink href={routes.LOGIN} size="lg">
+										{t('Navigation.login')}
+									</CustomLink>
+									<CustomLink href={routes.REGISTER} size="lg">
+										{t('Navigation.login')}
+									</CustomLink>
+								</>
 							)}
 							<CustomLink href={routes.ABOUT} size="lg" variant="outline">
 								{t('Navigation.about')}

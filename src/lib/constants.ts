@@ -5,6 +5,7 @@ export const routes = {
 	ACHIEVEMENTS: '/achievements' as const,
 	ABOUT: '/about' as const,
 	LOGIN: '/login' as const,
+	REGISTER: '/register' as const,
 	LOGOUT: '/logout' as const,
 	ACCOUNT: '/account' as const,
 	REQUEST_RESET_PASSWORD: '/request-reset-password' as const,
@@ -31,6 +32,14 @@ export const mainNavigation = [
 	},
 	{
 		route: routes.LOGIN,
+		label: 'login',
+		displayWenAuthenticated: false,
+		displayWenUnauthenticated: false,
+		displayNavWenAuthenticated: false,
+		displayNavWenUnauthenticated: false,
+	},
+	{
+		route: routes.REGISTER,
 		label: 'login',
 		displayWenAuthenticated: false,
 		displayWenUnauthenticated: false,

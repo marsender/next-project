@@ -24,8 +24,8 @@ export default function RegistrationForm() {
 			}),
 		})
 		switch (response.status) {
-			case 201: // Account Created
-			{
+			case 201: {
+				// Account Created
 				router.push('/')
 				router.refresh()
 				break

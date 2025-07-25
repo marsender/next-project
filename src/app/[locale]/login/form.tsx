@@ -7,7 +7,6 @@ import { useState } from 'react'
 import AuthForm from '@/components/auth/AuthForm'
 import useCustomToast from '@/hooks/useCustomToast'
 import useTransitionRefresh from '@/hooks/useTransitionRefresh'
-import { Link } from '@/i18n/routing'
 import { routes } from '@/lib/constants'
 
 interface Data {
@@ -42,10 +41,7 @@ export default function LoginForm() {
 	return (
 		<>
 			{error && <p>{error}</p>}
-			<AuthForm title="Login here" onSubmit={handleFormSubmit} buttonText="Login" linkDescription="New here?" linkText="Create an account" linkHref="/register" isFullForm={false} />
-			<div>
-				<Link href={routes.REQUEST_RESET_PASSWORD}>Forgot password?</Link>
-			</div>
+			<AuthForm title="Login here" onSubmit={handleFormSubmit} buttonText="Login" linkDescription="New here?" linkText="Create an account" linkHref={routes.REGISTER} linkResetPassword={routes.REQUEST_RESET_PASSWORD} isFullForm={false} />
 		</>
 	)
 }

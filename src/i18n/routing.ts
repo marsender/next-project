@@ -24,6 +24,7 @@ export const routing = defineRouting({
 			fr: '/a-propos',
 		},
 		'/login': routes.LOGIN,
+		'/register': routes.REGISTER,
 		'/logout': routes.LOGOUT,
 		'/account': routes.ACCOUNT,
 		'/request-reset-password': routes.REQUEST_RESET_PASSWORD,
