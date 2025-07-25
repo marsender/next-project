@@ -22,22 +22,14 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 					<CustomLink href="https://cal.opale-concept.com/didier.corbiere/meeting" size="lg" icon={<User size={48} />} blankTarget={true}>
 						{t('Hero.contactMe')} &nbsp;
 					</CustomLink>
-					{false && developmentMode ? (
+					{developmentMode ? (
 						<>
-							{isConnected ? (
-								<CustomLink href="/teams" size="lg" icon={<User size={48} />}>
-									{t('Hero.welcomeName', { name })}
-								</CustomLink>
-							) : (
-								<>
-									<CustomLink href={routes.LOGIN} size="lg">
-										{t('Navigation.login')}
-									</CustomLink>
-									<CustomLink href={routes.REGISTER} size="lg">
-										{t('Navigation.login')}
-									</CustomLink>
-								</>
-							)}
+							<CustomLink href={routes.LOGIN} size="lg">
+								{t('Navigation.login')}
+							</CustomLink>
+							<CustomLink href={routes.REGISTER} size="lg">
+								{t('Navigation.register')}
+							</CustomLink>
 							<CustomLink href={routes.ABOUT} size="lg" variant="outline">
 								{t('Navigation.about')}
 							</CustomLink>

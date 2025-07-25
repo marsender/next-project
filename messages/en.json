@@ -7,6 +7,7 @@
 		"home": "Home",
 		"achievements": "Achievements",
 		"login": "Login",
+		"register": "Register",
 		"logout": "Logout",
 		"account": "My account",
 		"about": "About"
@@ -21,17 +22,20 @@
 	"Hero": {
 		"hello": "Hello",
 		"contactMe": "Contact me",
-		"welcomeName": "Welcome, {name}!",
-		"button": {
-			"submit": "Submit"
-		}
+		"welcomeName": "Welcome, {name}!"
 	},
 	"OpenSource": {
 		"title": "We are open source",
 		"caption": "This site is based on a Next.js TypeScript, Tailwind CSS and Radix UI front-end and a Directus back-end. The code is available on GitHub, so don't hesitate to use it or contribute!"
 	},
 	"LoginPage": {
-		"title": "Login"
+		"loginHere": "Login here",
+		"newHere": "New here?",
+		"createAnAccount": "Create an account"
+	},
+	"RegistrationPage": {
+		"registerHere": "Register here",
+		"alreadyHaveAnAccount": "Already have an account?"
 	},
 	"AccountPage": {
 		"title": "My account",
@@ -42,5 +46,11 @@
 		"title": "Not found page",
 		"subtitle": "Oh no !",
 		"description": "The page you requested does not exists"
+	},
+	"AuthForm": {
+		"firstName": "First Name",
+		"lastName": "Last Name",
+		"emailAddress": "Email Address",
+		"enterYourPassword": "Enter your Password"
 	}
 }

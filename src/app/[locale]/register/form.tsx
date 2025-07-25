@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 import AuthForm from '@/components/auth/AuthForm'
@@ -14,6 +15,7 @@ interface Data {
 }
 
 export default function RegistrationForm() {
+	const t = useTranslations()
 	const router = useRouter()
 	const [error, setError] = useState('')
 	const handleFormSubmit = async (data: Data) => {
@@ -44,7 +46,7 @@ export default function RegistrationForm() {
 	return (
 		<>
 			{error && <p>{error}</p>}
-			<AuthForm title="Register here" onSubmit={handleFormSubmit} buttonText="Register" linkDescription="Already have an account?" linkText="Login" linkHref={routes.LOGIN} />
+			<AuthForm title={t('RegistrationPage.registerHere')} onSubmit={handleFormSubmit} buttonText={t('Navigation.register')} linkDescription={t('RegistrationPage.alreadyHaveAnAccount')} linkText={t('Navigation.login')} linkHref={routes.LOGIN} />
 		</>
 	)
 }

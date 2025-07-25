@@ -1,3 +1,6 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
 import { FormEvent, useRef } from 'react'
 
 import { Link } from '@/i18n/routing'
@@ -22,6 +25,7 @@ interface AuthFormProps {
 }
 
 export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHref, linkResetPassword, linkDescription, isFullForm = true }: AuthFormProps) {
+	const t = useTranslations('AuthForm')
 	// Refs to capture input values directly
 	const firstNameRef = useRef<HTMLInputElement>(null)
 	const lastNameRef = useRef<HTMLInputElement>(null)
@@ -46,12 +50,12 @@ export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHr
 				<h1 className="text-3xl font-extrabold text-center text-gray-900 tracking-tight mb-2">{title}</h1>
 				{isFullForm && (
 					<div className="flex flex-col md:flex-row gap-4">
-						<input type="text" placeholder="First Name" name="first_name" ref={firstNameRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
-						<input type="text" placeholder="Last Name" name="last_name" ref={lastNameRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+						<input type="text" placeholder={t('firstName')} name="first_name" ref={firstNameRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+						<input type="text" placeholder={t('lastName')} name="last_name" ref={lastNameRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
 					</div>
 				)}
-				<input type="email" placeholder="Email Address" name="email" ref={emailRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
-				<input type="password" placeholder="Enter your Password" name="password" ref={passwordRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+				<input type="email" placeholder={t('emailAddress')} name="email" ref={emailRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+				<input type="password" placeholder={t('enterYourPassword')} name="password" ref={passwordRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
 				{false && linkResetPassword && (
 					<p className="text-gray-500 text-sm">
 						<Link href={linkResetPassword as RouteHref} className="text-blue-600 hover:underline font-medium transition-colors hover:text-blue-800">
@@ -63,7 +67,7 @@ export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHr
 					{buttonText}
 				</button>
 				<p className="text-center text-gray-500 text-sm">
-					{linkDescription}{' '}
+					{linkDescription} &nbsp;
 					<Link href={linkHref as RouteHref} className="text-blue-600 hover:underline font-medium transition-colors hover:text-blue-800">
 						{linkText}
 					</Link>

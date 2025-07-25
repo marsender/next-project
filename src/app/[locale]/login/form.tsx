@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 
@@ -15,6 +16,7 @@ interface Data {
 }
 
 export default function LoginForm() {
+	const t = useTranslations()
 	const { refresh } = useTransitionRefresh()
 	const { successToast } = useCustomToast()
 	const router = useRouter()
@@ -41,7 +43,7 @@ export default function LoginForm() {
 	return (
 		<>
 			{error && <p>{error}</p>}
-			<AuthForm title="Login here" onSubmit={handleFormSubmit} buttonText="Login" linkDescription="New here?" linkText="Create an account" linkHref={routes.REGISTER} linkResetPassword={routes.REQUEST_RESET_PASSWORD} isFullForm={false} />
+			<AuthForm title={t('LoginPage.loginHere')} onSubmit={handleFormSubmit} buttonText={t('Navigation.login')} linkDescription={t('LoginPage.newHere')} linkText={t('LoginPage.createAnAccount')} linkHref={routes.REGISTER} linkResetPassword={routes.REQUEST_RESET_PASSWORD} isFullForm={false} />
 		</>
 	)
 }
