@@ -11,7 +11,6 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	const locale = await getLocale()
 	const t = await getTranslations({ locale })
 	const global: Global = await directusGlobal()
-	const name = 'marsender'
 
 	return (
 		<div className="p-4 m-auto max-w-5xl pt-10 text-gray-900 w-full h-full flex max-lg:flex-col">
@@ -19,10 +18,12 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 				<h1 className="text-4xl xl:text-5xl font-black leading-normal mb-4">{global.title}</h1>
 				<h2 className="text-2xl font-[300] mb-4">{global.description}</h2>
 				<div className="pt-10 justify-center lg:justify-start flex gap-4">
-					<CustomLink href="https://cal.opale-concept.com/didier.corbiere/meeting" size="lg" icon={<User size={48} />} blankTarget={true}>
-						{t('Hero.contactMe')} &nbsp;
-					</CustomLink>
-					{developmentMode ? (
+					{isConnected ? null : (
+						<CustomLink href="https://cal.opale-concept.com/didier.corbiere/meeting" size="lg" icon={<User size={48} />} blankTarget={true}>
+							{t('Hero.contactMe')} &nbsp;
+						</CustomLink>
+					)}
+					{false && developmentMode ? (
 						<>
 							<CustomLink href={routes.LOGIN} size="lg">
 								{t('Navigation.login')}
