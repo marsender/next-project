@@ -26,16 +26,16 @@
 	},
 	"OpenSource": {
 		"title": "Nous sommes open source",
-		"caption": "Ce site est basé sur un front-end Next.js TypeScript, Tailwind CSS et Radix UI et un back-end Directus. Le code est disponible sur GitHub, n’hésitez pas à l'utiliser ou à contribuer !"
+		"caption": "Ce site est basé sur un front-end Next.js TypeScript, Tailwind CSS et Radix UI et un back-end Directus. Le code est disponible sur GitHub, n'hésitez pas à l'utiliser ou à contribuer !"
 	},
 	"LoginPage": {
 		"loginHere": "Inscription ici",
-		"newHere": "Nouveau ici?",
+		"newHere": "Nouveau ici ?",
 		"createAnAccount": "Crée un compte"
 	},
 	"RegistrationPage": {
 		"registerHere": "Inscription ici",
-		"alreadyHaveAnAccount": "Déjà inscrit?"
+		"alreadyHaveAnAccount": "Déjà inscrit ?"
 	},
 	"AccountPage": {
 		"title": "Mon compte",
@@ -44,7 +44,7 @@
 	},
 	"NotFoundPage": {
 		"title": "Page non trouvée",
-		"subtitle": "Oh non !",
+		"subtitle": "Oh non !",
 		"description": "La page que vous avez demandé n'existe pas"
 	},
 	"AuthForm": {
@@ -52,5 +52,24 @@
 		"lastName": "Nom",
 		"emailAddress": "Addresse mail",
 		"enterYourPassword": "Mot de passe"
+	},
+	"RequestResetPasswordForm": {
+		"title": "Réinitialiser votre mot de passe",
+		"description": "Entrez votre email et un lien de réinitialisation vous sera envoyé",
+		"emailPlaceholder": "Adresse email",
+		"sendingButton": "Envoi en cours...",
+		"sendButton": "Envoyer le lien de réinitialisation",
+		"rememberPassword": "Vous vous souvenez de votre mot de passe ?",
+		"loginPage": "Page de connexion",
+		"errorMessage": "Une erreur s'est produite, veuillez réessayer !"
+	},
+	"RequestResetForm": {
+		"title": "Fournir un nouveau mot de passe pour votre compte",
+		"description": "Entrez votre nouveau mot de passe pour votre compte",
+		"passwordPlaceholder": "Entrez votre nouveau mot de passe",
+		"resettingButton": "Réinitialisation...",
+		"createButton": "Créer un nouveau mot de passe",
+		"successMessage": "Mot de passe réinitialisé avec succès, redirection vers la page de connexion...",
+		"errorMessage": "Une erreur s'est produite, veuillez réessayer !"
 	}
 }

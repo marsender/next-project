@@ -52,5 +52,24 @@
 		"lastName": "Last Name",
 		"emailAddress": "Email Address",
 		"enterYourPassword": "Enter your Password"
+	},
+	"RequestResetPasswordForm": {
+		"title": "Reset your password",
+		"description": "Enter your registered email and a reset password link will be sent to you",
+		"emailPlaceholder": "Email Address",
+		"sendingButton": "Sending...",
+		"sendButton": "Send Reset Link",
+		"rememberPassword": "Remember your password?",
+		"loginPage": "Login page",
+		"errorMessage": "An error occurred, please try again!"
+	},
+	"RequestResetForm": {
+		"title": "Provide a new password for your account",
+		"description": "Enter your new password for your account",
+		"passwordPlaceholder": "Enter your new password",
+		"resettingButton": "Resetting...",
+		"createButton": "Create new password",
+		"successMessage": "Password successfully reset, redirecting you to login page...",
+		"errorMessage": "An error occurred, please try again!"
 	}
 }
