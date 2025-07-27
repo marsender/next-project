@@ -21,7 +21,7 @@ export default function RequestResetPasswordForm({ directusUrl }: RequestResetPa
 
 		try {
 			await directus.request(passwordRequest(email)) //, `${directusUrl}/reset-password`))
-			setSuccess('An email with a password reset link has been sent to your email!')
+			setSuccess('If you have an account, an email with a password reset link has been sent to your email!')
 			setError('')
 		} catch (error: any) {
 			console.log(error)
