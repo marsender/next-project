@@ -2,7 +2,6 @@ import type { AssetsQuery } from '@directus/sdk'
 import { authentication, createDirectus, readAssetRaw, rest } from '@directus/sdk'
 import getConfig from 'next/config'
 import { getLocale } from 'next-intl/server'
-//import { AssetsQuery, authentication, createDirectus, readAssetRaw, rest, registerUser, readMe, withToken } from '@directus/sdk'
 
 const { publicRuntimeConfig } = getConfig()
 //const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
@@ -39,6 +38,16 @@ export async function getDirectusClient() {
 	return directus
 }
 */
+
+// Directus url must be allowed in NextConfig images remotePatterns
+export function getDirectusURL(): string {
+	return (
+		process.env.DIRECTUS_URL ??
+		(() => {
+			throw new Error('DIRECTUS_URL is not defined in the environment variables')
+		})()
+	)
+}
 
 // Directus url must be allowed in NextConfig images remotePatterns
 export function getAssetURL(id: string) {

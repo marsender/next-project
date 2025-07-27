@@ -56,7 +56,7 @@ export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHr
 				)}
 				<input type="email" placeholder={t('emailAddress')} name="email" ref={emailRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
 				<input type="password" placeholder={t('enterYourPassword')} name="password" ref={passwordRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
-				{false && linkResetPassword && (
+				{linkResetPassword && (
 					<p className="text-gray-500 text-sm">
 						<Link href={linkResetPassword as RouteHref} className="text-blue-600 hover:underline font-medium transition-colors hover:text-blue-800">
 							Forgot password?
