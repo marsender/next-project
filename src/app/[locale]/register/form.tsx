@@ -28,7 +28,7 @@ export default function RegistrationForm() {
 		switch (response.status) {
 			case 201: {
 				// Account Created
-				router.push('/')
+				router.push(routes.HOME)
 				router.refresh()
 				break
 			}

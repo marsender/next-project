@@ -30,7 +30,7 @@ export default function LoginForm() {
 		})
 		if (response && !response.error) {
 			successToast('Authentication success')
-			router.push('/')
+			router.push(routes.HOME)
 			refresh()
 		} else if (response && response.status === 401 && response.error) {
 			// 401 Unauthorized

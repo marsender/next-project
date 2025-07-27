@@ -48,7 +48,7 @@ export const NavMenu = ({ user }: Props) => {
 													{t(getNavigationLabel(routes.ACCOUNT))}
 												</Item>
 												<Divider />
-												<Item onClick={() => onSignOut('/')} icon={<LogOut color="red" size={48} />}>
+												<Item onClick={() => onSignOut(routes.HOME)} icon={<LogOut color="red" size={48} />}>
 													{t(getNavigationLabel(routes.LOGOUT))}
 												</Item>
 											</ul>
