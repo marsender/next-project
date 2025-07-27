@@ -5,11 +5,11 @@ import { routes } from '@/lib/constants'
 import ResetPasswordForm from './form'
 
 type Props = {
-	params: Promise<{ token: string }>
+	searchParams: Promise<{ token?: string }>
 }
 
-export default async function ResetPasswordPage({ params }: Props) {
-	const { token } = await params
+export default async function ResetPasswordPage({ searchParams }: Props) {
+	const { token } = await searchParams
 	if (!token) {
 		redirect(routes.LOGIN)
 	}
