@@ -1,8 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { FormEvent, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { FormEvent, useState } from 'react'
 
 import { routes } from '@/lib/constants'
 

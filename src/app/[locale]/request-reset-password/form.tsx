@@ -1,7 +1,7 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { FormEvent, useState } from 'react'
 
 import { Link } from '@/i18n/routing'
 import { routes } from '@/lib/constants'
