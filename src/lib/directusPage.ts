@@ -1,3 +1,5 @@
+'use server'
+
 import { readItems } from '@directus/sdk'
 
 import directus, { getLanguageCode } from '@/lib/directus'

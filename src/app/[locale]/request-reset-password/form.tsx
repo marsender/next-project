@@ -1,34 +1,37 @@
 'use client'
 
-import { createDirectus, passwordRequest, rest } from '@directus/sdk'
 import { FormEvent, useState } from 'react'
 
 import { Link } from '@/i18n/routing'
 import { routes } from '@/lib/constants'
 
-interface RequestResetPasswordFormProps {
-	directusUrl: string
-}
+import { directusPasswordRequest } from './actions'
 
-export default function RequestResetPasswordForm({ directusUrl }: RequestResetPasswordFormProps) {
-	const [email, setEmail] = useState('')
+export default function RequestResetPasswordForm() {
 	const [success, setSuccess] = useState('')
 	const [error, setError] = useState('')
-	const directus = createDirectus(directusUrl).with(rest({ credentials: 'include' }))
+	const [isSubmitting, setIsSubmitting] = useState(false)
 
 	const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
+		setIsSubmitting(true)
+		setSuccess('')
+		setError('')
 
 		try {
-			await directus.request(passwordRequest(email)) //, `${directusUrl}/reset-password`))
-			setSuccess('If you have an account, an email with a password reset link has been sent to your email!')
-			setError('')
-		} catch (error: any) {
-			console.log(error)
-			if (error) {
-				setError('An error occurred, please try again!')
-				setSuccess('')
+			const formData = new FormData(event.currentTarget)
+			const result = await directusPasswordRequest(formData)
+
+			if (result.success) {
+				setSuccess(result.success)
+			} else if (result.error) {
+				setError(result.error)
 			}
+		} catch (error: any) {
+			console.error('Form submission error:', error)
+			setError('An error occurred, please try again!')
+		} finally {
+			setIsSubmitting(false)
 		}
 	}
 
@@ -51,10 +54,10 @@ export default function RequestResetPasswordForm({ directusUrl }: RequestResetPa
 
 				<p className="text-gray-600 text-center text-sm">Enter your registered email and a reset password link will be sent to you</p>
 
-				<input type="email" placeholder="Email Address" name="email" required onChange={(event) => setEmail(event.target.value)} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+				<input type="email" placeholder="Email Address" name="email" required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
 
-				<button type="submit" className="w-full rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center justify-center gap-2 cursor-pointer shadow-sm bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 text-lg">
-					Send Reset Link
+				<button type="submit" disabled={isSubmitting} className="w-full rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center justify-center gap-2 cursor-pointer shadow-sm bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 disabled:cursor-not-allowed text-white px-6 py-3 text-lg">
+					{isSubmitting ? 'Sending...' : 'Send Reset Link'}
 				</button>
 
 				<p className="text-center text-gray-500 text-sm">

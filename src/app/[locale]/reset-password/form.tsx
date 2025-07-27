@@ -1,31 +1,39 @@
 'use client'
 
-import { passwordReset } from '@directus/sdk'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 
 import { routes } from '@/lib/constants'
-import directus from '@/lib/directus'
+
+import { directusPasswordReset } from './actions'
 
 export default function RequestResetForm({ token }: { token: string }) {
-	const [newPassword, setNewPassword] = useState('')
 	const [success, setSuccess] = useState('')
 	const [error, setError] = useState('')
-	const reset_token = token
+	const [isSubmitting, setIsSubmitting] = useState(false)
 	const router = useRouter()
 
 	const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
+		setIsSubmitting(true)
+		setSuccess('')
+		setError('')
 
 		try {
-			await directus.request(passwordReset(reset_token, newPassword))
-			setSuccess('Password successfully reset, redirecting you to login page...')
-			setError('')
-			setTimeout(() => router.push(routes.LOGIN), 1000)
+			const formData = new FormData(event.currentTarget)
+			const result = await directusPasswordReset(formData, token)
+
+			if (result.success) {
+				setSuccess('Password successfully reset, redirecting you to login page...')
+				setTimeout(() => router.push(routes.LOGIN), 1000)
+			} else if (result.error) {
+				setError(result.error)
+			}
 		} catch (error: any) {
-			console.log(error)
-			setError('The reset password token is invalid, please request for a new password reset link!')
-			setSuccess('')
+			console.error('Form submission error:', error)
+			setError('An error occurred, please try again!')
+		} finally {
+			setIsSubmitting(false)
 		}
 	}
 
@@ -48,10 +56,10 @@ export default function RequestResetForm({ token }: { token: string }) {
 
 				<p className="text-gray-600 text-center text-sm">Enter your new password for your account</p>
 
-				<input type="password" placeholder="Enter your new password" name="password" required onChange={(event) => setNewPassword(event.target.value)} autoComplete="new-password" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+				<input type="password" placeholder="Enter your new password" name="password" required autoComplete="new-password" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
 
-				<button type="submit" className="w-full rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center justify-center gap-2 cursor-pointer shadow-sm bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 text-lg">
-					Create new password
+				<button type="submit" disabled={isSubmitting} className="w-full rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center justify-center gap-2 cursor-pointer shadow-sm bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 disabled:cursor-not-allowed text-white px-6 py-3 text-lg">
+					{isSubmitting ? 'Resetting...' : 'Create new password'}
 				</button>
 			</form>
 		</div>

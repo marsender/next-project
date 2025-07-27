@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation'
 
-import { getDirectusURL } from '@/lib/directus'
 import { getSession } from '@/lib/sessions'
 
 import RequestResetPasswordForm from './form'
@@ -14,7 +13,7 @@ export default async function RequestPasswordResetPage() {
 	}
 	return (
 		<div>
-			<RequestResetPasswordForm directusUrl={getDirectusURL()} />
+			<RequestResetPasswordForm />
 		</div>
 	)
 }

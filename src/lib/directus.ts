@@ -39,7 +39,6 @@ export async function getDirectusClient() {
 }
 */
 
-// Directus url must be allowed in NextConfig images remotePatterns
 export function getDirectusURL(): string {
 	return (
 		process.env.DIRECTUS_URL ??
