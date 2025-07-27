@@ -12,7 +12,7 @@ export async function directusPasswordRequest(formData: FormData) {
 	}
 
 	try {
-		await directus.request(passwordRequest(email))
+		await directus.request(passwordRequest(email, 'https://opale-concept.com/reset-password'))
 
 		return { success: 'If you have an account, an email with a password reset link has been sent to your email!' }
 	} catch (error: any) {
