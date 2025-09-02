@@ -3,57 +3,7 @@
 import { readItems } from '@directus/sdk'
 
 import directus, { getLanguageCode } from '@/lib/directus'
-
-interface ItemPage {
-	slug: string
-	blocks: Blocks[]
-	translations: PageTranslation[]
-}
-
-interface Blocks {
-	collection: string
-	item: ItemBlockHero | ItemBlockRichText
-}
-
-interface PageTranslation {
-	languages_code: string
-	slug: string
-	title: string
-	content: string
-}
-
-interface ItemBlockHero {
-	image: string
-	translations: BlockHero[]
-}
-
-interface ItemBlockRichText {
-	translations: BlockRichText[]
-}
-
-interface BlockHero {
-	collection: string
-	image: string
-	languages_code: string
-	buttons?: string
-	content: string
-	headline: string
-}
-
-interface BlockRichText {
-	collection: string
-	languages_code: string
-	content: string
-	headline: string
-}
-
-interface Page {
-	languages_code: string
-	slug: string
-	title: string
-	content: string
-	blocks: (BlockHero | BlockRichText)[]
-}
+import type { BlockHero, BlockRichText, Blocks, ItemBlockHero, ItemBlockRichText, ItemPage, Page, PageTranslation } from '@/lib/directusPageTypes'
 
 const emptyPage: Page = {
 	languages_code: '',
@@ -64,22 +14,21 @@ const emptyPage: Page = {
 }
 
 function filterBlocks(blocks: Blocks[], languageCode: string): (BlockHero | BlockRichText)[] {
-	return blocks
-		.map((block) => {
-			if (block.collection === 'block_hero') {
-				const heroBlock = block.item as ItemBlockHero
-				const translation = heroBlock.translations.find((t) => t.languages_code === languageCode)
-				//console.log('translation: %o', translation)
-				return translation ? { ...translation, collection: block.collection, image: heroBlock.image, buttons: translation.buttons ? JSON.parse(translation.buttons) : [] } : null
-			}
-			if (block.collection === 'block_richtext') {
-				const richTextBlock = block.item as ItemBlockRichText
-				const translation = richTextBlock.translations.find((t) => t.languages_code === languageCode)
-				return translation ? { ...translation, collection: block.collection } : null
-			}
-			return null
-		})
-		.filter(Boolean) as (BlockHero | BlockRichText)[]
+	const processedBlocks = blocks.map((block) => {
+		if (block.collection === 'block_hero') {
+			const heroBlock = block.item as ItemBlockHero
+			const translation = heroBlock.translations.find((t) => t.languages_code === languageCode)
+			//console.log('translation: %o', translation)
+			return translation ? { ...translation, collection: block.collection, image: heroBlock.image, buttons: translation.buttons ? JSON.parse(translation.buttons) : [] } : null
+		}
+		if (block.collection === 'block_richtext') {
+			const richTextBlock = block.item as ItemBlockRichText
+			const translation = richTextBlock.translations.find((t) => t.languages_code === languageCode)
+			return translation ? { ...translation, collection: block.collection } : null
+		}
+		return null
+	})
+	return processedBlocks.filter((block): block is BlockHero | BlockRichText => block !== null)
 }
 
 /**
@@ -137,6 +86,13 @@ async function directusPage(slug: string): Promise<Page> {
 				limit: 1,
 			})
 		)
+
+		// The Directus SDK should return an array. If it's not an array, the request likely failed.
+		if (!Array.isArray(response)) {
+			console.error(`Failed to fetch page with slug "${slug}" from Directus. The API response was not an array as expected.`, 'Received:', response)
+			return emptyPage
+		}
+
 		if (response.length !== 1) {
 			return emptyPage
 		}
@@ -158,5 +114,4 @@ async function directusPage(slug: string): Promise<Page> {
 	}
 }
 
-export type { BlockHero, BlockRichText, Page }
 export default directusPage

@@ -1,15 +1,13 @@
 import type { AssetsQuery } from '@directus/sdk'
 import { authentication, createDirectus, readAssetRaw, rest } from '@directus/sdk'
-import getConfig from 'next/config'
 import { getLocale } from 'next-intl/server'
 
-const { publicRuntimeConfig } = getConfig()
-//const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
-const { url } = publicRuntimeConfig
-//const { email, password, token } = serverRuntimeConfig
-//console.log('Directus url: %s', url)
+const directusUrl = process.env.DIRECTUS_URL
+if (!directusUrl) {
+	throw new Error('`DIRECTUS_URL` is not set in your environment variables. Please add it to your `.env.local` file.')
+}
 
-const directus = createDirectus(url)
+const directus = createDirectus(directusUrl)
 	.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
 	.with(rest({ credentials: 'include' }))
 //.with(rest({ onRequest: (options) => ({ ...options, cache: 'no-store' }) }))
@@ -39,18 +37,9 @@ export async function getDirectusClient() {
 }
 */
 
-export function getDirectusURL(): string {
-	return (
-		process.env.DIRECTUS_URL ??
-		(() => {
-			throw new Error('DIRECTUS_URL is not defined in the environment variables')
-		})()
-	)
-}
-
 // Directus url must be allowed in NextConfig images remotePatterns
 export function getAssetURL(id: string) {
-	return `${process.env.DIRECTUS_URL}/assets/${id}`
+	return `${directusUrl}/assets/${id}`
 }
 
 // https://docs.directus.io/reference/files.html
@@ -58,9 +47,15 @@ export async function readAsset(key: string, query?: AssetsQuery) {
 	return await directus.request(readAssetRaw(key, query))
 }
 
+const localeToLanguageCode: Record<string, string> = {
+	fr: 'fr-FR',
+	en: 'en-US',
+}
+
 export async function getLanguageCode() {
-	const locale = getLocale()
-	return (await locale) === 'fr' ? 'fr-FR' : 'en-US'
+	const locale = await getLocale()
+	// Default to 'en-US' if the locale is not in our map
+	return localeToLanguageCode[locale] ?? 'en-US'
 }
 
 export default directus

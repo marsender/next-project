@@ -46,7 +46,7 @@ export default async function BaseLayout({ children, locale }: Props) {
 	// }
 
 	return (
-		<html lang={locale}>
+		<html lang={locale} suppressHydrationWarning>
 			<Script defer data-domain="opale-concept.com" src={process.env.VINCEANALYTICS_URL} strategy="afterInteractive" />
 			<body>
 				<NextIntlClientProvider messages={messages}>

@@ -1,24 +1,14 @@
 'use server'
 
-import { readItems } from '@directus/sdk'
+import { readSingleton } from '@directus/sdk'
 
 import directus, { getLanguageCode } from '@/lib/directus'
-
-interface Global {
-	languages_code: string
-	title: string
-	description: string
-}
+import type { Global, Translations } from '@/lib/directusGlobalTypes'
 
 const emptyTranslation: Global = {
 	languages_code: '',
 	title: '',
 	description: '',
-}
-
-interface Translations {
-	id: string
-	translations: Global[]
 }
 
 /**
@@ -28,14 +18,14 @@ interface Translations {
  * const global = await directusGlobal()
  * then get properties: global.title global.description
  *
- * @returns object with global properties translated or null if error
+ * @returns object with global properties translated or an empty object if an error occurs.
  */
 async function directusGlobal(): Promise<Global> {
-	const languageCode = await getLanguageCode()
-
 	try {
-		const response = await directus.request(
-			readItems('global', {
+		const languageCode = await getLanguageCode()
+
+		const globalItem = await directus.request<Translations>(
+			readSingleton('global', {
 				deep: {
 					translations: {
 						_filter: {
@@ -46,24 +36,23 @@ async function directusGlobal(): Promise<Global> {
 					},
 				},
 				fields: ['*', { translations: ['*'] }],
-				limit: 1,
 			})
 		)
-		// Convert the respone to Translations
-		const unknownResponse: unknown = response
-		const translations = unknownResponse as Translations
-		// Access the translations property
-		if (translations.translations.length !== 1) {
+
+		if (!globalItem) {
+			console.error('Failed to fetch global settings from Directus. The API response was empty.')
 			return emptyTranslation
 		}
-		const translation = translations.translations[0] as Global
-		// Return the fetched translation
-		return translation
+
+		if (!globalItem.translations || globalItem.translations.length !== 1) {
+			console.error(`Error fetching global settings: Expected 1 translation, but got ${globalItem.translations?.length}.`)
+			return emptyTranslation
+		}
+		return globalItem.translations[0]
 	} catch (error) {
 		console.error('Error fetching global settings:', error)
 		return emptyTranslation
 	}
 }
 
-export type { Global }
 export default directusGlobal
