@@ -43,7 +43,7 @@ Directus
 
 This project require the following to get started:
 
-- Node.js v22.14 (lts/jod)
+- Node.js v22.19 (lts/jod)
 - A directus instance
 
 ## Install
