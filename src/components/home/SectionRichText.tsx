@@ -1,5 +1,5 @@
 import DangerousHtml from '@/components/ui/dangerousHtml'
-import { BlockRichText } from '@/lib/directusPage'
+import type { BlockRichText } from '@/lib/directusPageTypes'
 
 type Props = {
 	block: BlockRichText

@@ -5,7 +5,7 @@ import HomeBlocks from '@/components/home/HomeBlocks'
 import HomeLead from '@/components/home/HomeLead'
 import HomeOpenSource from '@/components/home/HomeOpenSource'
 import HomeSteps from '@/components/home/HomeSteps'
-import { Page } from '@/lib/directusPage'
+import type { Page } from '@/lib/directusPageTypes'
 
 type Props = {
 	page: Page

@@ -4,7 +4,8 @@ import { getLocale, getTranslations } from 'next-intl/server'
 
 import CustomLink from '@/components/CustomLink'
 import { routes } from '@/lib/constants'
-import directusGlobal, { Global } from '@/lib/directusGlobal'
+import directusGlobal from '@/lib/directusGlobal'
+import type { Global } from '@/lib/directusGlobalTypes'
 
 export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	const developmentMode = process.env.NODE_ENV === 'development'

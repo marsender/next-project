@@ -1,6 +1,7 @@
 import { getLocale } from 'next-intl/server'
 
-import directusGlobal, { Global } from '@/lib/directusGlobal'
+import directusGlobal from '@/lib/directusGlobal'
+import type { Global } from '@/lib/directusGlobalTypes'
 
 //const isCI = process.env.CI ? true : false
 

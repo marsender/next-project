@@ -1,4 +1,4 @@
-import { Page } from '@/lib/directusPage'
+import type { Page } from '@/lib/directusPageTypes'
 
 import SectionColumn from './SectionColumn'
 

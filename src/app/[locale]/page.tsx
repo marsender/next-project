@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
 
 import HomePage from '@/components/pages/HomePage'
-import getDirectusPage, { Page } from '@/lib/directusPage'
+import getDirectusPage from '@/lib/directusPage'
+import type { Page } from '@/lib/directusPageTypes'
 import { getCurrentUser } from '@/lib/sessions'
 export const dynamic = 'force-dynamic'
 
