@@ -18,7 +18,7 @@ export async function directusPasswordReset(formData: FormData, token: string) {
 	try {
 		await directus.request(passwordReset(token, newPassword))
 		return { success: 'Password successfully reset!' }
-	} catch (error: any) {
+	} catch (error) {
 		console.error('Password reset error:', error)
 		return { error: 'The reset password token is invalid, please request for a new password reset link!' }
 	}

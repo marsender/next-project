@@ -1,13 +1,19 @@
-import type { NextAuthOptions, Session } from 'next-auth'
+import type { Account, NextAuthOptions, Session, User } from 'next-auth'
 import { JWT } from 'next-auth/jwt'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 import { routes } from '@/lib/constants'
 import directus from '@/lib/directus'
+import { readMe } from '@directus/sdk'
 
 interface CustomSession extends Session {
 	accessToken?: string
 	refreshToken?: string
+}
+interface DirectusUser {
+	id: string
+	access_token: string
+	refresh_token: string
 }
 
 /**
@@ -28,11 +34,22 @@ export const authOptions: NextAuthOptions = {
 				const password: string = credentials?.password ?? ''
 				console.log('Directus login with email=%s password=%s', email, password)
 				try {
-					const user = await directus.login({ email, password })
-					return user as any
-				} catch (error: any) {
-					const directusError: string = error.errors && error.errors.length > 0 ? error.errors[0].message : 'Unknown authentication error'
-					throw { message: directusError }
+					const authData = await directus.login({ email, password })
+					const user = await directus.request(readMe({ fields: ['id'] }))
+					return {
+						id: user.id,
+						access_token: authData.access_token,
+						refresh_token: authData.refresh_token,
+					} as DirectusUser
+				} catch (error) {
+					let directusError = 'An unknown authentication error occurred.'
+					if (typeof error === 'object' && error !== null && 'errors' in error) {
+						const directusErrorObject = error as { errors: { message: string }[] }
+						if (directusErrorObject.errors && directusErrorObject.errors.length > 0) {
+							directusError = directusErrorObject.errors[0].message
+						}
+					}
+					throw new Error(directusError)
 				}
 			},
 		}),
@@ -46,19 +63,19 @@ export const authOptions: NextAuthOptions = {
 		// newUser: '/new-user', // New users will be directed here on first sign in
 	},
 	callbacks: {
-		async jwt({ token, user, account }: { token: JWT; user: any; account: any }) {
+		async jwt({ token, user, account }: { token: JWT; user: User; account: Account | null }) {
 			if (account && user) {
 				return {
 					...token,
-					accessToken: user.access_token,
-					refreshToken: user.refresh_token,
+					accessToken: (user as DirectusUser).access_token,
+					refreshToken: (user as DirectusUser).refresh_token,
 				}
 			}
 			return token
 		},
-		async session({ session, token, user }: { session: CustomSession; token: any; user: any }) {
-			session.accessToken = token.accessToken
-			session.refreshToken = token.refreshToken
+		async session({ session, token, user }: { session: CustomSession; token: JWT; user: User }) {
+			session.accessToken = token.accessToken as string | undefined
+			session.refreshToken = token.refreshToken as string | undefined
 			if (user) {
 				session.user = user
 			}

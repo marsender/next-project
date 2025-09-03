@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-import { getPathname, Locale, routing } from '@/i18n/routing'
+import { getPathname, type Locale, routing } from '@/i18n/routing'
 import { RouteHref, routes } from '@/lib/constants'
 
 /**

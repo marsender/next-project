@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { ReactNode } from 'react'
 
 import BaseLayout from '@/components/BaseLayout'
-import { routing } from '@/i18n/routing'
+import { type Locale, routing } from '@/i18n/routing'
 import { getLanguageCode } from '@/lib/directus'
 
 type MetadataProps = {
@@ -65,7 +65,7 @@ export default async function RootLayout({ children, params }: Readonly<RootProp
 	const { locale } = await params
 
 	// Ensure that the incoming `locale` is valid
-	if (!routing.locales.includes(locale as any)) {
+	if (!routing.locales.includes(locale as Locale)) {
 		notFound()
 	}
 

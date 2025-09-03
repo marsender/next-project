@@ -108,7 +108,7 @@ async function directusPage(slug: string): Promise<Page> {
 		// Return the fetched page
 		//console.log('Page: %o', page)
 		return page
-	} catch (error: any) {
+	} catch (error) {
 		console.log(error)
 		return emptyPage
 	}

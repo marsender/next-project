@@ -1,5 +1,6 @@
 'use client'
 
+import { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
 import { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
@@ -7,7 +8,7 @@ import { Toaster } from 'react-hot-toast'
 import { customToastOptions } from '@/hooks/useCustomToast'
 
 type Props = {
-	session: any
+	session: Session | null
 	children: ReactNode
 }
 

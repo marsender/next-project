@@ -29,7 +29,7 @@ export default function RequestResetPasswordForm() {
 			} else if (result.error) {
 				setError(result.error)
 			}
-		} catch (error: any) {
+		} catch (error) {
 			console.error('Form submission error:', error)
 			setError(t('errorMessage'))
 		} finally {

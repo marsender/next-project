@@ -2,7 +2,6 @@
 import type { VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 import { forwardRef, ReactNode } from 'react'
-
 import { buttonVariants, iconVariants } from '@/app/variants'
 
 export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'>, VariantProps<typeof buttonVariants> {
@@ -10,8 +9,8 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'>, V
 	loadingText?: string
 	fullWidth?: boolean
 	icon?: ReactNode
-	variant?: any
-	size?: any
+	variant?: VariantProps<typeof buttonVariants>['variant']
+	size?: VariantProps<typeof buttonVariants>['size']
 }
 
 const CustomButton = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
