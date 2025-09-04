@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
 			async authorize(credentials) {
 				const email: string = credentials?.email ?? ''
 				const password: string = credentials?.password ?? ''
-				console.log('Directus login with email=%s password=%s', email, password)
+				console.log('Directus login attempt with email=%s', email)
 				try {
 					const authData = await directus.login({ email, password })
 					const user = await directus.request(readMe({ fields: ['id'] }))
