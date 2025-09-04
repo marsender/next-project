@@ -89,7 +89,7 @@ async function directusPage(slug: string): Promise<Page> {
 
 		// The Directus SDK should return an array. If it's not an array, the request likely failed.
 		if (!Array.isArray(response)) {
-			console.error(`Failed to fetch page with slug "${slug}" from Directus. The API response was not an array as expected.`, 'Received:', response)
+			console.error('Failed to fetch page with slug "%s" from Directus. The API response was not an array as expected.', slug, 'Received:', response)
 			return emptyPage
 		}
 
