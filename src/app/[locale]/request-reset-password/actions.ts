@@ -12,7 +12,13 @@ export async function directusPasswordRequest(formData: FormData) {
 	}
 
 	try {
-		await directus.request(passwordRequest(email, 'https://opale-concept.com/reset-password'))
+		const resetUrl = process.env.NEXT_PUBLIC_URL
+		if (!resetUrl) {
+			console.error('NEXT_PUBLIC_URL is not set in environment variables.')
+			return { error: 'Server configuration error.' }
+		}
+
+		await directus.request(passwordRequest(email, `${resetUrl}/reset-password`))
 
 		return { success: 'If you have an account, an email with a password reset link has been sent to your email!' }
 	} catch (error) {
