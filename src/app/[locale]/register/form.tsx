@@ -45,8 +45,7 @@ export default function RegistrationForm() {
 
 	return (
 		<>
-			{error && <p>{error}</p>}
-			<AuthForm title={t('RegistrationPage.registerHere')} onSubmit={handleFormSubmit} buttonText={t('Navigation.register')} linkDescription={t('RegistrationPage.alreadyHaveAnAccount')} linkText={t('Navigation.login')} linkHref={routes.LOGIN} />
+			<AuthForm title={t('RegistrationPage.registerHere')} onSubmit={handleFormSubmit} buttonText={t('Navigation.register')} linkDescription={t('RegistrationPage.alreadyHaveAnAccount')} linkText={t('Navigation.login')} linkHref={routes.LOGIN} error={error} />
 		</>
 	)
 }

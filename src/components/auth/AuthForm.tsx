@@ -21,10 +21,11 @@ interface AuthFormProps {
 	linkDescription: string
 	linkHref: string
 	linkResetPassword?: string
+	error?: string
 	isFullForm?: boolean
 }
 
-export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHref, linkResetPassword, linkDescription, isFullForm = true }: AuthFormProps) {
+export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHref, linkResetPassword, linkDescription, error, isFullForm = true }: AuthFormProps) {
 	const t = useTranslations('AuthForm')
 	// Refs to capture input values directly
 	const firstNameRef = useRef<HTMLInputElement>(null)
@@ -48,6 +49,11 @@ export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHr
 		<div className="flex justify-center bg-gradient-to-br py-12 px-4 sm:px-6 lg:px-8 mt-16 mb-16">
 			<form onSubmit={handleFormSubmit} className="w-full max-w-xl p-8 bg-white/90 backdrop-blur rounded-2xl shadow-xl space-y-6 border border-gray-100">
 				<h1 className="text-3xl font-extrabold text-center text-gray-900 tracking-tight mb-2">{title}</h1>
+				{error && (
+					<div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+						<p className="text-red-800 text-sm font-medium">{error}</p>
+					</div>
+				)}
 				{isFullForm && (
 					<div className="flex flex-col md:flex-row gap-4">
 						<input type="text" placeholder={t('firstName')} name="first_name" ref={firstNameRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
