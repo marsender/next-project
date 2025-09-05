@@ -1,16 +1,23 @@
 import { expect, test } from '@playwright/test'
 
+import en from '../../messages/en.json'
+import fr from '../../messages/fr.json'
+
 test.describe('home page', () => {
-	test('search text in en page', async ({ page }) => {
+	test('should display the correct content in English', async ({ page }) => {
 		await page.goto('/')
-		await expect(page.getByRole('heading', { name: 'Web Developer' })).toBeVisible()
-		await expect(page.getByRole('link', { name: 'Contact me' })).toBeVisible()
+		// Note: Content is provided by directus, not by the translation files.
+		await expect(page.getByRole('heading', { name: 'Freelance Web Developer' })).toBeVisible()
+		await expect(page.getByRole('link', { name: en.Hero.contactMe })).toBeVisible()
+		// Note: Content is provided by directus, not by the translation files.
 		await expect(page.getByText('Hosting')).toBeVisible()
 	})
-	test('search text in fr page', async ({ page }) => {
+	test('should display the correct content in French', async ({ page }) => {
 		await page.goto('/fr')
-		await expect(page.getByRole('heading', { name: 'Développeur Web' })).toBeVisible()
-		await expect(page.getByRole('link', { name: 'Contactez-moi' })).toBeVisible()
+		// Note: Content is provided by directus, not by the translation files.
+		await expect(page.getByRole('heading', { name: 'Développeur Web Freelance' })).toBeVisible()
+		await expect(page.getByRole('link', { name: fr.Hero.contactMe })).toBeVisible()
+		// Note: Content is provided by directus, not by the translation files.
 		await expect(page.getByText('Hébergement')).toBeVisible()
 	})
 })
