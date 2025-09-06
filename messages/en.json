@@ -31,11 +31,16 @@
 	"LoginPage": {
 		"loginHere": "Login",
 		"newHere": "New here?",
-		"createAnAccount": "Create an account"
+		"createAnAccount": "Create an account",
+		"successToast": "Authentication success",
+		"unknownError": "Unknown authentication error",
+		"invalidCredentials": "The credentials you provided are invalid."
 	},
 	"RegistrationPage": {
 		"registerHere": "Register here",
-		"alreadyHaveAnAccount": "Already have an account?"
+		"alreadyHaveAnAccount": "Already have an account?",
+		"emailExistsError": "A user with this email already exists.",
+		"unexpectedError": "An unexpected error occurred, please try again."
 	},
 	"AccountPage": {
 		"title": "My account",
@@ -61,7 +66,10 @@
 		"sendButton": "Send Reset Link",
 		"rememberPassword": "Remember your password?",
 		"loginPage": "Login page",
-		"errorMessage": "An error occurred, please try again!"
+		"emailRequired": "Email is required",
+		"serverError": "Server configuration error.",
+		"errorMessage": "An error occurred, please try again!",
+		"successMessage": "If an account with this email exists, a password reset link has been sent."
 	},
 	"RequestResetForm": {
 		"title": "Provide a new password for your account",
@@ -70,6 +78,9 @@
 		"resettingButton": "Resetting...",
 		"createButton": "Create new password",
 		"successMessage": "Password successfully reset, redirecting you to login page...",
-		"errorMessage": "An error occurred, please try again!"
+		"errorMessage": "An error occurred, please try again!",
+		"passwordRequired": "Password is required",
+		"tokenRequired": "Reset token is required",
+		"invalidToken": "The reset password token is invalid, please request for a new password reset link!"
 	}
 }

@@ -18,7 +18,9 @@ export default function RegistrationForm() {
 	const t = useTranslations()
 	const router = useRouter()
 	const [error, setError] = useState('')
+
 	const handleFormSubmit = async (data: Data) => {
+		setError('')
 		const response = await fetch(`/api/auth/register`, {
 			method: 'POST',
 			body: JSON.stringify({
@@ -33,11 +35,11 @@ export default function RegistrationForm() {
 				break
 			}
 			case 409: {
-				setError('A user with this email already exist')
+				setError(t('RegistrationPage.emailExistsError'))
 				break
 			}
 			default: {
-				setError('An unexpected error occurred, please try again')
+				setError(t('RegistrationPage.unexpectedError'))
 				break
 			}
 		}

@@ -31,11 +31,16 @@
 	"LoginPage": {
 		"loginHere": "Connexion",
 		"newHere": "Nouveau ici ?",
-		"createAnAccount": "Crée un compte"
+		"createAnAccount": "Crée un compte",
+		"successToast": "Authentification réussie",
+		"unknownError": "Erreur d'authentification inconnue",
+		"invalidCredentials": "Les informations d'identification que vous avez fournies ne sont pas valides."
 	},
 	"RegistrationPage": {
 		"registerHere": "Inscription ici",
-		"alreadyHaveAnAccount": "Déjà inscrit ?"
+		"alreadyHaveAnAccount": "Déjà inscrit ?",
+		"emailExistsError": "Un utilisateur avec cet e-mail existe déjà.",
+		"unexpectedError": "Une erreur inattendue s'est produite, veuillez réessayer."
 	},
 	"AccountPage": {
 		"title": "Mon compte",
@@ -61,7 +66,10 @@
 		"sendButton": "Envoyer le lien de réinitialisation",
 		"rememberPassword": "Vous vous souvenez de votre mot de passe ?",
 		"loginPage": "Page de connexion",
-		"errorMessage": "Une erreur s'est produite, veuillez réessayer !"
+		"emailRequired": "L'e-mail est requis",
+		"serverError": "Erreur de configuration du serveur.",
+		"errorMessage": "Une erreur s'est produite, veuillez réessayer !",
+		"successMessage": "Si un compte avec cet e-mail existe, un lien de réinitialisation du mot de passe a été envoyé."
 	},
 	"RequestResetForm": {
 		"title": "Fournir un nouveau mot de passe pour votre compte",
@@ -70,6 +78,9 @@
 		"resettingButton": "Réinitialisation...",
 		"createButton": "Créer un nouveau mot de passe",
 		"successMessage": "Mot de passe réinitialisé avec succès, redirection vers la page de connexion...",
-		"errorMessage": "Une erreur s'est produite, veuillez réessayer !"
+		"errorMessage": "Une erreur s'est produite, veuillez réessayer !",
+		"passwordRequired": "Le mot de passe est requis",
+		"tokenRequired": "Le jeton de réinitialisation est requis",
+		"invalidToken": "Le jeton de réinitialisation du mot de passe est invalide, veuillez demander un nouveau lien de réinitialisation de mot de passe !"
 	}
 }

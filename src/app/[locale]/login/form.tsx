@@ -21,7 +21,9 @@ export default function LoginForm() {
 	const { successToast } = useCustomToast()
 	const router = useRouter()
 	const [error, setError] = useState('')
+
 	const handleFormSubmit = async (data: Data) => {
+		setError('')
 		//console.log('Next auth login with email %s and password %s', data.email, data.password)
 		const response = await signIn('credentials', {
 			email: data.email,
@@ -29,14 +31,19 @@ export default function LoginForm() {
 			redirect: false,
 		})
 		if (response && !response.error) {
-			successToast('Authentication success')
+			successToast(t('LoginPage.successToast'))
 			router.push(routes.HOME)
 			refresh()
 		} else if (response && response.status === 401 && response.error) {
 			// 401 Unauthorized
-			setError(response.error)
+			// next-auth returns a hardcoded string for credentials, so we check for it.
+			if (response.error === 'CredentialsSignin') {
+				setError(t('LoginPage.invalidCredentials'))
+			} else {
+				setError(response.error)
+			}
 		} else {
-			setError('Unknown authentication error')
+			setError(t('LoginPage.unknownError'))
 		}
 	}
 
