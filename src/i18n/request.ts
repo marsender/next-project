@@ -11,8 +11,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
 		locale = routing.defaultLocale
 	}
 
-	// When using Turbopack, this will enable HMR for `en`
-	const messagesModule = await (locale === 'en' ? import('../../messages/en.json', { with: { type: 'json' } }) : import(`../../messages/${locale}.json`, { with: { type: 'json' } }))
+	// When using Turbopack, this will enable HMR for locales
+	const messagesModule = await import(`../../messages/${locale}.json`, { with: { type: 'json' } })
 
 	return {
 		locale,
