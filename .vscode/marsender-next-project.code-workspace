@@ -12,7 +12,10 @@
 		"editor.detectIndentation": false,
 		"prettier.tabWidth": 2,
 		"prettier.singleQuote": true,
-		"prettier.semi": false
+		"prettier.semi": false,
+		"files.associations": {
+			"*.css": "tailwindcss"
+		}
 	},
 	"launch": {
 		"version": "0.2.0",
@@ -27,8 +30,6 @@
 		]
 	},
 	"extensions": {
-		"recommendations": [
-			"esbenp.prettier-vscode",
-		]
+		"recommendations": ["esbenp.prettier-vscode"]
 	}
 }
