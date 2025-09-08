@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
-import en from '../../messages/en.json'
-import fr from '../../messages/fr.json'
+import en from '../../messages/en.json' with { type: 'json' }
+import fr from '../../messages/fr.json' with { type: 'json' }
 
 test.describe('home page', () => {
 	test('should display the correct content in English', async ({ page }) => {
