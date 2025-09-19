@@ -2,6 +2,10 @@
 
 ![CI](https://github.com/marsender/next-project/workflows/CI/badge.svg)
 
+This is a web application built with Next.js framework for the frontend and Directus as a headless CMS for the backend. It features internationalization, a component-based architecture inspired by Digest.club, and a comprehensive testing suite using Vitest for unit tests and Playwright for end-to-end tests. The user interface is built with Radix UI and Shadcn UI.
+
+---
+
 This is a [Next.js](https://nextjs.org) project with [Directus](https://directus.io/) backend
 
 Next.js
@@ -44,7 +48,7 @@ Directus
 This project require the following to get started:
 
 - Node.js v22.19 (lts/jod)
-- A directus instance
+- A directus instance [see my directus-project](https://github.com/marsender/directus-project)
 
 ## Install
 
