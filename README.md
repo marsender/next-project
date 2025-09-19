@@ -4,13 +4,11 @@
 
 ## Description
 
-This is a starter web application template built with Next.js framework for the frontend and Directus as a headless CMS for the backend. It features internationalization, a component-based architecture inspired by Digest.club, and a comprehensive testing suite using Vitest for unit tests and Playwright for end-to-end tests. The user interface is built with Radix UI and Shadcn UI.
+This is a starter web application template built with Next.js framework for the frontend and Directus as a headless CMS for the backend. It features internationalization, a component-based architecture inspired by Digest.club, and a comprehensive testing suite using Vitest for unit tests and Playwright for end-to-end tests. The user interface is built with Tailwind CSS, Radix UI and Shadcn UI.
 
 ---
 
-This is a [Next.js](https://nextjs.org) project with [Directus](https://directus.io/) backend
-
-Next.js
+[Next.js](https://nextjs.org) frontend
 
 - [Bootstrap next project with `create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
 - [Internationalization](https://nextjs.org/docs/pages/building-your-application/routing/internationalization)
@@ -20,10 +18,11 @@ Next.js
 - [How to set up Next.js for production](https://janhesters.com/blog/how-to-set-up-nextjs-15-for-production-in-2025)
 - [Vitest tests](https://vitest.dev/)
 - [Playwright end-to-end tests](https://playwright.dev/)
+- [Tailwind CSS](https://tailwindcss.com)
 - [Radix UI](https://www.radix-ui.com/primitives)
 - [Shadcn UI](https://ui.shadcn.com/)
 
-Directus
+[Directus](https://directus.io/) backend
 
 - [Directus Next.js example](https://github.com/directus-labs/examples/tree/main/nextjs)
 - [Directus page components](https://docs.directus.io/guides/headless-cms/reusable-components.html)
