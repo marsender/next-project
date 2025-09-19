@@ -2,7 +2,9 @@
 
 ![CI](https://github.com/marsender/next-project/workflows/CI/badge.svg)
 
-This is a web application built with Next.js framework for the frontend and Directus as a headless CMS for the backend. It features internationalization, a component-based architecture inspired by Digest.club, and a comprehensive testing suite using Vitest for unit tests and Playwright for end-to-end tests. The user interface is built with Radix UI and Shadcn UI.
+## Description
+
+This is a starter web application template built with Next.js framework for the frontend and Directus as a headless CMS for the backend. It features internationalization, a component-based architecture inspired by Digest.club, and a comprehensive testing suite using Vitest for unit tests and Playwright for end-to-end tests. The user interface is built with Radix UI and Shadcn UI.
 
 ---
 
