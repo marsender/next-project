@@ -1,15 +1,30 @@
-import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
-import type { Linter } from 'eslint'
+import { FlatCompat } from '@eslint/eslintrc';
+import tseslint from 'typescript-eslint';
 
 const compat = new FlatCompat({
 	baseDirectory: import.meta.dirname,
-	recommendedConfig: js.configs.recommended,
-	allConfig: js.configs.all,
-})
-export default [
-	...compat.extends('next/core-web-vitals', 'next/typescript'),
+});
+
+export default tseslint.config(
 	{
-		ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
+		ignores: [
+            '.next/**',
+            'node_modules/**',
+            'public/**',
+            'out/**',
+            'build/**',
+            'next-env.d.ts',
+            'src/playwright/**',
+            'src/tests/**'
+        ],
 	},
-] satisfies Linter.Config[]
+	...compat.extends('next/core-web-vitals', 'next/typescript'),
+	...tseslint.configs.recommended,
+	{
+		// Custom rules can be placed here
+		rules: {
+			// For example, to warn about unused variables instead of erroring
+			'@typescript-eslint/no-unused-vars': 'warn',
+		},
+	},
+);
