@@ -87,6 +87,12 @@ npm run lint:fix # to fix lint errors
 npm run type-check
 ```
 
+## Finds and fixes unused dependencies, exports and files
+
+```bash
+npm run knip
+```
+
 ## Run tests
 
 Copy env and adjust
