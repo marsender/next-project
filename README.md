@@ -59,11 +59,11 @@ cd next-project
 npm install
 ```
 
-## Adjut env for dev and test
+## Adjust env for dev and test
 
 ```bash
 nano .env.local
-nano .env.test
+nano .env.test.local
 ```
 
 ## Build for dev
