@@ -15,7 +15,7 @@ const Logo = (props: { className?: string; isWhite?: boolean }) => {
 				<span
 					className={clsx(`text-xl font-[800]`, props.className, {
 						'text-red-600': developmentMode,
-						'text-foreground': !developmentMode,
+						'text-gray-900': !developmentMode,
 					})}
 				>
 					dev mode
