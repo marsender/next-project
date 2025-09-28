@@ -8,7 +8,14 @@ import { RouteHref, routes } from '@/lib/constants'
  * Test via: curl --insecure http://localhost:3002/sitemap.xml
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-	const routesToSkip: Set<RouteHref> = new Set([routes.LOGIN, routes.REGISTER, routes.LOGOUT, routes.ACCOUNT, routes.REQUEST_RESET_PASSWORD, routes.ABOUT])
+	const routesToSkip: Set<RouteHref> = new Set([
+		routes.LOGIN,
+		routes.REGISTER,
+		routes.LOGOUT,
+		routes.ACCOUNT,
+		routes.REQUEST_RESET_PASSWORD,
+		routes.ABOUT,
+	])
 
 	return Object.values(routes)
 		.filter((href) => !routesToSkip.has(href))

@@ -82,5 +82,10 @@
 		"passwordRequired": "Le mot de passe est requis",
 		"tokenRequired": "Le jeton de réinitialisation est requis",
 		"invalidToken": "Le jeton de réinitialisation du mot de passe est invalide, veuillez demander un nouveau lien de réinitialisation de mot de passe !"
+	},
+	"ThemeSwitcher": {
+		"light": "Thème clair",
+		"system": "Thème système",
+		"dark": "Thème sombre"
 	}
 }

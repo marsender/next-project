@@ -8,8 +8,8 @@ type Props = {
 
 const HomeBlocks = ({ page }: Props) => {
 	return (
-		<section className="blocks flex flex-1 justify-center bg-white">
-			<div className="m-auto h-full w-full max-w-5xl flex-col p-4 text-gray-900">
+		<section className="blocks bg-background flex flex-1 justify-center">
+			<div className="text-foreground m-auto h-full w-full max-w-5xl flex-col p-4">
 				{page.blocks.map((block, index) => {
 					switch (block.collection) {
 						case 'block_hero': {

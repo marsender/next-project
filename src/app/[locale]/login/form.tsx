@@ -49,7 +49,17 @@ export default function LoginForm() {
 
 	return (
 		<>
-			<AuthForm title={t('LoginPage.loginHere')} onSubmit={handleFormSubmit} buttonText={t('Navigation.login')} linkDescription={t('LoginPage.newHere')} linkText={t('LoginPage.createAnAccount')} linkHref={routes.REGISTER} linkResetPassword={routes.REQUEST_RESET_PASSWORD} isFullForm={false} error={error} />
+			<AuthForm
+				title={t('LoginPage.loginHere')}
+				onSubmit={handleFormSubmit}
+				buttonText={t('Navigation.login')}
+				linkDescription={t('LoginPage.newHere')}
+				linkText={t('LoginPage.createAnAccount')}
+				linkHref={routes.REGISTER}
+				linkResetPassword={routes.REQUEST_RESET_PASSWORD}
+				isFullForm={false}
+				error={error}
+			/>
 		</>
 	)
 }

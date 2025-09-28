@@ -3,6 +3,8 @@
 import { useTranslations } from 'next-intl'
 import { FormEvent, useRef } from 'react'
 
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
 import { RouteHref } from '@/lib/constants'
 
@@ -25,7 +27,17 @@ interface AuthFormProps {
 	isFullForm?: boolean
 }
 
-export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHref, linkResetPassword, linkDescription, error, isFullForm = true }: AuthFormProps) {
+export default function AuthForm({
+	title,
+	buttonText,
+	onSubmit,
+	linkText,
+	linkHref,
+	linkResetPassword,
+	linkDescription,
+	error,
+	isFullForm = true,
+}: AuthFormProps) {
 	const t = useTranslations('AuthForm')
 	// Refs to capture input values directly
 	const firstNameRef = useRef<HTMLInputElement>(null)
@@ -46,35 +58,75 @@ export default function AuthForm({ title, buttonText, onSubmit, linkText, linkHr
 	}
 
 	return (
-		<div className="flex justify-center bg-gradient-to-br py-12 px-4 sm:px-6 lg:px-8 mt-16 mb-16">
-			<form onSubmit={handleFormSubmit} className="w-full max-w-xl p-8 bg-white/90 backdrop-blur rounded-2xl shadow-xl space-y-6 border border-gray-100">
-				<h1 className="text-3xl font-extrabold text-center text-gray-900 tracking-tight mb-2">{title}</h1>
+		<div className="mt-16 mb-16 flex justify-center bg-gradient-to-br px-4 py-12 sm:px-6 lg:px-8">
+			<form
+				onSubmit={handleFormSubmit}
+				className="bg-background/90 w-full max-w-xl space-y-6 rounded-2xl border border-gray-100 p-8 shadow-xl backdrop-blur"
+			>
+				<h1 className="text-foreground mb-2 text-center text-3xl font-extrabold tracking-tight">{title}</h1>
 				{error && (
-					<div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-						<p className="text-red-800 text-sm font-medium">{error}</p>
+					<div className="rounded-lg border border-red-200 bg-red-50 p-4">
+						<p className="text-sm font-medium text-red-800">{error}</p>
 					</div>
 				)}
 				{isFullForm && (
-					<div className="flex flex-col md:flex-row gap-4">
-						<input type="text" placeholder={t('firstName')} name="first_name" ref={firstNameRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
-						<input type="text" placeholder={t('lastName')} name="last_name" ref={lastNameRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+					<div className="flex flex-col gap-4 md:flex-row">
+						<Input
+							type="text"
+							placeholder={t('firstName')}
+							name="first_name"
+							ref={firstNameRef}
+							required
+							className="w-full rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
+						/>
+						<Input
+							type="text"
+							placeholder={t('lastName')}
+							name="last_name"
+							ref={lastNameRef}
+							required
+							className="w-full rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
+						/>
 					</div>
 				)}
-				<input type="email" placeholder={t('emailAddress')} name="email" ref={emailRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
-				<input type="password" placeholder={t('enterYourPassword')} name="password" ref={passwordRef} required className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+				<Input
+					type="email"
+					placeholder={t('emailAddress')}
+					name="email"
+					ref={emailRef}
+					required
+					className="w-full rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
+				/>
+				<Input
+					type="password"
+					placeholder={t('enterYourPassword')}
+					name="password"
+					ref={passwordRef}
+					required
+					className="w-full rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
+				/>
 				{linkResetPassword && (
-					<p className="text-gray-500 text-sm">
-						<Link href={linkResetPassword as RouteHref} className="text-blue-600 hover:underline font-medium transition-colors hover:text-blue-800">
+					<p className="text-sm text-gray-500">
+						<Link
+							href={linkResetPassword as RouteHref}
+							className="text-primary-solid hover:text-primary-solid-hover font-medium transition-colors hover:underline"
+						>
 							Forgot password?
 						</Link>
 					</p>
 				)}
-				<button type="submit" className="w-full rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center justify-center gap-2 cursor-pointer shadow-sm bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 text-lg">
+				<Button
+					type="submit"
+					className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-6 py-3 text-lg font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+				>
 					{buttonText}
-				</button>
-				<p className="text-center text-gray-500 text-sm">
+				</Button>
+				<p className="text-center text-sm text-gray-500">
 					{linkDescription} &nbsp;
-					<Link href={linkHref as RouteHref} className="text-blue-600 hover:underline font-medium transition-colors hover:text-blue-800">
+					<Link
+						href={linkHref as RouteHref}
+						className="text-primary-solid hover:text-primary-solid-hover font-medium transition-colors hover:underline"
+					>
 						{linkText}
 					</Link>
 				</p>

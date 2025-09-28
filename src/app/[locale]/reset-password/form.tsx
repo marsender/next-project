@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { FormEvent, useState } from 'react'
 
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import { routes } from '@/lib/constants'
 
 import { directusPasswordReset } from './actions'
@@ -40,29 +42,43 @@ export default function RequestResetForm({ token }: { token: string }) {
 	}
 
 	return (
-		<div className="flex justify-center bg-gradient-to-br py-12 px-4 sm:px-6 lg:px-8 mt-16 mb-16">
-			<form onSubmit={handleFormSubmit} className="w-full max-w-xl p-8 bg-white/90 backdrop-blur rounded-2xl shadow-xl space-y-6 border border-gray-100">
-				<h1 className="text-3xl font-extrabold text-center text-gray-900 tracking-tight mb-2">{t('title')}</h1>
+		<div className="mt-16 mb-16 flex justify-center bg-gradient-to-br px-4 py-12 sm:px-6 lg:px-8">
+			<form
+				onSubmit={handleFormSubmit}
+				className="bg-background/90 w-full max-w-xl space-y-6 rounded-2xl border border-gray-100 p-8 shadow-xl backdrop-blur"
+			>
+				<h1 className="text-foreground mb-2 text-center text-3xl font-extrabold tracking-tight">{t('title')}</h1>
 
 				{success && (
-					<div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-						<p className="text-green-800 text-sm font-medium">{success}</p>
+					<div className="rounded-lg border border-green-200 bg-green-50 p-4">
+						<p className="text-sm font-medium text-green-800">{success}</p>
 					</div>
 				)}
 
 				{error && (
-					<div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-						<p className="text-red-800 text-sm font-medium">{error}</p>
+					<div className="rounded-lg border border-red-200 bg-red-50 p-4">
+						<p className="text-sm font-medium text-red-800">{error}</p>
 					</div>
 				)}
 
-				<p className="text-gray-600 text-center text-sm">{t('description')}</p>
+				<p className="text-center text-sm text-gray-600">{t('description')}</p>
 
-				<input type="password" placeholder={t('passwordPlaceholder')} name="password" required autoComplete="new-password" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 transition-shadow shadow-sm placeholder-gray-400" />
+				<Input
+					type="password"
+					placeholder={t('passwordPlaceholder')}
+					name="password"
+					required
+					autoComplete="new-password"
+					className="w-full rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
+				/>
 
-				<button type="submit" disabled={isSubmitting} className="w-full rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center justify-center gap-2 cursor-pointer shadow-sm bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 disabled:cursor-not-allowed text-white px-6 py-3 text-lg">
+				<Button
+					type="submit"
+					disabled={isSubmitting}
+					className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-6 py-3 text-lg font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed"
+				>
 					{isSubmitting ? t('resettingButton') : t('createButton')}
-				</button>
+				</Button>
 			</form>
 		</div>
 	)

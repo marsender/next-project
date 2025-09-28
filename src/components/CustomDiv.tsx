@@ -4,7 +4,9 @@ import clsx from 'clsx'
 import { forwardRef, ReactNode } from 'react'
 import { buttonVariants, iconVariants } from '@/app/variants'
 
-export interface DivProps extends React.ComponentPropsWithoutRef<'div'>, VariantProps<typeof buttonVariants> {
+export interface DivProps
+	extends Omit<React.ComponentPropsWithoutRef<'div'>, 'color'>,
+		VariantProps<typeof buttonVariants> {
 	isLoading?: boolean
 	loadingText?: string
 	fullWidth?: boolean
@@ -14,20 +16,32 @@ export interface DivProps extends React.ComponentPropsWithoutRef<'div'>, Variant
 }
 
 const CustomDiv = forwardRef<HTMLDivElement, DivProps>((props, ref) => {
-	const { isLoading = false, children, loadingText, fullWidth = false, className = '', variant = 'default', size = 'md', icon, ...rest } = props
+	const {
+		isLoading = false,
+		children,
+		loadingText,
+		fullWidth = false,
+		className,
+		color,
+		variant = 'solid',
+		size = 'default',
+		icon,
+		...rest
+	} = props
 
 	return (
 		<div
 			ref={ref}
 			className={clsx(
 				buttonVariants({
+					color,
 					variant,
 					size,
 				}),
 				{
-					'w-full box-border': fullWidth,
+					'box-border w-full': fullWidth,
 				},
-				className
+				className,
 			)}
 			{...rest}
 		>
@@ -44,13 +58,15 @@ const CustomDiv = forwardRef<HTMLDivElement, DivProps>((props, ref) => {
 					{children && (
 						<span
 							className={clsx({
-								'opacity-0 pointer-events-none': isLoading,
+								'pointer-events-none opacity-0': isLoading,
 							})}
 						>
 							{children}
 						</span>
 					)}
-					{icon && !isLoading && <span className={clsx('flex items-center justify-center', iconVariants({ size }))}>{icon}</span>}
+					{icon && !isLoading && (
+						<span className={clsx('flex items-center justify-center', iconVariants({ size }))}>{icon}</span>
+					)}
 				</span>
 			)}
 		</div>

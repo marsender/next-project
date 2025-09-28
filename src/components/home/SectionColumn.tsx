@@ -15,11 +15,18 @@ type Props = {
 
 const SectionColumn = ({ children, title, caption, dangerousHtml, className }: Props) => {
 	return (
-		<div className={clsx(`p-4 m-auto max-w-5xl pt-10 pb-10 text-gray-900 w-full h-full flex flex-col items-center gap-16`, className)}>
+		<div
+			className={clsx(
+				`text-foreground m-auto flex h-full w-full max-w-5xl flex-col items-center gap-16 p-4 pt-10 pb-10`,
+				className,
+			)}
+		>
 			<div className="flex flex-col gap-2">
 				<SectionTitle>{title}</SectionTitle>
-				{caption ? <p className="mt-4 text-lg text-slate-700 mx-auto max-w-2xl text-center">{caption}</p> : null}
-				{dangerousHtml ? <DangerousHtml html={dangerousHtml} className="mt-4 text-lg text-slate-700 mx-auto max-w-2xl text-center" /> : null}
+				{caption ? <p className="text-foreground mx-auto mt-4 max-w-2xl text-center text-lg">{caption}</p> : null}
+				{dangerousHtml ? (
+					<DangerousHtml html={dangerousHtml} className="text-foreground mx-auto mt-4 max-w-2xl text-center text-lg" />
+				) : null}
 			</div>
 			{children}
 		</div>

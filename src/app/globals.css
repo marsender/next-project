@@ -12,19 +12,19 @@
 }
 
 .btn-primary {
-	@apply rounded-md bg-violet-600 px-5 py-2 text-base font-semibold text-white shadow-sm hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 active:bg-violet-900;
+	@apply bg-secondary-solid text-secondary-on-secondary hover:bg-secondary-solid-hover focus-visible:outline-secondary-solid active:bg-secondary-solid-hover rounded-md px-5 py-2 text-base font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
 }
 
 .btn-lg {
-	@apply rounded-md bg-violet-600 px-6 py-2.5 text-lg font-semibold text-white shadow-sm hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 active:bg-violet-900;
+	@apply bg-secondary-solid text-secondary-on-secondary hover:bg-secondary-solid-hover focus-visible:outline-secondary-solid active:bg-secondary-solid-hover rounded-md px-6 py-2.5 text-lg font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
 }
 
 .btn-xl {
-	@apply rounded-md bg-violet-600 px-8 py-3 text-xl font-semibold text-white shadow-sm hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 active:bg-violet-900;
+	@apply bg-secondary-solid text-secondary-on-secondary hover:bg-secondary-solid-hover focus-visible:outline-secondary-solid active:bg-secondary-solid-hover rounded-md px-8 py-3 text-xl font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
 }
 
 .btn-secondary {
-	@apply rounded-md bg-transparent px-5 py-2 text-base font-semibold text-violet-600 hover:bg-violet-100 active:bg-violet-300;
+	@apply text-secondary-solid hover:bg-secondary-bg-hover active:bg-secondary-bg-active rounded-md bg-transparent px-5 py-2 text-base font-semibold;
 }
 
 .btn-add-link {
@@ -34,11 +34,11 @@
 
 .blocks {
 	ul {
-		@apply rounded-lg border border-gray-300 px-8 py-4 shadow-sm;
+		@apply border-canvas-line rounded-lg border px-8 py-4 shadow-sm;
 	}
 
 	li {
-		@apply py-2 text-gray-700 transition-colors hover:text-gray-500;
+		@apply text-canvas-text hover:text-canvas-text-contrast py-2 transition-colors;
 	}
 	p {
 		@apply py-2;
@@ -47,7 +47,7 @@
 		@apply mt-4 mb-4 text-3xl leading-normal font-black xl:text-4xl;
 	}
 	a {
-		@apply text-violet-900;
+		@apply text-secondary-solid;
 	}
 }
 

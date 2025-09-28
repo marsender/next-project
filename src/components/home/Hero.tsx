@@ -14,13 +14,19 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	const global: Global = await directusGlobal()
 
 	return (
-		<div className="p-4 m-auto max-w-5xl pt-10 text-gray-900 w-full h-full flex max-lg:flex-col">
-			<section className="flex justify-center lg:text-start text-center flex-col flex-1 h-full pt-8 pb-8">
-				<h1 className="text-4xl xl:text-5xl font-black leading-normal mb-4">{global.title}</h1>
-				<h2 className="text-2xl font-[300] mb-4">{global.description}</h2>
-				<div className="pt-10 justify-center lg:justify-start flex gap-4">
+		<div className="text-foreground m-auto flex h-full w-full max-w-5xl p-4 pt-10 max-lg:flex-col">
+			<section className="flex h-full flex-1 flex-col justify-center pt-8 pb-8 text-center lg:text-start">
+				<h1 className="mb-4 text-4xl leading-normal font-black xl:text-5xl">{global.title}</h1>
+				<h2 className="mb-4 text-2xl font-[300]">{global.description}</h2>
+				<div className="flex justify-center gap-4 pt-10 lg:justify-start">
 					{isConnected ? null : (
-						<CustomLink href="https://cal.opale-concept.com/didier.corbiere/meeting" size="lg" icon={<User size={48} />} blankTarget={true}>
+						<CustomLink
+							href="https://cal.opale-concept.com/didier.corbiere/meeting"
+							size="lg"
+							variant="solid"
+							icon={<User size={48} />}
+							blankTarget={true}
+						>
 							{t('Hero.contactMe')} &nbsp;
 						</CustomLink>
 					)}
@@ -39,8 +45,15 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 					) : null}
 				</div>
 			</section>
-			<section className="flex flex-1 justify-center lg:justify-end max-lg:mt-4">
-				<Image priority src="/beach.avif" className="object-cover h-auto relative w-full max-w-[400px] rounded-lg" width={1500} height={1500} alt="Hero svg" />
+			<section className="flex flex-1 justify-center max-lg:mt-4 lg:justify-end">
+				<Image
+					priority
+					src="/beach.avif"
+					className="relative h-auto w-full max-w-[400px] rounded-lg object-cover"
+					width={1500}
+					height={1500}
+					alt="Hero svg"
+				/>
 			</section>
 		</div>
 	)

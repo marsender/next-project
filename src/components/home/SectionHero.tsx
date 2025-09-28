@@ -10,13 +10,19 @@ type Props = {
 
 const SectionHero = ({ block }: Props) => {
 	return (
-		<section className="flex flex-1 justify-center p-8 bg-gray-100 rounded-xl">
-			<div className="max-w-5xl w-full">
-				<h2 className="text-3xl font-bold mb-4">{block.headline}</h2>
+		<section className="flex flex-1 justify-center rounded-xl p-8">
+			<div className="w-full max-w-5xl">
+				<h2 className="mb-4 text-3xl font-bold">{block.headline}</h2>
 				<DangerousHtml html={block.content} />
 				{block.image && (
 					<div className="mt-4">
-						<Image src={getAssetURL(block.image)} alt={block.headline} width={800} height={400} className="rounded-lg" />
+						<Image
+							src={getAssetURL(block.image)}
+							alt={block.headline}
+							width={800}
+							height={400}
+							className="rounded-lg"
+						/>
 					</div>
 				)}
 			</div>

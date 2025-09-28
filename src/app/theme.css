@@ -1,51 +1,50 @@
 /* Generated with https://designrift.dev */
 @import 'tailwindcss';
-
 /* LIGHT THEME */
 :root {
 	/* CANVAS */
-	--canvas-base: #fbfcff;
-	--canvas-bg-subtle: #f6f9fe;
-	--canvas-bg: #ecf1f8;
-	--canvas-bg-hover: #e2e9f2;
-	--canvas-bg-active: #dae2ee;
-	--canvas-line: #d1dbe9;
-	--canvas-border: #c3d0e2;
-	--canvas-border-hover: #acbdd5;
-	--canvas-solid: #7f8fa7;
-	--canvas-solid-hover: #74849b;
-	--canvas-text: #586578;
-	--canvas-text-contrast: #18202b;
-	--canvas-on-canvas: #000000;
+	--canvas-base: #fcfcfc;
+	--canvas-bg-subtle: #f8f8f8;
+	--canvas-bg: #f3f3f3;
+	--canvas-bg-hover: #ededed;
+	--canvas-bg-active: #e8e8e8;
+	--canvas-line: #e2e2e2;
+	--canvas-border: #dbdbdb;
+	--canvas-border-hover: #c7c7c7;
+	--canvas-solid: #8f8f8f;
+	--canvas-solid-hover: #858585;
+	--canvas-text: #6f6f6f;
+	--canvas-text-contrast: #171717;
+	--canvas-on-canvas: #fff;
 
 	/* PRIMARY */
-	--primary-base: #fcfdff;
-	--primary-bg-subtle: #f5f9ff;
-	--primary-bg: #e9f3ff;
-	--primary-bg-hover: #daebff;
-	--primary-bg-active: #c7e1ff;
-	--primary-line: #b2d3ff;
-	--primary-border: #98c1ff;
-	--primary-border-hover: #73a7ff;
-	--primary-solid: #06f;
-	--primary-solid-hover: #0059e8;
-	--primary-text: #0b4db1;
-	--primary-text-contrast: #0a2e6b;
+	--primary-base: #fdfdff;
+	--primary-bg-subtle: #fafaff;
+	--primary-bg: #f3f3ff;
+	--primary-bg-hover: #ebebfe;
+	--primary-bg-active: #e0e0fd;
+	--primary-line: #d0d0fa;
+	--primary-border: #babbf5;
+	--primary-border-hover: #9b9ef0;
+	--primary-solid: #5b5bd6;
+	--primary-solid-hover: #5353ce;
+	--primary-text: #4747c2;
+	--primary-text-contrast: #272962;
 	--primary-on-primary: #ffffff;
 
 	/* SECONDARY */
-	--secondary-base: #fefcff;
-	--secondary-bg-subtle: #fff8ff;
-	--secondary-bg: #fceffc;
-	--secondary-bg-hover: #f9e5f9;
-	--secondary-bg-active: #f3d9f4;
-	--secondary-line: #ebc8ed;
-	--secondary-border: #dfafe3;
-	--secondary-border-hover: #cf91d8;
-	--secondary-solid: #ab4aba;
-	--secondary-solid-hover: #a43cb4;
-	--secondary-text: #9c2bad;
-	--secondary-text-contrast: #340c3b;
+	--secondary-base: #fefcfe;
+	--secondary-bg-subtle: #fdfaff;
+	--secondary-bg: #f9f1fe;
+	--secondary-bg-hover: #f3e7fc;
+	--secondary-bg-active: #eddbf9;
+	--secondary-line: #e3ccf4;
+	--secondary-border: #d3b4ed;
+	--secondary-border-hover: #be93e4;
+	--secondary-solid: #8e4ec6;
+	--secondary-solid-hover: #8445bc;
+	--secondary-text: #793aaf;
+	--secondary-text-contrast: #2b0e44;
 	--secondary-on-secondary: #ffffff;
 
 	/* SUCCESS */
@@ -79,18 +78,18 @@
 	--warning-on-warning: #000000;
 
 	/* ALERT */
-	--alert-base: #1f1417;
-	--alert-bg-subtle: #2a1519;
-	--alert-bg: #3b181f;
-	--alert-bg-hover: #471a23;
-	--alert-bg-active: #531b27;
-	--alert-line: #661d2c;
-	--alert-border: #8a1e34;
-	--alert-border-hover: #d01b3f;
-	--alert-solid: #e54666;
-	--alert-solid-hover: #f2657e;
-	--alert-text: #ff859d;
-	--alert-text-contrast: #fed2e1;
+	--alert-base: #fffcfc;
+	--alert-bg-subtle: #fff8f8;
+	--alert-bg: #ffefef;
+	--alert-bg-hover: #ffe5e5;
+	--alert-bg-active: #fdd8d8;
+	--alert-line: #f9c6c6;
+	--alert-border: #f3aeaf;
+	--alert-border-hover: #eb9091;
+	--alert-solid: #e5484d;
+	--alert-solid-hover: #dc3d43;
+	--alert-text: #cd2b31;
+	--alert-text-contrast: #381316;
 	--alert-on-alert: #ffffff;
 
 	/* INFO */
@@ -112,48 +111,48 @@
 /* DARK THEME */
 .dark {
 	/* CANVAS */
-	--canvas-base: #04070d;
-	--canvas-bg-subtle: #13171e;
-	--canvas-bg: #1b222c;
-	--canvas-bg-hover: #202a37;
-	--canvas-bg-active: #263140;
-	--canvas-line: #2d3a4d;
-	--canvas-border: #374860;
-	--canvas-border-hover: #4a6282;
-	--canvas-solid: #586f90;
-	--canvas-solid-hover: #677d9c;
-	--canvas-text: #a4b5cd;
-	--canvas-text-contrast: #eaeef5;
-	--canvas-on-canvas: #ffffff;
+	--canvas-base: #161616;
+	--canvas-bg-subtle: #1c1c1c;
+	--canvas-bg: #232323;
+	--canvas-bg-hover: #282828;
+	--canvas-bg-active: #2e2e2e;
+	--canvas-line: #343434;
+	--canvas-border: #3e3e3e;
+	--canvas-border-hover: #505050;
+	--canvas-solid: #707070;
+	--canvas-solid-hover: #7e7e7e;
+	--canvas-text: #a0a0a0;
+	--canvas-text-contrast: #ededed;
+	--canvas-on-canvas: #000;
 
 	/* PRIMARY */
-	--primary-base: #020616;
-	--primary-bg-subtle: #0b152a;
-	--primary-bg: #0a2058;
-	--primary-bg-hover: #0a2778;
-	--primary-bg-active: #0f318f;
-	--primary-line: #163da1;
-	--primary-border: #1d49b9;
-	--primary-border-hover: #2255d8;
-	--primary-solid: #03f;
-	--primary-solid-hover: #0012ec;
-	--primary-text: #8bb5ff;
-	--primary-text-contrast: #cce2ff;
+	--primary-base: #151521;
+	--primary-bg-subtle: #19182d;
+	--primary-bg: #222040;
+	--primary-bg-hover: #27264d;
+	--primary-bg-active: #2d2c59;
+	--primary-line: #33336b;
+	--primary-border: #404089;
+	--primary-border-hover: #5858c0;
+	--primary-solid: #5b5bd6;
+	--primary-solid-hover: #6f6de2;
+	--primary-text: #a19eff;
+	--primary-text-contrast: #e0dffe;
 	--primary-on-primary: #ffffff;
 
 	/* SECONDARY */
-	--secondary-base: #1d131d;
-	--secondary-bg-subtle: #251425;
-	--secondary-bg: #341a34;
-	--secondary-bg-hover: #3e1d40;
-	--secondary-bg-active: #48214b;
-	--secondary-line: #542658;
-	--secondary-border: #692d6f;
-	--secondary-border-hover: #883894;
-	--secondary-solid: #ab4aba;
-	--secondary-solid-hover: #bd54c6;
-	--secondary-text: #d864d8;
-	--secondary-text-contrast: #fbecfc;
+	--secondary-base: #1b141d;
+	--secondary-bg-subtle: #221527;
+	--secondary-bg: #301a3a;
+	--secondary-bg-hover: #3a1e48;
+	--secondary-bg-active: #432155;
+	--secondary-line: #4e2667;
+	--secondary-border: #5f2d84;
+	--secondary-border-hover: #7938b2;
+	--secondary-solid: #8e4ec6;
+	--secondary-solid-hover: #9d5bd2;
+	--secondary-text: #bf7af0;
+	--secondary-text-contrast: #f7ecfc;
 	--secondary-on-secondary: #ffffff;
 
 	/* SUCCESS */
@@ -232,7 +231,6 @@
 	--color-canvas-text-contrast: var(--canvas-text-contrast);
 	--color-canvas-on-canvas: var(--canvas-on-canvas);
 
-	/* Primary colors */
 	--color-primary-base: var(--primary-base);
 	--color-primary-bg-subtle: var(--primary-bg-subtle);
 	--color-primary-bg: var(--primary-bg);
@@ -247,7 +245,6 @@
 	--color-primary-text-contrast: var(--primary-text-contrast);
 	--color-primary-on-primary: var(--primary-on-primary);
 
-	/* Secondary colors */
 	--color-secondary-base: var(--secondary-base);
 	--color-secondary-bg-subtle: var(--secondary-bg-subtle);
 	--color-secondary-bg: var(--secondary-bg);
@@ -262,7 +259,6 @@
 	--color-secondary-text-contrast: var(--secondary-text-contrast);
 	--color-secondary-on-secondary: var(--secondary-on-secondary);
 
-	/* Success colors */
 	--color-success-base: var(--success-base);
 	--color-success-bg-subtle: var(--success-bg-subtle);
 	--color-success-bg: var(--success-bg);
@@ -277,7 +273,6 @@
 	--color-success-text-contrast: var(--success-text-contrast);
 	--color-success-on-success: var(--success-on-success);
 
-	/* Warning colors */
 	--color-warning-base: var(--warning-base);
 	--color-warning-bg-subtle: var(--warning-bg-subtle);
 	--color-warning-bg: var(--warning-bg);
@@ -292,7 +287,6 @@
 	--color-warning-text-contrast: var(--warning-text-contrast);
 	--color-warning-on-warning: var(--warning-on-warning);
 
-	/* Alert colors */
 	--color-alert-base: var(--alert-base);
 	--color-alert-bg-subtle: var(--alert-bg-subtle);
 	--color-alert-bg: var(--alert-bg);
@@ -307,7 +301,6 @@
 	--color-alert-text-contrast: var(--alert-text-contrast);
 	--color-alert-on-alert: var(--alert-on-alert);
 
-	/* Info colors */
 	--color-info-base: var(--info-base);
 	--color-info-bg-subtle: var(--info-bg-subtle);
 	--color-info-bg: var(--info-bg);
@@ -321,18 +314,4 @@
 	--color-info-text: var(--info-text);
 	--color-info-text-contrast: var(--info-text-contrast);
 	--color-info-on-info: var(--info-on-info);
-
-	/* Overlay colors */
-	--color-overlay-base: var(--overlay-base);
-	--color-overlay-bg-subtle: var(--overlay-bg-subtle);
-	--color-overlay-bg: var(--overlay-bg);
-	--color-overlay-bg-hover: var(--overlay-bg-hover);
-	--color-overlay-bg-active: var(--overlay-bg-active);
-	--color-overlay-line: var(--overlay-line);
-	--color-overlay-border: var(--overlay-border);
-	--color-overlay-border-hover: var(--overlay-border-hover);
-	--color-overlay-solid: var(--overlay-solid);
-	--color-overlay-solid-hover: var(--overlay-solid-hover);
-	--color-overlay-text: var(--overlay-text);
-	--color-overlay-text-contrast: var(--overlay-text-contrast);
 }

@@ -7,9 +7,9 @@ type Props = {
 
 const SectionRichText = ({ block }: Props) => {
 	return (
-		<section className="flex flex-1 justify-center p-8 bg-white">
-			<div className="max-w-5xl w-full">
-				<h2 className="text-3xl font-bold mb-4">{block.headline}</h2>
+		<section className="bg-background flex flex-1 justify-center p-8">
+			<div className="w-full max-w-5xl">
+				<h2 className="mb-4 text-3xl font-bold">{block.headline}</h2>
 				<DangerousHtml html={block.content} />
 			</div>
 		</section>

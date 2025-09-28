@@ -82,5 +82,10 @@
 		"passwordRequired": "Password is required",
 		"tokenRequired": "Reset token is required",
 		"invalidToken": "The reset password token is invalid, please request for a new password reset link!"
+	},
+	"ThemeSwitcher": {
+		"light": "Light theme",
+		"system": "System theme",
+		"dark": "Dark theme"
 	}
 }

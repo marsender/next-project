@@ -14,20 +14,20 @@ type Props = {
 
 const HomePage = ({ page, user }: Props) => {
 	return (
-		<div className="flex flex-1 flex-col h-full">
-			<section className="flex flex-1 justify-center bg-white">
+		<div className="flex h-full flex-1 flex-col">
+			<section className="bg-background flex flex-1 justify-center">
 				<Hero isConnected={Boolean(user)} />
 			</section>
-			<section className="flex flex-1 justify-center bg-white">
+			<section className="bg-background flex flex-1 justify-center">
 				<HomeLead page={page} />
 			</section>
 			<HomeBlocks page={page} />
 			{false ? (
-				<section className="flex flex-1 justify-center bg-slate-100">
+				<section className="bg-background flex flex-1 justify-center">
 					<HomeSteps />
 				</section>
 			) : null}
-			<section className="flex flex-1 justify-center bg-slate-100">
+			<section className="bg-background flex flex-1 justify-center">
 				<HomeOpenSource />
 			</section>
 		</div>

@@ -9,9 +9,13 @@ export default async function HomeOpenSource() {
 
 	return (
 		<SectionColumn title={t('OpenSource.title')} caption={t('OpenSource.caption')} className="max-w-5xl gap-8">
-			<Link href="https://github.com/marsender" target="_blank" className="inline-flex rounded-xl bg-black text-white p-4 font-bold gap-2 hover:bg-black/80">
+			<Link
+				href="https://github.com/marsender"
+				target="_blank"
+				className="inline-flex items-center justify-center gap-2 rounded-xl bg-black p-4 font-bold text-white hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80"
+			>
 				View on GitHub
-				<svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-white">
+				<svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-white dark:fill-black">
 					<path
 						fillRule="evenodd"
 						clipRule="evenodd"

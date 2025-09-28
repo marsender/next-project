@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import React, { memo, useEffect, useState } from 'react'
 
 import { useTheme } from 'next-themes'
@@ -9,6 +10,7 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 import { DesktopIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
 
 const ThemeSwitcher = () => {
+	const t = useTranslations('ThemeSwitcher')
 	const { theme, setTheme } = useTheme()
 	const [mounted, setMounted] = useState(false)
 
@@ -71,9 +73,9 @@ const ThemeSwitcher = () => {
 			aria-label="Theme selection"
 		>
 			{[
-				{ value: 'light', icon: <SunIcon />, title: 'Light theme' },
-				{ value: 'system', icon: <DesktopIcon />, title: 'System theme' },
-				{ value: 'dark', icon: <MoonIcon />, title: 'Dark theme' },
+				{ value: 'light', icon: <SunIcon />, title: t('light') },
+				{ value: 'system', icon: <DesktopIcon />, title: t('system') },
+				{ value: 'dark', icon: <MoonIcon />, title: t('dark') },
 			].map(({ value, icon, title }) => (
 				<RadioGroup.Item
 					key={value}
