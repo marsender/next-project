@@ -27,7 +27,7 @@ const HomePage = ({ page, user }: Props) => {
 					<HomeSteps />
 				</section>
 			) : null}
-			<section className="bg-background flex flex-1 justify-center">
+			<section className="bg-background flex flex-1 justify-center bg-gray-100 dark:bg-gray-800">
 				<HomeOpenSource />
 			</section>
 		</div>

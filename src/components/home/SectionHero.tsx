@@ -10,7 +10,7 @@ type Props = {
 
 const SectionHero = ({ block }: Props) => {
 	return (
-		<section className="flex flex-1 justify-center rounded-xl p-8">
+		<section className="flex flex-1 justify-center rounded-xl bg-gray-100 p-8 dark:bg-gray-800">
 			<div className="w-full max-w-5xl">
 				<h2 className="mb-4 text-3xl font-bold">{block.headline}</h2>
 				<DangerousHtml html={block.content} />

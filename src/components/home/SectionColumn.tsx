@@ -17,7 +17,7 @@ const SectionColumn = ({ children, title, caption, dangerousHtml, className }: P
 	return (
 		<div
 			className={clsx(
-				`text-foreground m-auto flex h-full w-full max-w-5xl flex-col items-center gap-16 p-4 pt-10 pb-10`,
+				`text-foreground m-auto flex h-full w-full max-w-5xl flex-col items-center p-4 pt-10 pb-10`,
 				className,
 			)}
 		>

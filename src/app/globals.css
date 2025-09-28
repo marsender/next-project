@@ -7,34 +7,9 @@
 	@import './theme.css';
 }
 
-.btn {
-	@apply rounded-md font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
-}
-
-.btn-primary {
-	@apply bg-secondary-solid text-secondary-on-secondary hover:bg-secondary-solid-hover focus-visible:outline-secondary-solid active:bg-secondary-solid-hover rounded-md px-5 py-2 text-base font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
-}
-
-.btn-lg {
-	@apply bg-secondary-solid text-secondary-on-secondary hover:bg-secondary-solid-hover focus-visible:outline-secondary-solid active:bg-secondary-solid-hover rounded-md px-6 py-2.5 text-lg font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
-}
-
-.btn-xl {
-	@apply bg-secondary-solid text-secondary-on-secondary hover:bg-secondary-solid-hover focus-visible:outline-secondary-solid active:bg-secondary-solid-hover rounded-md px-8 py-3 text-xl font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
-}
-
-.btn-secondary {
-	@apply text-secondary-solid hover:bg-secondary-bg-hover active:bg-secondary-bg-active rounded-md bg-transparent px-5 py-2 text-base font-semibold;
-}
-
-.btn-add-link {
-	@apply flex items-center justify-center gap-2 rounded-lg bg-gradient-to-tl from-[#06b6d4] to-[#4ade80] p-3 font-semibold text-white shadow-md hover:from-[#4ade80] hover:to-[#06b6d4] md:px-3 md:py-2;
-	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
-}
-
 .blocks {
 	ul {
-		@apply border-canvas-line rounded-lg border px-8 py-4 shadow-sm;
+		@apply border-canvas-line rounded-lg border bg-white px-8 py-4 shadow-sm dark:bg-gray-600 dark:shadow-white/10;
 	}
 
 	li {

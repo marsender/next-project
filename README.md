@@ -20,6 +20,7 @@ This is a starter web application template built with Next.js framework for the 
 - [Playwright end-to-end tests](https://playwright.dev/)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Radix UI](https://www.radix-ui.com/primitives)
+- [Radix Icons](https://www.radix-ui.com/icons)
 - [Shadcn UI](https://ui.shadcn.com/)
 
 [Directus](https://directus.io/) backend
