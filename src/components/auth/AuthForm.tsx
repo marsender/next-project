@@ -63,7 +63,7 @@ export default function AuthForm({
 				onSubmit={handleFormSubmit}
 				className="bg-background/90 w-full max-w-xl space-y-6 rounded-2xl border border-gray-100 p-8 shadow-xl backdrop-blur"
 			>
-				<h1 className="text-foreground mb-2 text-center text-3xl font-extrabold tracking-tight">{title}</h1>
+				<h1 className="text-foreground mb-6 text-center text-3xl font-extrabold tracking-tight">{title}</h1>
 				{error && (
 					<div className="rounded-lg border border-red-200 bg-red-50 p-4">
 						<p className="text-sm font-medium text-red-800">{error}</p>
@@ -74,18 +74,20 @@ export default function AuthForm({
 						<Input
 							type="text"
 							placeholder={t('firstName')}
+							containerClassName="w-full"
 							name="first_name"
 							ref={firstNameRef}
 							required
-							className="w-full rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
+							className="rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
 						/>
 						<Input
 							type="text"
 							placeholder={t('lastName')}
+							containerClassName="w-full"
 							name="last_name"
 							ref={lastNameRef}
 							required
-							className="w-full rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
+							className="rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
 						/>
 					</div>
 				)}

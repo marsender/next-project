@@ -8,7 +8,7 @@
 	--canvas-bg: #f3f3f3;
 	--canvas-bg-hover: #ededed;
 	--canvas-bg-active: #e8e8e8;
-	--canvas-line: #e2e2e2;
+	--canvas-line: #a2a2a2;
 	--canvas-border: #dbdbdb;
 	--canvas-border-hover: #c7c7c7;
 	--canvas-solid: #8f8f8f;
@@ -121,7 +121,7 @@
 	--canvas-border-hover: #505050;
 	--canvas-solid: #707070;
 	--canvas-solid-hover: #7e7e7e;
-	--canvas-text: #a0a0a0;
+	--canvas-text: #b0b0b0;
 	--canvas-text-contrast: #ededed;
 	--canvas-on-canvas: #000;
 

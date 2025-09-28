@@ -47,7 +47,7 @@ export default function RequestResetForm({ token }: { token: string }) {
 				onSubmit={handleFormSubmit}
 				className="bg-background/90 w-full max-w-xl space-y-6 rounded-2xl border border-gray-100 p-8 shadow-xl backdrop-blur"
 			>
-				<h1 className="text-foreground mb-2 text-center text-3xl font-extrabold tracking-tight">{t('title')}</h1>
+				<h1 className="text-foreground mb-6 text-center text-3xl font-extrabold tracking-tight">{t('title')}</h1>
 
 				{success && (
 					<div className="rounded-lg border border-green-200 bg-green-50 p-4">
