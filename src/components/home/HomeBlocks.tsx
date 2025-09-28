@@ -9,7 +9,7 @@ type Props = {
 const HomeBlocks = ({ page }: Props) => {
 	return (
 		<section className="blocks flex flex-1 justify-center bg-white">
-			<div className="p-4 m-auto max-w-5xl text-gray-900 w-full h-full flex-col">
+			<div className="m-auto h-full w-full max-w-5xl flex-col p-4 text-gray-900">
 				{page.blocks.map((block, index) => {
 					switch (block.collection) {
 						case 'block_hero': {

@@ -1,6 +1,7 @@
 import '@/app/globals.css'
 
 import Script from 'next/script'
+import { ThemeProvider } from 'next-themes'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { ReactNode } from 'react'
@@ -47,13 +48,30 @@ export default async function BaseLayout({ children, locale }: Props) {
 
 	return (
 		<html lang={locale} suppressHydrationWarning>
-			<Script defer data-domain="opale-concept.com" src={process.env.VINCEANALYTICS_URL} strategy="afterInteractive" />
+			{process.env.VINCEANALYTICS_URL ? (
+				<Script
+					defer
+					data-domain="opale-concept.com"
+					src={process.env.VINCEANALYTICS_URL}
+					strategy="afterInteractive"
+				/>
+			) : null}
 			<body>
 				<NextIntlClientProvider messages={messages}>
 					<Providers session={session}>
-						<Header user={session?.user} />
-						{children}
-						<Footer />
+						<ThemeProvider
+							attribute="class"
+							defaultTheme="system"
+							enableSystem={true}
+							storageKey="opale-concept-theme"
+							disableTransitionOnChange
+						>
+							<main>
+								<Header user={session?.user} />
+								{children}
+								<Footer />
+							</main>
+						</ThemeProvider>
 					</Providers>
 				</NextIntlClientProvider>
 			</body>

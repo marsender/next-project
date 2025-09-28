@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { memo, PropsWithChildren } from 'react'
+import { ThemeSwitcher } from '@/components/ui/theme-switcher'
 
 import Logo from '@/components/layout/Logo'
 //import { mainNavigation } from '@/lib/constants'
@@ -10,9 +11,9 @@ import Logo from '@/components/layout/Logo'
 const ListSection = ({ title, children }: PropsWithChildren & { title: string }) => {
 	return (
 		<section className="flex h-full flex-1 sm:flex-initial">
-			<div className="py-6 xs:py-0">
-				<h2 className="font-bold text-lg">{title}</h2>
-				<div className="bg-white h-0.5 mb-3" />
+			<div className="xs:py-0 py-6">
+				<h2 className="text-lg font-bold">{title}</h2>
+				<div className="mb-3 h-0.5" />
 				<ul className="flex flex-col items-start gap-2 text-sm">{children}</ul>
 			</div>
 		</section>
@@ -24,25 +25,18 @@ const Footer = () => {
 	const currentYear = new Date().getFullYear()
 
 	return (
-		<div className="flex flex-1 flex-col h-full">
-			<div className="bg-black py-12 text-white px-8 lg:px-4">
-				<div className="max-w-5xl flex flex-col m-auto xs:flex-row">
-					<section className="flex-1">
-						<div className="flex flex-col">
-							{false ? <Logo className="text-white" isWhite /> : null}
-							<Link href="https://opale-concept.com/" target="_blank">
-								<span className="text-sm mt-2">Opale-concept © {currentYear}</span>
-							</Link>
-						</div>
-					</section>
-					<div className="flex flex-row gap-8 flex-1 justify-start xs:justify-end">
+		<div className="flex h-full flex-1 flex-col">
+			<div className="bg-black px-8 text-white lg:px-4">
+				<div className="m-auto max-w-5xl">
+					<div className="xs:justify-end flex flex-row justify-start gap-8 py-2">
 						{/*<ListSection title="Navigation">
 							{mainNavigation.map((item) => (
 								<li key={item.route}>
 									<Link href={item.route}>{item.label}</Link>
 								</li>
 							))}
-						</ListSection>*/}
+						</ListSection>
+						*/}
 						<ListSection title={t('networks')}>
 							<li>
 								<Link href="https://github.com/marsender" target="_blank">
@@ -55,6 +49,13 @@ const Footer = () => {
 								</Link>
 							</li>
 						</ListSection>
+					</div>
+					<div className="flex items-center justify-between border-t border-gray-700 py-6">
+						{false ? <Logo className="text-white" isWhite /> : null}
+						<Link href="https://opale-concept.com/" target="_blank">
+							<span className="text-sm">Opale-concept © {currentYear}</span>
+						</Link>
+						<ThemeSwitcher />
 					</div>
 				</div>
 			</div>

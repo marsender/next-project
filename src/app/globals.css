@@ -1,44 +1,50 @@
 @import 'tailwindcss';
 @tailwind utilities;
 
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+	@import './theme.css';
+}
+
 .btn {
 	@apply rounded-md font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
 }
 
 .btn-primary {
-	@apply rounded-md bg-violet-600 py-2 px-5 text-base font-semibold text-white shadow-sm hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 active:bg-violet-900;
+	@apply rounded-md bg-violet-600 px-5 py-2 text-base font-semibold text-white shadow-sm hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 active:bg-violet-900;
 }
 
 .btn-lg {
-	@apply rounded-md bg-violet-600 py-2.5 px-6 text-lg font-semibold text-white shadow-sm hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 active:bg-violet-900;
+	@apply rounded-md bg-violet-600 px-6 py-2.5 text-lg font-semibold text-white shadow-sm hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 active:bg-violet-900;
 }
 
 .btn-xl {
-	@apply rounded-md bg-violet-600 py-3 px-8 text-xl font-semibold text-white shadow-sm hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 active:bg-violet-900;
+	@apply rounded-md bg-violet-600 px-8 py-3 text-xl font-semibold text-white shadow-sm hover:bg-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 active:bg-violet-900;
 }
 
 .btn-secondary {
-	@apply rounded-md bg-transparent py-2 px-5 text-base font-semibold text-violet-600 hover:bg-violet-100  active:bg-violet-300;
+	@apply rounded-md bg-transparent px-5 py-2 text-base font-semibold text-violet-600 hover:bg-violet-100 active:bg-violet-300;
 }
 
 .btn-add-link {
-	@apply p-3 md:py-2 md:px-3 shadow-md text-white bg-gradient-to-tl from-[#06b6d4] to-[#4ade80] hover:from-[#4ade80] hover:to-[#06b6d4] font-semibold rounded-lg flex items-center justify-center gap-2;
+	@apply flex items-center justify-center gap-2 rounded-lg bg-gradient-to-tl from-[#06b6d4] to-[#4ade80] p-3 font-semibold text-white shadow-md hover:from-[#4ade80] hover:to-[#06b6d4] md:px-3 md:py-2;
 	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 
 .blocks {
 	ul {
-		@apply rounded-lg border border-gray-300 bg-white py-4 px-8 shadow-sm;
+		@apply rounded-lg border border-gray-300 px-8 py-4 shadow-sm;
 	}
 
 	li {
-		@apply py-2 text-gray-700 hover:text-gray-500 transition-colors;
+		@apply py-2 text-gray-700 transition-colors hover:text-gray-500;
 	}
 	p {
 		@apply py-2;
 	}
 	h2 {
-		@apply text-3xl xl:text-4xl font-black leading-normal mt-4 mb-4;
+		@apply mt-4 mb-4 text-3xl leading-normal font-black xl:text-4xl;
 	}
 	a {
 		@apply text-violet-900;
