@@ -1,5 +1,4 @@
-import type { AssetsQuery } from '@directus/sdk'
-import { authentication, createDirectus, readAssetRaw, rest } from '@directus/sdk'
+import { authentication, createDirectus, rest } from '@directus/sdk'
 import { getLocale } from 'next-intl/server'
 
 const directusUrl = process.env.DIRECTUS_URL
@@ -43,9 +42,12 @@ export function getAssetURL(id: string) {
 }
 
 // https://docs.directus.io/reference/files.html
-export async function readAsset(key: string, query?: AssetsQuery) {
-	return await directus.request(readAssetRaw(key, query))
-}
+// Unused for now
+//import type { AssetsQuery } from '@directus/sdk'
+// import { readAssetRaw } from '@directus/sdk'
+// export async function readAsset(key: string, query?: AssetsQuery) {
+// 	return await directus.request(readAssetRaw(key, query))
+// }
 
 const localeToLanguageCode: Record<string, string> = {
 	fr: 'fr-FR',

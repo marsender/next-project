@@ -6,9 +6,7 @@ import { buttonVariants, iconVariants } from '@/app/variants'
 import { Link } from '@/i18n/routing'
 import { RouteHref } from '@/lib/constants'
 
-export interface LinkProps
-	extends Omit<React.ComponentPropsWithoutRef<'a'>, 'color'>,
-		VariantProps<typeof buttonVariants> {
+interface LinkProps extends Omit<React.ComponentPropsWithoutRef<'a'>, 'color'>, VariantProps<typeof buttonVariants> {
 	fullWidth?: boolean
 	icon?: ReactNode
 	blankTarget?: boolean

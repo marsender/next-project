@@ -39,7 +39,7 @@ const labelVariants = cva('block text-sm font-medium mb-2', {
 	},
 })
 
-export interface InputProps
+interface InputProps
 	extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
 		VariantProps<typeof inputVariants> {
 	label?: string
@@ -48,7 +48,7 @@ export interface InputProps
 	containerClassName?: string
 }
 
-export interface TextareaProps
+interface TextareaProps
 	extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'>,
 		VariantProps<typeof inputVariants> {
 	label?: string
@@ -57,7 +57,7 @@ export interface TextareaProps
 	containerClassName?: string
 }
 
-export interface SelectProps
+interface SelectProps
 	extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'>,
 		VariantProps<typeof inputVariants> {
 	label?: string
@@ -146,4 +146,4 @@ Input.displayName = 'Input'
 Textarea.displayName = 'Textarea'
 Select.displayName = 'Select'
 
-export { Input, Textarea, Select, inputVariants }
+export { Input } // Textarea, Select, inputVariants

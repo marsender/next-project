@@ -1,5 +1,3 @@
-import { redirect } from 'next/navigation'
-import { Session } from 'next-auth'
 import { getServerSession } from 'next-auth/next'
 
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
@@ -14,10 +12,13 @@ export async function getCurrentUser() {
 	return session?.user
 }
 
-export async function getCurrentUserOrRedirect(): Promise<Session['user']> {
-	const user = await getCurrentUser()
-	if (!user) {
-		redirect(authOptions.pages!.signIn!)
-	}
-	return user
-}
+// Unused for now
+// import { redirect } from 'next/navigation'
+// import { Session } from 'next-auth'
+// export async function getCurrentUserOrRedirect(): Promise<Session['user']> {
+// 	const user = await getCurrentUser()
+// 	if (!user) {
+// 		redirect(authOptions.pages!.signIn!)
+// 	}
+// 	return user
+// }

@@ -67,4 +67,4 @@ export type Locale = (typeof routing.locales)[number]
 //export type Pathnames = keyof typeof routing.pathnames
 
 // Lightweight wrappers around Next.js' navigation APIs that will consider the routing configuration
-export const { Link, redirect, usePathname, useRouter, getPathname } = createNavigation(routing)
+export const { Link, usePathname, useRouter, getPathname } = createNavigation(routing) // redirect

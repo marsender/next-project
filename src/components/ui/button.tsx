@@ -18,7 +18,7 @@ const Spinner = () => (
 	</svg>
 )
 
-export interface ButtonProps
+interface ButtonProps
 	extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
 		VariantProps<typeof buttonVariants> {
 	asChild?: boolean
