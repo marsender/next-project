@@ -45,7 +45,7 @@ export default function RequestResetForm({ token }: { token: string }) {
 		<div className="mt-16 mb-16 flex justify-center bg-gradient-to-br px-4 py-12 sm:px-6 lg:px-8">
 			<form
 				onSubmit={handleFormSubmit}
-				className="bg-background/90 w-full max-w-xl space-y-6 rounded-2xl border border-gray-100 p-8 shadow-xl backdrop-blur"
+				className="w-full max-w-xl space-y-6 rounded-2xl border p-8 shadow-xl backdrop-blur"
 			>
 				<h1 className="text-foreground mb-6 text-center text-3xl font-extrabold tracking-tight">{t('title')}</h1>
 
@@ -61,7 +61,7 @@ export default function RequestResetForm({ token }: { token: string }) {
 					</div>
 				)}
 
-				<p className="text-center text-sm text-gray-600">{t('description')}</p>
+				<p className="text-muted-foreground text-center text-sm">{t('description')}</p>
 
 				<Input
 					type="password"

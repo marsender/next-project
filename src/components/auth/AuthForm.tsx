@@ -61,14 +61,16 @@ export default function AuthForm({
 		<div className="mt-16 mb-16 flex justify-center bg-gradient-to-br px-4 py-12 sm:px-6 lg:px-8">
 			<form
 				onSubmit={handleFormSubmit}
-				className="bg-background/90 w-full max-w-xl space-y-6 rounded-2xl border border-gray-100 p-8 shadow-xl backdrop-blur"
+				className="w-full max-w-xl space-y-6 rounded-2xl border p-8 shadow-xl backdrop-blur"
 			>
 				<h1 className="text-foreground mb-6 text-center text-3xl font-extrabold tracking-tight">{title}</h1>
+
 				{error && (
 					<div className="rounded-lg border border-red-200 bg-red-50 p-4">
 						<p className="text-sm font-medium text-red-800">{error}</p>
 					</div>
 				)}
+
 				{isFullForm && (
 					<div className="flex flex-col gap-4 md:flex-row">
 						<Input
@@ -91,6 +93,7 @@ export default function AuthForm({
 						/>
 					</div>
 				)}
+
 				<Input
 					type="email"
 					placeholder={t('emailAddress')}
