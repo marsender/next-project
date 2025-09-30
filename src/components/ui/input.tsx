@@ -1,6 +1,8 @@
 import { cn } from '@/lib/utils'
+import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons'
 
 import { type VariantProps, cva } from 'class-variance-authority'
+import { unstable_PasswordToggleField as PasswordToggleField } from 'radix-ui'
 import React from 'react'
 
 // Assuming you have a cn utility function
@@ -82,7 +84,28 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 						{required && ' *'}
 					</label>
 				)}
-				<input className={cn(inputVariants({ variant: inputVariant, size, className }))} ref={ref} {...props} />
+				{props.type === 'password' ? (
+					<div className="relative">
+						<PasswordToggleField.Root>
+							<PasswordToggleField.Input
+								className={cn(inputVariants({ variant: inputVariant, size, className }), 'pr-10')}
+								ref={ref}
+								{...props}
+								autoComplete="current-password"
+								autoCapitalize="none"
+								spellCheck="false"
+							/>
+							<PasswordToggleField.Toggle className="text-canvas-text hover:text-canvas-text-subtle absolute inset-y-0 right-0 flex items-center pr-3">
+								<PasswordToggleField.Icon
+									visible={<EyeOpenIcon className="h-5 w-5" />}
+									hidden={<EyeClosedIcon className="h-5 w-5" />}
+								/>
+							</PasswordToggleField.Toggle>
+						</PasswordToggleField.Root>
+					</div>
+				) : (
+					<input className={cn(inputVariants({ variant: inputVariant, size, className }))} ref={ref} {...props} />
+				)}
 				{error && <p className="text-alert-text mt-1 text-sm">{error}</p>}
 			</div>
 		)
