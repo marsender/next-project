@@ -4,7 +4,7 @@
 
 ## Description
 
-This is a starter web application template built with Next.js framework for the frontend and Directus as a headless CMS for the backend. It features internationalization, a component-based architecture inspired by Digest.club, and a comprehensive testing suite using Vitest for unit tests and Playwright for end-to-end tests. The user interface is built with Tailwind CSS, Radix UI and Shadcn UI.
+This is a starter web application template built with Next.js framework for the frontend and Directus as a headless CMS for the backend. It features internationalization, a component-based architecture inspired by Digest.club, and a comprehensive testing suite using Vitest for unit tests and Playwright for end-to-end tests. The user interface is built with Tailwind CSS and Radix UI.
 
 ---
 
@@ -21,7 +21,6 @@ This is a starter web application template built with Next.js framework for the 
 - [Tailwind CSS](https://tailwindcss.com)
 - [Radix UI](https://www.radix-ui.com/primitives)
 - [Radix Icons](https://www.radix-ui.com/icons)
-- [Shadcn UI](https://ui.shadcn.com/)
 
 [Directus](https://directus.io/) backend
 

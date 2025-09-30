@@ -26,7 +26,7 @@
 	},
 	"OpenSource": {
 		"title": "We are open source",
-		"caption": "This site is based on a Next.js TypeScript, Tailwind CSS, Radix UI, Shadcn UI front-end and a Directus back-end. The code is available on GitHub, so don't hesitate to use it or contribute!",
+		"caption": "This site is based on a Next.js TypeScript, Tailwind CSS, Radix UI front-end and a Directus back-end. The code is available on GitHub, so don't hesitate to use it or contribute!",
 		"viewOnGithub": "View on GitHub"
 	},
 	"LoginPage": {
