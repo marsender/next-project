@@ -38,7 +38,13 @@ export default function AccountForm() {
 						<FormItem>
 							<FormLabel>Username</FormLabel>
 							<FormControl>
-								<Input disabled type="email" placeholder="Email" {...field} />
+								<Input
+									disabled
+									type="text"
+									placeholder="Username"
+									className="w-full rounded-lg border px-4 py-2 shadow-sm transition-shadow focus:ring-2 focus:outline-none"
+									{...field}
+								/>
 							</FormControl>
 							<FormDescription>This is your public display name.</FormDescription>
 							<FormMessage />
