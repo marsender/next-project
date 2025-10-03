@@ -12,8 +12,8 @@
 		"type-check": "tsc -b",
 		"lint": "eslint",
 		"lint:fix": "eslint --fix",
-		"test": "NODE_ENV=test env $(cat .env.test.local 2>/dev/null || cat .env.test | xargs) vitest --reporter=verbose",
-		"coverage": "NODE_ENV=test env $(cat .env.test.local 2>/dev/null || cat .env.test | xargs) vitest run --coverage",
+		"test": "NODE_ENV=test env $(cat .env.test.local 2>/dev/null) vitest --reporter=verbose",
+		"coverage": "NODE_ENV=test env $(cat .env.test.local 2>/dev/null) vitest run --coverage",
 		"test:e2e": "npx playwright test",
 		"test:e2e:ui": "npx playwright test --ui",
 		"knip": "knip"
