@@ -2,7 +2,8 @@ import { getLocale } from 'next-intl/server'
 
 import directusPage from '@/lib/directusPage'
 
-//const isCI = process.env.CI ? true : false
+// This test suite performs integration tests against a real Directus database.
+// Ensure your test environment is configured to connect to a test Directus instance.
 
 vi.mock('next/config', () => ({
 	default: () => ({

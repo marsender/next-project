@@ -2,6 +2,9 @@ import { getLocale } from 'next-intl/server'
 
 import { getLanguageCode } from '@/lib/directus'
 
+// This test suite performs integration tests against a real Directus database.
+// Ensure your test environment is configured to connect to a test Directus instance.
+
 vi.mock('next/config', () => ({
 	default: () => ({
 		publicRuntimeConfig: { url: process.env.DIRECTUS_URL }, // Mock Directus URL
