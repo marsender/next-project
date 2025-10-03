@@ -8,7 +8,7 @@ type SetStateMutation<T> = UseMutationResult<void, Error, T, unknown>['mutate']
 export function useAppState<T>(key: string, defaultValue: T | null = null): [T | null, SetStateMutation<T>] {
 	const { data: session } = useSession()
 	const queryClient = useQueryClient()
-	const userId = session?.user?.name
+	const userId = session?.user?.id
 
 	const queryKey = ['user-state', userId, key]
 

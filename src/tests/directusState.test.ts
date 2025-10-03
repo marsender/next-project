@@ -14,7 +14,7 @@ vi.mock('next/config', () => ({
 describe('stateService', () => {
 	// Use a valid test user ID
 	const testUserId = '3b490daf-9b84-4271-9cf7-38218e702640' // `test-user-${Date.now()}`
-	const testKey = 'test-key'
+	const testKey = 'state-service-test-key'
 	const createdStateIds: string[] = []
 
 	// Cleanup: delete any states created during the tests.
