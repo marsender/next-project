@@ -1,4 +1,4 @@
-import { DefaultSession, DefaultUser } from 'next-auth'
+import { DefaultSession } from 'next-auth'
 
 /**
  * Extends the default Session interface from next-auth to include the id field on the user object

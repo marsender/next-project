@@ -13,8 +13,8 @@ vi.mock('next/config', () => ({
 
 describe('stateService', () => {
 	// Use a valid test user ID
-	const testUserId = '3b490daf-9b84-4271-9cf7-38218e702640' // `test-user-${Date.now()}`
-	const testKey = 'state-service-test-key'
+	const testUserId: string = '3b490daf-9b84-4271-9cf7-38218e702640' // `test-user-${Date.now()}`
+	const testKey: string = 'state-service-test-key'
 	const createdStateIds: string[] = []
 
 	// Cleanup: delete any states created during the tests.
@@ -31,8 +31,8 @@ describe('stateService', () => {
 	})
 
 	it('should create a new state, read it, and then update it', async () => {
-		const initialValue = 'dark'
-		const updatedValue = 'light'
+		const initialValue: string = 'dark'
+		const updatedValue: string = 'light'
 
 		// 1. Create the state
 		await stateService.setUserState(testUserId, testKey, initialValue)
@@ -61,7 +61,7 @@ describe('stateService', () => {
 	})
 
 	it('should handle complex objects as state values', async () => {
-		const complexKey = 'user-preferences'
+		const complexKey: string = 'user-preferences'
 		const complexValue = { notifications: true, layout: 'compact' }
 
 		// Create the state directly to get its ID for cleanup

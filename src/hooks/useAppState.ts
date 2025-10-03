@@ -1,24 +1,30 @@
 import { useMutation, useQuery, useQueryClient, UseMutationResult } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 
-import { stateService } from '@/lib/directusState'
+import { JSONValue, stateService } from '@/lib/directusState'
+
+export const TANSTACK_USER_STATES_ID = 'user-states-id'
 
 type SetStateMutation<T> = UseMutationResult<void, Error, T, unknown>['mutate']
 
-export function useAppState<T>(key: string, defaultValue: T | null = null): [T | null, SetStateMutation<T>] {
+export function useAppState<T extends JSONValue>(
+	key: string,
+	defaultValue: T | null = null,
+): [T | null, SetStateMutation<T>] {
 	const { data: session } = useSession()
 	const queryClient = useQueryClient()
 	const userId = session?.user?.id
 
-	const queryKey = ['user-state', userId, key]
+	// Init tanstack unique identifier for the user state
+	const queryKey = [TANSTACK_USER_STATES_ID, userId, key]
 
 	const { data: state } = useQuery({
 		queryKey: queryKey,
 		// The query will only run if userId is available, so we can safely assert it's a string.
 		queryFn: () => stateService.getUserState<T>(userId!, key),
 		enabled: !!userId,
-		initialData: defaultValue,
-		staleTime: 1000 * 60 * 5, // 5 minutes
+		initialData: defaultValue, // Use the default value as initial data
+		staleTime: 100, // 0 will refetch immediately in the background after the initial data is used. For 5 minues: 1000 * 60 * 5
 	})
 
 	const { mutate: setState } = useMutation<void, Error, T>({
@@ -35,5 +41,7 @@ export function useAppState<T>(key: string, defaultValue: T | null = null): [T |
 		},
 	})
 
-	return [state as T | null, setState]
+	// If the query returns null (e.g., no state found in the DB), fall back to the defaultValue.
+	// This ensures the hook is consistent and doesn't return null when a default is provided.
+	return [state ?? defaultValue, setState]
 }
