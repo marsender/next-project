@@ -4,9 +4,9 @@ import { Session } from 'next-auth'
 import { useSession } from 'next-auth/react'
 
 import { TANSTACK_USER_STATES_ID, useAppState } from '@/hooks/useAppState'
-import directus from '@/lib/directus'
 import { USER_STATES_COLLECTION, stateService } from '@/lib/directusState'
 import { deleteItems, readItems } from '@directus/sdk'
+import directus, { loginWithTestUser } from '@/lib/directus'
 
 // This test suite performs integration tests against a real Directus database.
 // Ensure your test environment is configured to connect to a test Directus instance.
@@ -36,6 +36,11 @@ describe('useAppState', () => {
 		user: { id: testUserId, name: 'Test User', email: 'test@example.com' },
 		expires: '1',
 	}
+
+	beforeAll(async () => {
+		// These tests will pass with authenticated users only
+		await loginWithTestUser()
+	})
 
 	beforeEach(() => {
 		// Reset mocks before each test

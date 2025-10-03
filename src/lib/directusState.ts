@@ -1,3 +1,5 @@
+'use server'
+
 import directus from '@/lib/directus'
 import { createItem, readItems, updateItem } from '@directus/sdk'
 

@@ -1,24 +1,29 @@
-import directus from '@/lib/directus'
-import { USER_STATES_COLLECTION, stateService } from '@/lib/directusState'
 import { createItem, deleteItems, readItems } from '@directus/sdk'
+import directus, { loginWithTestUser } from '@/lib/directus'
+import { USER_STATES_COLLECTION, stateService } from '@/lib/directusState'
 
 // This test suite performs integration tests against a real Directus database.
 // Ensure your test environment is configured to connect to a test Directus instance.
 
-vi.mock('next/config', () => ({
-	default: () => ({
-		publicRuntimeConfig: { url: process.env.DIRECTUS_URL }, // Mock Directus URL
-	}),
-}))
+// vi.mock('next/config', () => ({
+// 	default: () => ({
+// 		publicRuntimeConfig: { url: process.env.DIRECTUS_URL }, // Mock Directus URL
+// 	}),
+// }))
 
 describe('stateService', () => {
 	// Use a valid test user ID
-	const testUserId: string = '3b490daf-9b84-4271-9cf7-38218e702640' // `test-user-${Date.now()}`
+	const testUserId: string = '3b490daf-9b84-4271-9cf7-38218e702640'
 	const testKey: string = 'state-service-test-key'
 	const createdStateIds: string[] = []
 
-	// Cleanup: delete any states created during the tests.
+	beforeAll(async () => {
+		// These tests will pass with authenticated users only
+		await loginWithTestUser()
+	})
+
 	afterAll(async () => {
+		// Cleanup: delete any states created during the tests.
 		if (createdStateIds.length > 0) {
 			console.log(`Cleaning up ${createdStateIds.length} test state(s)...`)
 			await directus.request(deleteItems(USER_STATES_COLLECTION, createdStateIds))

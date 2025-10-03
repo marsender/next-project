@@ -1,3 +1,5 @@
+'use server'
+
 import { registerUser } from '@directus/sdk'
 import { NextResponse } from 'next/server'
 
@@ -11,7 +13,17 @@ export async function POST(request: Request) {
 	} catch (error) {
 		console.error(error)
 		// Type guard to check if error is an object with an 'errors' property
-		if (typeof error === 'object' && error !== null && 'errors' in error && Array.isArray(error.errors) && error.errors.length > 0 && 'extensions' in error.errors[0] && typeof error.errors[0].extensions === 'object' && error.errors[0].extensions !== null && 'code' in error.errors[0].extensions) {
+		if (
+			typeof error === 'object' &&
+			error !== null &&
+			'errors' in error &&
+			Array.isArray(error.errors) &&
+			error.errors.length > 0 &&
+			'extensions' in error.errors[0] &&
+			typeof error.errors[0].extensions === 'object' &&
+			error.errors[0].extensions !== null &&
+			'code' in error.errors[0].extensions
+		) {
 			const code = (error.errors[0].extensions as { code: string }).code
 			if (code === 'RECORD_NOT_UNIQUE') {
 				return NextResponse.json({ message: 'This user already exist' }, { status: 409 })

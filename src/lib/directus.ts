@@ -6,10 +6,27 @@ if (!directusUrl) {
 	throw new Error('`DIRECTUS_URL` is not set in your environment variables. Please add it to your `.env.local` file.')
 }
 
+// See https://directus.io/docs/guides/connect/sdk
 const directus = createDirectus(directusUrl)
 	.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
 	.with(rest({ credentials: 'include' }))
 //.with(rest({ onRequest: (options) => ({ ...options, cache: 'no-store' }) }))
+
+export async function loginWithTestUser() {
+	const email = process.env.DIRECTUS_EMAIL
+	if (!email) {
+		throw new Error(
+			'`DIRECTUS_EMAIL` is not set in your environment variables. Please add it to your `.env.test.local` file.',
+		)
+	}
+	const password = process.env.DIRECTUS_PASSWORD
+	if (!password) {
+		throw new Error(
+			'`DIRECTUS_PASSWORD` is not set in your environment variables. Please add it to your `.env.test.local` file.',
+		)
+	}
+	await directus.login({ email, password })
+}
 
 // Unused func
 // https://docs.directus.io/blog/implement-directus-auth-in-next-js-14.html
