@@ -62,12 +62,12 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
 
-      - name: Create .env.test from GitHub Secrets
+      - name: Create test env with GitHub Secrets
         run: |
           cat << EOF > .env.test.local
-          DIRECTUS_URL="${{ secrets.TEST_DIRECTUS_URL }}"
-          DIRECTUS_EMAIL="${{ secrets.TEST_DIRECTUS_EMAIL }}"
-          DIRECTUS_PASSWORD="${{ secrets.TEST_DIRECTUS_PASSWORD }}"
+          DIRECTUS_URL=${{ secrets.TEST_DIRECTUS_URL }}
+          DIRECTUS_EMAIL=${{ secrets.TEST_DIRECTUS_EMAIL }}
+          DIRECTUS_PASSWORD=${{ secrets.TEST_DIRECTUS_PASSWORD }}
           EOF
 
       - name: ⚡ Run vitest
