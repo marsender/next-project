@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 import { TANSTACK_USER_STATES_ID, useAppState } from '@/hooks/useAppState'
 import { USER_STATES_COLLECTION, stateService } from '@/lib/directusState'
 import { deleteItems, readItems } from '@directus/sdk'
+import { getCurrentUser } from '@/lib/sessions'
 import directus, { loginWithTestUser } from '@/lib/directus'
 
 // This test suite performs integration tests against a real Directus database.
@@ -13,8 +14,10 @@ import directus, { loginWithTestUser } from '@/lib/directus'
 
 // Mock the dependencies
 vi.mock('next-auth/react')
+vi.mock('@/lib/sessions')
 
 const mockUseSession = vi.mocked(useSession)
+const mockGetCurrentUser = vi.mocked(getCurrentUser)
 const queryClient = new QueryClient({
 	defaultOptions: {
 		// Disable retries to prevent tests from timing out
@@ -37,6 +40,10 @@ describe('useAppState', () => {
 		expires: '1',
 	}
 
+	const mockUser = {
+		id: testUserId,
+	}
+
 	beforeAll(async () => {
 		// These tests will pass with authenticated users only
 		await loginWithTestUser()
@@ -47,6 +54,7 @@ describe('useAppState', () => {
 		vi.clearAllMocks()
 		// Clear the query cache before each test to ensure tests are isolated
 		queryClient.clear()
+		mockGetCurrentUser.mockResolvedValue(mockUser)
 	})
 
 	// Cleanup: delete any states created for this user and key during the tests
@@ -84,10 +92,10 @@ describe('useAppState', () => {
 		// Create a state directly so we can test if the hook fetches it.
 		const defaultValue: string = 'dark'
 		const initialValue: string = 'light'
-		await stateService.setUserState(testUserId, testKey, initialValue)
+		await stateService.setUserState(testKey, initialValue)
 
 		// Tell react-query that the initialData is already stale, forcing a refetch
-		queryClient.setQueryDefaults([TANSTACK_USER_STATES_ID, testUserId, testKey], {
+		queryClient.setQueryDefaults([TANSTACK_USER_STATES_ID, testKey], {
 			initialDataUpdatedAt: 1, // 1ms epoch time, i.e., very old
 		})
 
@@ -144,14 +152,14 @@ describe('useAppState', () => {
 
 		// Wait for the mutation to be successful
 		await waitFor(() => {
-			expect(invalidateQueriesSpy).toHaveBeenCalledWith({ queryKey: [TANSTACK_USER_STATES_ID, testUserId, testKey] })
+			expect(invalidateQueriesSpy).toHaveBeenCalledWith({ queryKey: [TANSTACK_USER_STATES_ID, testKey] })
 		})
 
 		// Wait for the hook to reflect the new state after the query has been invalidated and refetched.
 		await waitFor(() => expect(result.current[0]).toBe(initialValue))
 
 		// Verify the state was actually updated in the database
-		const updatedState = await stateService.getUserState(testUserId, testKey)
+		const updatedState = await stateService.getUserState(testKey)
 		expect(updatedState).toBe(initialValue)
 	})
 })

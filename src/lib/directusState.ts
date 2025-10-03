@@ -1,6 +1,5 @@
-'use server'
-
 import directus from '@/lib/directus'
+import { getCurrentUser } from '@/lib/sessions'
 import { createItem, readItems, updateItem } from '@directus/sdk'
 
 export const USER_STATES_COLLECTION = 'user_states'
@@ -18,8 +17,14 @@ interface UserStateItem {
 
 // The value to set or get can be a string or a json object
 export const stateService = {
-	async getUserState<T extends JSONValue>(userId: string, key: string): Promise<T | null> {
+	async getUserState<T extends JSONValue>(key: string): Promise<T | null> {
 		try {
+			const user = await getCurrentUser()
+			if (!user?.id) {
+				return null
+			}
+			const userId = user.id
+
 			const response = await directus.request<UserStateItem[]>(
 				readItems(USER_STATES_COLLECTION, {
 					filter: {
@@ -61,8 +66,14 @@ export const stateService = {
 		}
 	},
 
-	async setUserState<T extends JSONValue>(userId: string, key: string, value: T): Promise<void> {
+	async setUserState<T extends JSONValue>(key: string, value: T): Promise<void> {
 		try {
+			const user = await getCurrentUser()
+			if (!user?.id) {
+				return
+			}
+			const userId = user.id
+
 			// Check if state exists
 			const response = await directus.request<UserStateItem[]>(
 				readItems(USER_STATES_COLLECTION, {

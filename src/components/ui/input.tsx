@@ -169,4 +169,4 @@ Input.displayName = 'Input'
 Textarea.displayName = 'Textarea'
 Select.displayName = 'Select'
 
-export { Input } // Textarea, Select, inputVariants
+export { Input, Select } // Textarea, Select, inputVariants

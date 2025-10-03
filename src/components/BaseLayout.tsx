@@ -8,6 +8,7 @@ import { ReactNode } from 'react'
 
 //import Head from 'next/head'
 import Providers from '@/app/providers'
+import ReactQueryProvider from '@/components/ReactQueryProvider'
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
 import { getSession } from '@/lib/sessions'
@@ -57,23 +58,25 @@ export default async function BaseLayout({ children, locale }: Props) {
 				/>
 			) : null}
 			<body>
-				<NextIntlClientProvider messages={messages}>
-					<Providers session={session}>
-						<ThemeProvider
-							attribute="class"
-							defaultTheme="system"
-							enableSystem={true}
-							storageKey="opale-concept-theme"
-							disableTransitionOnChange
-						>
-							<main>
-								<Header user={session?.user} />
-								{children}
-								<Footer />
-							</main>
-						</ThemeProvider>
-					</Providers>
-				</NextIntlClientProvider>
+				<ReactQueryProvider>
+					<NextIntlClientProvider messages={messages}>
+						<Providers session={session}>
+							<ThemeProvider
+								attribute="class"
+								defaultTheme="system"
+								enableSystem={true}
+								storageKey="opale-concept-theme"
+								disableTransitionOnChange
+							>
+								<main>
+									<Header user={session?.user} />
+									{children}
+									<Footer />
+								</main>
+							</ThemeProvider>
+						</Providers>
+					</NextIntlClientProvider>
+				</ReactQueryProvider>
 			</body>
 		</html>
 	)

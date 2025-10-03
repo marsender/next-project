@@ -1,21 +1,24 @@
 import { createItem, deleteItems, readItems } from '@directus/sdk'
 import directus, { loginWithTestUser } from '@/lib/directus'
 import { USER_STATES_COLLECTION, stateService } from '@/lib/directusState'
+import { getCurrentUser } from '@/lib/sessions'
+import { User } from 'next-auth'
 
 // This test suite performs integration tests against a real Directus database.
 // Ensure your test environment is configured to connect to a test Directus instance.
 
-// vi.mock('next/config', () => ({
-// 	default: () => ({
-// 		publicRuntimeConfig: { url: process.env.DIRECTUS_URL }, // Mock Directus URL
-// 	}),
-// }))
+vi.mock('@/lib/sessions')
+const mockGetCurrentUser = vi.mocked(getCurrentUser)
 
 describe('stateService', () => {
 	// Use a valid test user ID
 	const testUserId: string = '3b490daf-9b84-4271-9cf7-38218e702640'
 	const testKey: string = 'state-service-test-key'
 	const createdStateIds: string[] = []
+
+	const mockUser: User = {
+		id: testUserId,
+	}
 
 	beforeAll(async () => {
 		// These tests will pass with authenticated users only
@@ -30,8 +33,13 @@ describe('stateService', () => {
 		}
 	})
 
+	beforeEach(() => {
+		mockGetCurrentUser.mockResolvedValue(mockUser)
+	})
+
 	it('should return null when getting a state that does not exist', async () => {
-		const state = await stateService.getUserState(testUserId, 'non-existent-key')
+		mockGetCurrentUser.mockResolvedValue(mockUser)
+		const state = await stateService.getUserState('non-existent-key')
 		expect(state).toBeNull()
 	})
 
@@ -40,10 +48,10 @@ describe('stateService', () => {
 		const updatedValue: string = 'light'
 
 		// 1. Create the state
-		await stateService.setUserState(testUserId, testKey, initialValue)
+		await stateService.setUserState(testKey, initialValue)
 
 		// 2. Read the state and verify its initial value
-		const stateAfterCreate = await stateService.getUserState(testUserId, testKey)
+		const stateAfterCreate = await stateService.getUserState(testKey)
 		expect(stateAfterCreate).toBe(initialValue)
 
 		// Add the ID to the cleanup array. We need to fetch it first.
@@ -58,10 +66,10 @@ describe('stateService', () => {
 		}
 
 		// 3. Update the state
-		await stateService.setUserState(testUserId, testKey, updatedValue)
+		await stateService.setUserState(testKey, updatedValue)
 
 		// 4. Read the state again and verify the updated value
-		const stateAfterUpdate = await stateService.getUserState(testUserId, testKey)
+		const stateAfterUpdate = await stateService.getUserState(testKey)
 		expect(stateAfterUpdate).toBe(updatedValue)
 	})
 
@@ -80,15 +88,15 @@ describe('stateService', () => {
 		createdStateIds.push(createdState.id)
 
 		// Retrieve the state using the service
-		const state = await stateService.getUserState(testUserId, complexKey)
+		const state = await stateService.getUserState(complexKey)
 
 		expect(state).toEqual(complexValue)
 	})
 
 	it('should not throw an error if the API fails, but return null', async () => {
-		// This test assumes an invalid user ID will cause a permissions error or similar failure
-		// but the service should catch it and return null.
-		const result = await stateService.getUserState('invalid-user-id-that-will-fail', 'any-key')
+		// Mock that no user is logged in
+		mockGetCurrentUser.mockResolvedValue(undefined)
+		const result = await stateService.getUserState('any-key')
 		expect(result).toBeNull()
 	})
 })

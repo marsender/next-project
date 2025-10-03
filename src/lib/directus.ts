@@ -28,31 +28,6 @@ export async function loginWithTestUser() {
 	await directus.login({ email, password })
 }
 
-// Unused func
-// https://docs.directus.io/blog/implement-directus-auth-in-next-js-14.html
-/*
-export async function getDirectusClient() {
-	if (email && password) {
-		console.log('Directus server auth with email: %s', email)
-		//await directus.auth.login({ email, password })
-		await directus.request(registerUser(email, password))
-	} else if (token) {
-		console.log('Directus server auth with token: %s', email)
-		//await directus.auth.static(token)
-		await directus.request(
-			withToken(
-				token,
-				readMe({
-					fields: ['*'],
-				})
-			)
-		)
-	}
-
-	return directus
-}
-*/
-
 // Directus url must be allowed in NextConfig images remotePatterns
 export function getAssetURL(id: string) {
 	return `${directusUrl}/assets/${id}`

@@ -1,47 +1,48 @@
-import { useMutation, useQuery, useQueryClient, UseMutationResult } from '@tanstack/react-query'
-import { useSession } from 'next-auth/react'
+'use client'
 
-import { JSONValue, stateService } from '@/lib/directusState'
+import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query'
+import { getAppStateAction, setAppStateAction } from '@/actions/appState'
+import { JSONValue } from '@/lib/directusState'
 
 export const TANSTACK_USER_STATES_ID = 'user-states-id'
 
-type SetStateMutation<T> = UseMutationResult<void, Error, T, unknown>['mutate']
-
-export function useAppState<T extends JSONValue>(
-	key: string,
-	defaultValue: T | null = null,
-): [T | null, SetStateMutation<T>] {
-	const { data: session } = useSession()
+export function useAppState<T extends JSONValue>(key: string, defaultValue: T) {
 	const queryClient = useQueryClient()
-	const userId = session?.user?.id
+	const queryKey = [TANSTACK_USER_STATES_ID, key]
 
-	// Init tanstack unique identifier for the user state
-	const queryKey = [TANSTACK_USER_STATES_ID, userId, key]
-
-	const { data: state } = useQuery({
+	const { data: state, isLoading } = useQuery<T>({
 		queryKey: queryKey,
-		// The query will only run if userId is available, so we can safely assert it's a string.
-		queryFn: () => stateService.getUserState<T>(userId!, key),
-		enabled: !!userId,
-		initialData: defaultValue, // Use the default value as initial data
-		staleTime: 100, // 0 will refetch immediately in the background after the initial data is used. For 5 minues: 1000 * 60 * 5
+		queryFn: async () => {
+			const value = await getAppStateAction(key)
+			return (value as T) ?? defaultValue
+		},
+		placeholderData: keepPreviousData,
+		staleTime: 1000 * 60 * 5, // 5 minutes
 	})
 
-	const { mutate: setState } = useMutation<void, Error, T>({
-		mutationFn: (value: T) => {
-			if (!userId) {
-				// This should ideally not happen if the UI prevents it, but it's a good safeguard.
-				return Promise.reject(new Error('User is not authenticated.'))
-			}
-			return stateService.setUserState<T>(userId, key, value)
+	const { mutate } = useMutation({
+		mutationFn: (newValue: T) => setAppStateAction(key, newValue),
+		onMutate: async (newValue: T) => {
+			// Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+			await queryClient.cancelQueries({ queryKey: queryKey })
+
+			// Snapshot the previous value
+			const previousState = queryClient.getQueryData(queryKey)
+
+			// Optimistically update to the new value
+			queryClient.setQueryData(queryKey, newValue)
+
+			// Return a context object with the snapshotted value
+			return { previousState }
 		},
 		onSuccess: () => {
-			// Invalidate the query to refetch the new state from the server.
-			queryClient.invalidateQueries({ queryKey })
+			queryClient.invalidateQueries({ queryKey: queryKey })
+		},
+		onError: (err, newValue, context) => {
+			// If the mutation fails, use the context returned from onMutate to roll back
+			queryClient.setQueryData(queryKey, context?.previousState)
 		},
 	})
 
-	// If the query returns null (e.g., no state found in the DB), fall back to the defaultValue.
-	// This ensures the hook is consistent and doesn't return null when a default is provided.
-	return [state ?? defaultValue, setState]
+	return [state ?? defaultValue, mutate, isLoading] as const
 }
