@@ -1,6 +1,6 @@
 'use server'
 
-import { updateUser } from '@directus/sdk'
+import { updateUser, uploadFiles } from '@directus/sdk'
 
 import directus from '@/lib/directus'
 import { getCurrentUser } from '@/lib/sessions'
@@ -12,20 +12,18 @@ export async function updateUserAvatar(formData: FormData) {
 		throw new Error('User not authenticated')
 	}
 
-	const file = formData.get('avatar') as File
-
-	if (!file) {
+	if (!formData.has('avatar')) {
 		throw new Error('No file provided')
 	}
 
 	try {
-		const fileId = await directus.files.createOne(file)
+		const uploadResponse = await directus.request(uploadFiles(formData))
 
-		if (!fileId) {
+		if (!uploadResponse?.id) {
 			throw new Error('File upload failed')
 		}
 
-		await directus.users.updateOne(user.id, { avatar: fileId })
+		await directus.request(updateUser(user.id, { avatar: uploadResponse.id }))
 
 		return { success: true }
 	} catch (error) {

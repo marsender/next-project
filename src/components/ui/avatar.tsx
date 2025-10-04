@@ -7,7 +7,8 @@ import { useSession } from 'next-auth/react'
 
 import { updateUserAvatar } from '@/actions/update-user-avatar'
 import { Button } from '@/components/ui/button'
-import { getAssetURL } from '@/lib/directus'
+import useCustomToast from '@/hooks/useCustomToast'
+//import { getAssetURL } from '@/lib/directus'
 
 type Props = {
 	className?: string
@@ -18,6 +19,7 @@ export function Avatar({ className }: Props) {
 	const { data: session, update } = useSession()
 	const [loading, setLoading] = useState(false)
 	const fileInputRef = useRef<HTMLInputElement>(null)
+	const { errorToast } = useCustomToast()
 
 	const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files && event.target.files[0]) {
@@ -31,17 +33,18 @@ export function Avatar({ className }: Props) {
 					await update() // This will refresh the session
 				} else {
 					// Handle error, maybe show a toast notification
-					console.error(result.error)
+					errorToast(result.error || t('uploadError'))
 				}
-			} catch (error) {
-				console.error(error)
+			} catch {
+				errorToast(t('uploadError'))
 			} finally {
 				setLoading(false)
 			}
 		}
 	}
 
-	const avatarUrl = session?.user?.image ? getAssetURL(session.user.image) : '/default-avatar.png'
+	//const avatarUrl = session?.user?.image ? getAssetURL(session.user.image) : '/default-avatar.png'
+	const avatarUrl = session?.user?.image ? session.user.image : '/default-avatar.png'
 
 	return (
 		<div className={`flex items-center space-x-4 ${className}`}>
@@ -49,8 +52,8 @@ export function Avatar({ className }: Props) {
 				<Image src={avatarUrl} alt="User Avatar" layout="fill" className="rounded-full object-cover" />
 			</div>
 			<div className="flex flex-col">
-				<Button as="label" htmlFor="avatar-upload" className="mb-2" disabled={loading}>
-					{loading ? t('uploading') : t('uploadAvatar')}
+				<Button asChild className="mb-2" disabled={loading}>
+					<label htmlFor="avatar-upload">{loading ? t('uploading') : t('uploadAvatar')}</label>
 				</Button>
 				<input
 					id="avatar-upload"

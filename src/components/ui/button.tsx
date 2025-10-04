@@ -74,30 +74,27 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 				disabled={isDisabled}
 				{...props}
 			>
-				{/* Loading State */}
-				{isLoading && iconOnly && <Spinner />}
+				{(() => {
+					if (isLoading && iconOnly) {
+						return <Spinner />
+					}
+					if (!isLoading && iconOnly) {
+						return icon
+					}
 
-				{/* Loading State with Text */}
-				{isLoading && !iconOnly && (
-					<>
-						<span className="mr-2">
-							<Spinner />
-						</span>
-						{loadingText || children}
-					</>
-				)}
+					// When asChild is true, we must return a single element, not a fragment.
+					// A span is a good choice as it's a non-blocking inline element.
+					const Wrapper = asChild ? 'span' : React.Fragment
 
-				{/* Normal Icon Only */}
-				{!isLoading && iconOnly && icon}
-
-				{/* Normal Button with Text */}
-				{!isLoading && !iconOnly && (
-					<>
-						{leadingIcon && <span className="mr-2">{leadingIcon}</span>}
-						{children}
-						{trailingIcon && <span className="ml-2">{trailingIcon}</span>}
-					</>
-				)}
+					return (
+						<Wrapper>
+							{isLoading && !iconOnly && <Spinner />}
+							{!isLoading && !iconOnly && leadingIcon && <span className="mr-2">{leadingIcon}</span>}
+							{isLoading && !iconOnly ? loadingText || children : children}
+							{!isLoading && !iconOnly && trailingIcon && <span className="ml-2">{trailingIcon}</span>}
+						</Wrapper>
+					)
+				})()}
 			</Comp>
 		)
 	},
