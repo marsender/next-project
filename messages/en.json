@@ -46,7 +46,10 @@
 	"AccountPage": {
 		"title": "My account",
 		"subtitle": "My account subtitle",
-		"description": "<p>Translation with html formating for the <strong>preferences</strong></p>"
+		"description": "<p>Translation with html formating for the <strong>preferences</strong></p>",
+		"uploadAvatar": "Upload Avatar",
+		"uploading": "Uploading...",
+		"uploadHint": "Select an image to update your avatar."
 	},
 	"NotFoundPage": {
 		"title": "Not found page",

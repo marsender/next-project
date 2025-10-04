@@ -46,7 +46,10 @@
 	"AccountPage": {
 		"title": "Mon compte",
 		"subtitle": "Mon compte soustitre",
-		"description": "<p>Traduction avec formattage html pour les <strong>préférences</strong></p>"
+		"description": "<p>Traduction avec formattage html pour les <strong>préférences</strong></p>",
+		"uploadAvatar": "Changer l'avatar",
+		"uploading": "Envoi en cours...",
+		"uploadHint": "Sélectionnez une image pour mettre à jour votre avatar."
 	},
 	"NotFoundPage": {
 		"title": "Page non trouvée",
