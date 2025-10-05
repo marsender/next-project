@@ -1,6 +1,7 @@
-import { authentication, createDirectus, rest } from '@directus/sdk'
+import { authentication, createDirectus, rest, staticToken } from '@directus/sdk'
 import { getLocale } from 'next-intl/server'
 import type { AuthenticationClient, DirectusClient, RestClient } from '@directus/sdk'
+import { getCurrentUser } from './sessions'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Schema = any
@@ -21,7 +22,17 @@ export async function getDirectusClient() {
 		throw new Error('`DIRECTUS_URL` is not set in your environment variables. Please add it to your `.env.local` file.')
 	}
 
+	const user = await getCurrentUser()
+	// If the user is authenticated, use their token to make requests on their behalf.
+	if (user?.access_token) {
+		// console.log('Authenticated user, using token to create a new Directus client')
+		return createDirectus(directusUrl).with(staticToken(user.access_token)).with(rest())
+	}
+
+	// If the user is not authenticated, use a new instance of the client with cookie-based authentication.
+	// This is important because we don't want to reuse the same instance of the client for all users.
 	if (!directus) {
+		// console.log('Unauthenticated user, using cookie-based authentication')
 		//directus = createDirectus(directusUrl).with(authentication('cookie')).with(rest())
 		directus = createDirectus(directusUrl)
 			.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
