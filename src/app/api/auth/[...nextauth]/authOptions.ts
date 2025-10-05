@@ -22,8 +22,10 @@ export const authOptions: NextAuthOptions = {
 				const password: string = credentials?.password ?? ''
 				console.log('Directus login attempt with email=%s', email)
 				try {
-					const directus = await getDirectusClient()
+					// Create a new client instance specifically for logging in
+					const directus = await getDirectusClient({ email: email, password: password })
 					const authData = await directus.login({ email, password })
+
 					const user = (await directus.request(
 						readMe({
 							fields: [
@@ -41,6 +43,7 @@ export const authOptions: NextAuthOptions = {
 					)) as User
 					// On successful authorization, return the user object from Directus
 					// along with the tokens. This object is passed to the `jwt` callback.
+					//console.log('Directus login readMe: %o', user)
 					return {
 						...user,
 						access_token: authData.access_token ?? undefined,

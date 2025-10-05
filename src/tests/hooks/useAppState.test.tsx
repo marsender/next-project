@@ -9,7 +9,7 @@ import messages from '../../../messages/en.json'
 import { USER_STATES_COLLECTION, stateService } from '@/lib/directusState'
 import { deleteItems, readItems } from '@directus/sdk'
 import { getCurrentUser } from '@/lib/sessions' // This is mocked
-import { getDirectusClient, loginWithTestUser } from '@/lib/directus'
+import { getDirectusClientWithTestUser } from '@/lib/directus'
 
 // This test suite performs integration tests against a real Directus database.
 // Ensure your test environment is configured to connect to a test Directus instance.
@@ -36,6 +36,8 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
 	</NextIntlClientProvider>
 )
 
+const directus = await getDirectusClientWithTestUser()
+
 describe('useAppState', () => {
 	const testUserId: string = '3b490daf-9b84-4271-9cf7-38218e702640'
 	const testKey: string = 'use-app-state-test-key'
@@ -48,11 +50,6 @@ describe('useAppState', () => {
 		id: testUserId,
 	}
 
-	beforeAll(async () => {
-		// These tests will pass with authenticated users only
-		await loginWithTestUser()
-	})
-
 	beforeEach(() => {
 		// Reset mocks before each test
 		vi.clearAllMocks()
@@ -63,7 +60,6 @@ describe('useAppState', () => {
 
 	// Cleanup: delete any states created for this user and key during the tests
 	afterEach(async () => {
-		const directus = await getDirectusClient()
 		const itemsToDelete = await directus.request<{ id: string }[]>(
 			readItems(USER_STATES_COLLECTION, {
 				filter: {

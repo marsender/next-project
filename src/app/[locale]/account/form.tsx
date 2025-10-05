@@ -32,8 +32,8 @@ export default function AccountForm() {
 	// Define your form
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: {
-			theme: 'system', // Initialize with a static value
+		values: {
+			theme: theme, // Initialize with the fetched value from useAppState
 		},
 	})
 
