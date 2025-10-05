@@ -1,5 +1,5 @@
 import { createItem, deleteItems, readItems } from '@directus/sdk'
-import { getDirectusClient, loginWithTestUser } from '@/lib/directus'
+import { getDirectusClientWithTestUser } from '@/lib/directus'
 import { USER_STATES_COLLECTION, stateService } from '@/lib/directusState'
 import { getCurrentUser } from '@/lib/sessions'
 import { User } from 'next-auth'
@@ -9,6 +9,8 @@ import { User } from 'next-auth'
 
 vi.mock('@/lib/sessions')
 const mockGetCurrentUser = vi.mocked(getCurrentUser)
+
+const directus = await getDirectusClientWithTestUser()
 
 describe('stateService', () => {
 	// Use a valid test user ID
@@ -20,15 +22,9 @@ describe('stateService', () => {
 		id: testUserId,
 	}
 
-	beforeAll(async () => {
-		// These tests will pass with authenticated users only
-		await loginWithTestUser()
-	})
-
 	afterAll(async () => {
 		// Cleanup: delete any states created during the tests.
 		if (createdStateIds.length > 0) {
-			const directus = await getDirectusClient()
 			//console.log(`Cleaning up ${createdStateIds.length} test state(s)...`)
 			await directus.request(deleteItems(USER_STATES_COLLECTION, createdStateIds))
 		}
@@ -56,7 +52,6 @@ describe('stateService', () => {
 		expect(stateAfterCreate).toBe(initialValue)
 
 		// Add the ID to the cleanup array. We need to fetch it first.
-		const directus = await getDirectusClient()
 		const createdItems = await directus.request<{ id: string }[]>(
 			readItems(USER_STATES_COLLECTION, {
 				filter: { user: { _eq: testUserId }, state_key: { _eq: testKey } },
@@ -80,7 +75,6 @@ describe('stateService', () => {
 		const complexValue = { notifications: true, layout: 'compact' }
 
 		// Create the state directly to get its ID for cleanup
-		const directus = await getDirectusClient()
 		const createdState = await directus.request<{ id: string }>(
 			createItem(USER_STATES_COLLECTION, {
 				user: testUserId,
