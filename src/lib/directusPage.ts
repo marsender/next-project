@@ -1,9 +1,17 @@
 'use server'
 
 import { readItems } from '@directus/sdk'
-
-import directus, { getLanguageCode } from '@/lib/directus'
-import type { BlockHero, BlockRichText, Blocks, ItemBlockHero, ItemBlockRichText, ItemPage, Page, PageTranslation } from '@/lib/directusPageTypes'
+import { getDirectusClient, getLanguageCode } from '@/lib/directus'
+import type {
+	BlockHero,
+	BlockRichText,
+	Blocks,
+	ItemBlockHero,
+	ItemBlockRichText,
+	ItemPage,
+	Page,
+	PageTranslation,
+} from '@/lib/directusPageTypes'
 
 const emptyPage: Page = {
 	languages_code: '',
@@ -19,7 +27,14 @@ function filterBlocks(blocks: Blocks[], languageCode: string): (BlockHero | Bloc
 			const heroBlock = block.item as ItemBlockHero
 			const translation = heroBlock.translations.find((t) => t.languages_code === languageCode)
 			//console.log('translation: %o', translation)
-			return translation ? { ...translation, collection: block.collection, image: heroBlock.image, buttons: translation.buttons ? JSON.parse(translation.buttons) : [] } : null
+			return translation
+				? {
+						...translation,
+						collection: block.collection,
+						image: heroBlock.image,
+						buttons: translation.buttons ? JSON.parse(translation.buttons) : [],
+					}
+				: null
 		}
 		if (block.collection === 'block_richtext') {
 			const richTextBlock = block.item as ItemBlockRichText
@@ -43,6 +58,7 @@ function filterBlocks(blocks: Blocks[], languageCode: string): (BlockHero | Bloc
 async function directusPage(slug: string): Promise<Page> {
 	try {
 		const languageCode = await getLanguageCode()
+		const directus = await getDirectusClient()
 
 		const response = await directus.request(
 			readItems('pages', {
@@ -84,12 +100,17 @@ async function directusPage(slug: string): Promise<Page> {
 					},
 				],
 				limit: 1,
-			})
+			}),
 		)
 
 		// The Directus SDK should return an array. If it's not an array, the request likely failed.
 		if (!Array.isArray(response)) {
-			console.error('Failed to fetch page with slug "%s" from Directus. The API response was not an array as expected.', slug, 'Received:', response)
+			console.error(
+				'Failed to fetch page with slug "%s" from Directus. The API response was not an array as expected.',
+				slug,
+				'Received:',
+				response,
+			)
 			return emptyPage
 		}
 

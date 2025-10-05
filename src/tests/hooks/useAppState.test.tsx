@@ -2,12 +2,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { Session } from 'next-auth'
 import { useSession } from 'next-auth/react'
+import { NextIntlClientProvider } from 'next-intl'
 
 import { TANSTACK_USER_STATES_ID, useAppState } from '@/hooks/useAppState'
+import messages from '../../../messages/en.json'
 import { USER_STATES_COLLECTION, stateService } from '@/lib/directusState'
 import { deleteItems, readItems } from '@directus/sdk'
-import { getCurrentUser } from '@/lib/sessions'
-import directus, { loginWithTestUser } from '@/lib/directus'
+import { getCurrentUser } from '@/lib/sessions' // This is mocked
+import { getDirectusClient, loginWithTestUser } from '@/lib/directus'
 
 // This test suite performs integration tests against a real Directus database.
 // Ensure your test environment is configured to connect to a test Directus instance.
@@ -29,7 +31,9 @@ const queryClient = new QueryClient({
 
 // A wrapper component to provide the necessary context (QueryClientProvider)
 const wrapper = ({ children }: { children: React.ReactNode }) => (
-	<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+	<NextIntlClientProvider locale="en" messages={messages}>
+		<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+	</NextIntlClientProvider>
 )
 
 describe('useAppState', () => {
@@ -59,6 +63,7 @@ describe('useAppState', () => {
 
 	// Cleanup: delete any states created for this user and key during the tests
 	afterEach(async () => {
+		const directus = await getDirectusClient()
 		const itemsToDelete = await directus.request<{ id: string }[]>(
 			readItems(USER_STATES_COLLECTION, {
 				filter: {
@@ -70,20 +75,23 @@ describe('useAppState', () => {
 		)
 		const ids = itemsToDelete.map((item: { id: string }) => item.id)
 		if (ids.length > 0) {
-			console.log(`Cleaning up ${ids.length} test state(s)...`)
+			//console.log(`Cleaning up ${ids.length} test state(s)...`)
 			await directus.request(deleteItems(USER_STATES_COLLECTION, ids))
 		}
 	})
 
-	it('should return the default value when the user is not authenticated', () => {
+	it('should return the default value when the user is not authenticated', async () => {
 		mockUseSession.mockReturnValue({ data: null, status: 'unauthenticated', update: vi.fn() })
 
 		const defaultValue: string = 'dark'
-		const { result } = renderHook(() => useAppState(testKey, defaultValue), {
+		const { result, unmount } = renderHook(() => useAppState(testKey, defaultValue), {
 			wrapper,
 		})
 
-		expect(result.current[0]).toBe(defaultValue)
+		await waitFor(() => {
+			expect(result.current[0]).toBe(defaultValue)
+		})
+		unmount()
 	})
 
 	it('should fetch and return the user state when authenticated', async () => {

@@ -2,8 +2,7 @@
 
 import { passwordRequest } from '@directus/sdk'
 import { getTranslations } from 'next-intl/server'
-
-import directus from '@/lib/directus'
+import { getDirectusClient } from '@/lib/directus'
 
 export async function directusPasswordRequest(formData: FormData) {
 	const t = await getTranslations('RequestResetPasswordForm')
@@ -20,6 +19,7 @@ export async function directusPasswordRequest(formData: FormData) {
 			return { error: t('serverError') }
 		}
 		console.log('Reset url: %s', `${resetUrl}/reset-password`)
+		const directus = await getDirectusClient()
 		await directus.request(passwordRequest(email, `${resetUrl}/reset-password`))
 
 		return { success: t('successMessage') }

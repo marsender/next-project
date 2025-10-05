@@ -1,4 +1,4 @@
-import directus from '@/lib/directus'
+import { getDirectusClient } from '@/lib/directus'
 import { getCurrentUser } from '@/lib/sessions'
 import { createItem, readItems, updateItem } from '@directus/sdk'
 
@@ -21,14 +21,15 @@ export const stateService = {
 		try {
 			const user = await getCurrentUser()
 			if (!user?.id) {
+				// Don't throw an error if the user is unauthenticated, but return null
 				return null
 			}
-			const userId = user.id
 
-			const response = await directus.request<UserStateItem[]>(
+			const directus = await getDirectusClient()
+			const response = await directus.request(
 				readItems(USER_STATES_COLLECTION, {
 					filter: {
-						user: { _eq: userId },
+						user: { _eq: user.id },
 						state_key: { _eq: key },
 					},
 					limit: 1,
@@ -39,7 +40,7 @@ export const stateService = {
 			if (!Array.isArray(response)) {
 				console.error(
 					'Failed to fetch get user state with id "%s" from Directus. The API response was not an array as expected.',
-					userId,
+					user.id,
 					'Received:',
 					response,
 				)
@@ -62,7 +63,7 @@ export const stateService = {
 			return state_value as T
 		} catch (error) {
 			console.error('Error getting user state:', error)
-			return null
+			throw error
 		}
 	},
 
@@ -70,15 +71,15 @@ export const stateService = {
 		try {
 			const user = await getCurrentUser()
 			if (!user?.id) {
-				return
+				throw new Error('Set user state: user not authenticated')
 			}
-			const userId = user.id
 
+			const directus = await getDirectusClient()
 			// Check if state exists
-			const response = await directus.request<UserStateItem[]>(
+			const response = await directus.request(
 				readItems(USER_STATES_COLLECTION, {
 					filter: {
-						user: { _eq: userId },
+						user: { _eq: user.id },
 						state_key: { _eq: key },
 					},
 					limit: 1,
@@ -96,7 +97,7 @@ export const stateService = {
 				// Create new
 				await directus.request(
 					createItem(USER_STATES_COLLECTION, {
-						user: userId,
+						user: user.id,
 						state_key: key,
 						state_value: value,
 					}),
@@ -104,6 +105,7 @@ export const stateService = {
 			}
 		} catch (error) {
 			console.error('Error setting user state:', error)
+			throw error
 		}
 	},
 }

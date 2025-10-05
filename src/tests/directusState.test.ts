@@ -1,5 +1,5 @@
 import { createItem, deleteItems, readItems } from '@directus/sdk'
-import directus, { loginWithTestUser } from '@/lib/directus'
+import { getDirectusClient, loginWithTestUser } from '@/lib/directus'
 import { USER_STATES_COLLECTION, stateService } from '@/lib/directusState'
 import { getCurrentUser } from '@/lib/sessions'
 import { User } from 'next-auth'
@@ -28,7 +28,8 @@ describe('stateService', () => {
 	afterAll(async () => {
 		// Cleanup: delete any states created during the tests.
 		if (createdStateIds.length > 0) {
-			console.log(`Cleaning up ${createdStateIds.length} test state(s)...`)
+			const directus = await getDirectusClient()
+			//console.log(`Cleaning up ${createdStateIds.length} test state(s)...`)
 			await directus.request(deleteItems(USER_STATES_COLLECTION, createdStateIds))
 		}
 	})
@@ -55,6 +56,7 @@ describe('stateService', () => {
 		expect(stateAfterCreate).toBe(initialValue)
 
 		// Add the ID to the cleanup array. We need to fetch it first.
+		const directus = await getDirectusClient()
 		const createdItems = await directus.request<{ id: string }[]>(
 			readItems(USER_STATES_COLLECTION, {
 				filter: { user: { _eq: testUserId }, state_key: { _eq: testKey } },
@@ -78,6 +80,7 @@ describe('stateService', () => {
 		const complexValue = { notifications: true, layout: 'compact' }
 
 		// Create the state directly to get its ID for cleanup
+		const directus = await getDirectusClient()
 		const createdState = await directus.request<{ id: string }>(
 			createItem(USER_STATES_COLLECTION, {
 				user: testUserId,

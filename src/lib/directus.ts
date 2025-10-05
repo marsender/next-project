@@ -1,16 +1,34 @@
 import { authentication, createDirectus, rest } from '@directus/sdk'
 import { getLocale } from 'next-intl/server'
+import type { AuthenticationClient, DirectusClient, RestClient } from '@directus/sdk'
 
-const directusUrl = process.env.DIRECTUS_URL
-if (!directusUrl) {
-	throw new Error('`DIRECTUS_URL` is not set in your environment variables. Please add it to your `.env.local` file.')
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Schema = any
 
 // See https://directus.io/docs/guides/connect/sdk
-const directus = createDirectus(directusUrl)
-	.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
-	.with(rest({ credentials: 'include' }))
-//.with(rest({ onRequest: (options) => ({ ...options, cache: 'no-store' }) }))
+let directus: (DirectusClient<Schema> & RestClient<Schema> & AuthenticationClient<Schema>) | null = null
+
+/**
+ * Returns a Directus SDK instance.
+ * If a user is authenticated, it will use cookie-based authentication to make requests on their behalf.
+ * Otherwise, it will use a static token for public/unauthenticated access.
+ *
+ * @returns The Directus SDK instance.
+ */
+export async function getDirectusClient() {
+	const directusUrl = process.env.DIRECTUS_URL
+	if (!directusUrl) {
+		throw new Error('`DIRECTUS_URL` is not set in your environment variables. Please add it to your `.env.local` file.')
+	}
+
+	if (!directus) {
+		//directus = createDirectus(directusUrl).with(authentication('cookie')).with(rest())
+		directus = createDirectus(directusUrl)
+			.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
+			.with(rest({ credentials: 'include' }))
+	}
+	return directus
+}
 
 export async function loginWithTestUser() {
 	const email = process.env.DIRECTUS_EMAIL
@@ -25,11 +43,17 @@ export async function loginWithTestUser() {
 			'`DIRECTUS_PASSWORD` is not set in your environment variables. Please add it to your `.env.test.local` file.',
 		)
 	}
-	await directus.login({ email, password })
+	const client = await getDirectusClient()
+	await client.login({ email, password })
 }
 
 // Directus url must be allowed in NextConfig images remotePatterns
 export function getAssetURL(id: string) {
+	const directusUrl = process.env.DIRECTUS_URL
+	if (!directusUrl) {
+		// Or return a fallback URL
+		throw new Error('`DIRECTUS_URL` is not set in your environment variables.')
+	}
 	return `${directusUrl}/assets/${id}`
 }
 
@@ -51,5 +75,3 @@ export async function getLanguageCode() {
 	// Default to 'en-US' if the locale is not in our map
 	return localeToLanguageCode[locale] ?? 'en-US'
 }
-
-export default directus

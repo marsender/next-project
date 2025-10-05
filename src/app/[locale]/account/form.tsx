@@ -1,7 +1,5 @@
 'use client'
 
-'use client'
-
 import { useSession } from 'next-auth/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
@@ -19,13 +17,14 @@ const formSchema = z.object({
 	theme: z.enum(['light', 'dark', 'system']),
 })
 
-type Theme = 'light' | 'dark' | 'system'
+type FormSchema = z.infer<typeof formSchema>
+type Theme = FormSchema['theme']
 
 export default function AccountForm() {
 	const { data: session } = useSession()
 	const { setTheme: setNextTheme } = useTheme()
 	const [theme, setTheme, isLoading] = useAppState<Theme>('theme', 'system')
-	const themeOptions = ['light', 'dark', 'system'].map((option) => ({
+	const themeOptions = formSchema.shape.theme.options.map((option) => ({
 		value: option,
 		label: option.charAt(0).toUpperCase() + option.slice(1),
 	}))
@@ -49,13 +48,13 @@ export default function AccountForm() {
 	// Effect 2: Sync the form's theme with the next-themes context for instant UI feedback
 	useEffect(() => {
 		const subscription = form.watch((value) => {
-			setNextTheme(value.theme as Theme)
+			if (value.theme) setNextTheme(value.theme)
 		})
 		return () => subscription.unsubscribe()
 	}, [form, setNextTheme])
 
 	// Define the submit handler to persist the state
-	function onSubmit(values: z.infer<typeof formSchema>) {
+	function onSubmit(values: FormSchema) {
 		const { theme: formTheme } = values
 		setNextTheme(formTheme)
 		setTheme(formTheme) // Persist the theme to the database on submit

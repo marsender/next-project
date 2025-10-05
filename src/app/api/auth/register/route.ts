@@ -2,11 +2,12 @@
 
 import { registerUser } from '@directus/sdk'
 import { NextResponse } from 'next/server'
-
-import directus from '@/lib/directus'
+import { getDirectusClient } from '@/lib/directus'
 
 export async function POST(request: Request) {
 	try {
+		const directus = await getDirectusClient()
+
 		const { first_name, last_name, email, password } = await request.json()
 		await directus.request(registerUser(email, password, { first_name, last_name }))
 		return NextResponse.json({ message: 'Account Created!' }, { status: 201 })

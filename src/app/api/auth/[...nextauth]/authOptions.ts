@@ -1,20 +1,8 @@
-import type { Account, NextAuthOptions, Session, User } from 'next-auth'
-import { JWT } from 'next-auth/jwt'
+import type { NextAuthOptions, User } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-
 import { routes } from '@/lib/constants'
-import directus from '@/lib/directus'
+import { getDirectusClient } from '@/lib/directus'
 import { readMe } from '@directus/sdk'
-
-interface CustomSession extends Session {
-	accessToken?: string
-	refreshToken?: string
-}
-interface DirectusUser {
-	id: string
-	access_token: string
-	refresh_token: string
-}
 
 /**
  * All requests to /api/auth/* (signIn, callback, signOut, etc.) will automatically be handled by NextAuth.js
@@ -34,13 +22,30 @@ export const authOptions: NextAuthOptions = {
 				const password: string = credentials?.password ?? ''
 				console.log('Directus login attempt with email=%s', email)
 				try {
+					const directus = await getDirectusClient()
 					const authData = await directus.login({ email, password })
-					const user = await directus.request(readMe({ fields: ['id'] }))
+					const user = (await directus.request(
+						readMe({
+							fields: [
+								'id',
+								'first_name',
+								'last_name',
+								'email',
+								'avatar',
+								'language',
+								'status',
+								'email_notifications',
+								'last_access',
+							],
+						}),
+					)) as User
+					// On successful authorization, return the user object from Directus
+					// along with the tokens. This object is passed to the `jwt` callback.
 					return {
-						id: user.id,
-						access_token: authData.access_token,
-						refresh_token: authData.refresh_token,
-					} as DirectusUser
+						...user,
+						access_token: authData.access_token ?? undefined,
+						refresh_token: authData.refresh_token ?? undefined,
+					}
 				} catch (error) {
 					let directusError = 'An unknown authentication error occurred.'
 					if (typeof error === 'object' && error !== null && 'errors' in error) {
@@ -63,23 +68,26 @@ export const authOptions: NextAuthOptions = {
 		// newUser: '/new-user', // New users will be directed here on first sign in
 	},
 	callbacks: {
-		async jwt({ token, user, account }: { token: JWT; user: User; account: Account | null }) {
-			if (account && user) {
-				return {
-					...token,
-					accessToken: (user as DirectusUser).access_token,
-					refreshToken: (user as DirectusUser).refresh_token,
-				}
+		async jwt({ token, user }) {
+			// The user object is only passed on the first call after sign-in
+			if (user) {
+				token.id = user.id
+				token.accessToken = user.access_token
+				token.refreshToken = user.refresh_token
+				// Persist the user properties from Directus in the token
+				token.user = user
 			}
 			return token
 		},
-		async session({ session, token, user }: { session: CustomSession; token: JWT; user: User }) {
-			session.accessToken = token.accessToken as string | undefined
-			session.refreshToken = token.refreshToken as string | undefined
-			if (user) {
-				session.user = user
+		async session({ session, token }) {
+			// The session object is what the client-side and server components will see.
+			// We are taking the user data from the token and putting it into the session.
+			if (token && session.user) {
+				session.user = token.user as User
+				// You can also expose tokens to the session if needed for client-side API calls
+				// session.accessToken = token.accessToken as string;
+				// session.refreshToken = token.refreshToken as string;
 			}
-			// console.log('Next auth session callback user: %o', user)
 			return session
 		},
 	},

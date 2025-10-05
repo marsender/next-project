@@ -1,8 +1,7 @@
 'use server'
 
 import { readSingleton } from '@directus/sdk'
-
-import directus, { getLanguageCode } from '@/lib/directus'
+import { getDirectusClient, getLanguageCode } from '@/lib/directus'
 import type { Global, Translations } from '@/lib/directusGlobalTypes'
 
 const emptyTranslation: Global = {
@@ -23,6 +22,7 @@ const emptyTranslation: Global = {
 async function directusGlobal(): Promise<Global> {
 	try {
 		const languageCode = await getLanguageCode()
+		const directus = await getDirectusClient()
 
 		const globalItem = await directus.request<Translations>(
 			readSingleton('global', {
@@ -36,7 +36,7 @@ async function directusGlobal(): Promise<Global> {
 					},
 				},
 				fields: ['*', { translations: ['*'] }],
-			})
+			}),
 		)
 
 		if (!globalItem) {
@@ -45,7 +45,9 @@ async function directusGlobal(): Promise<Global> {
 		}
 
 		if (!globalItem.translations || globalItem.translations.length !== 1) {
-			console.error(`Error fetching global settings: Expected 1 translation, but got ${globalItem.translations?.length}.`)
+			console.error(
+				`Error fetching global settings: Expected 1 translation, but got ${globalItem.translations?.length}.`,
+			)
 			return emptyTranslation
 		}
 		return globalItem.translations[0]

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 
-import { updateUserAvatar } from '@/actions/update-user-avatar'
+import { directusUploadFiles } from '@/lib/directusUploadFiles'
 import { Button } from '@/components/ui/button'
 import useCustomToast from '@/hooks/useCustomToast'
 //import { getAssetURL } from '@/lib/directus'
@@ -28,14 +28,15 @@ export function Avatar({ className }: Props) {
 			formData.append('avatar', file)
 			setLoading(true)
 			try {
-				const result = await updateUserAvatar(formData)
+				const result = await directusUploadFiles(formData)
 				if (result.success) {
 					await update() // This will refresh the session
 				} else {
-					// Handle error, maybe show a toast notification
-					errorToast(result.error || t('uploadError'))
+					console.error('Avatar upload failed:', result.error)
+					errorToast(t('uploadError'))
 				}
-			} catch {
+			} catch (error) {
+				console.error('Avatar upload exception:', error)
 				errorToast(t('uploadError'))
 			} finally {
 				setLoading(false)
