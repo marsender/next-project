@@ -44,7 +44,7 @@ export const NavMenu = ({ user }: Props) => {
 											className="group leading-none select-none"
 										>
 											<span className="text-foreground flex items-center justify-between gap-0.5 rounded px-3 py-2 text-lg font-medium">
-												{user.first_name}
+												{user.first_name} {user.last_name}
 												<CaretDownIcon
 													className="text-violet10 relative top-px transition-transform duration-250 ease-in group-data-[state=open]:-rotate-180"
 													aria-hidden
