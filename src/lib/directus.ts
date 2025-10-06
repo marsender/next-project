@@ -1,6 +1,6 @@
 import { authentication, createDirectus, rest, staticToken } from '@directus/sdk'
 import { getLocale } from 'next-intl/server'
-import type { AuthenticationClient, DirectusClient, RestClient } from '@directus/sdk'
+import type { AuthenticationClient, DirectusClient, RestClient, RestCommand } from '@directus/sdk'
 import { TokenExpiredError } from './errors'
 import { getCurrentUser } from './sessions'
 
@@ -12,11 +12,11 @@ const withTokenExpirationHandling = <T extends DirectusClient<any> & RestClient<
 	const originalRequest = client.request.bind(client)
 
 	// Override the request method
-	client.request = async (...args: Parameters<typeof originalRequest>) => {
+	client.request = async <Output>(options: RestCommand<Output, Schema>): Promise<Output> => {
 		try {
-			return await originalRequest(...args)
+			return await originalRequest<Output>(options)
 		} catch (error: any) {
-			if (error.errors?.[0]?.extensions?.code === 'TOKEN_EXPIRED') {
+			if (error.errors?.[0]?.extensions?.code === 'FORBIDDEN') {
 				throw new TokenExpiredError()
 			}
 			throw error
@@ -44,31 +44,24 @@ export async function getDirectusClient(
 		throw new Error('`DIRECTUS_URL` is not set in your environment variables. Please add it to your `.env.local` file.')
 	}
 
-	const user = await getCurrentUser()
-	// If the user is authenticated, use their token to make requests on their behalf.
-	if (user?.access_token && !login) {
-		// Create a new client with authentication capabilities and set the static token.
-		// This ensures the returned client matches the AuthenticationClient type.
-
-		const client = createDirectus(directusUrl)
-			//.with(authentication('json', { autoRefresh: false }))
-			.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
-			.with(staticToken(user.access_token))
-			.with(rest())
-		return withTokenExpirationHandling(client)
-	}
-
 	// If we need to login, or if there's no existing static token,
 	// we need a client with authentication capabilities.
 	// We use a singleton `directus` instance for unauthenticated users to share the connection.
-	if (!directus || login) {
-		const client = createDirectus(directusUrl)
+	if (!directus) {
+		directus = createDirectus(directusUrl)
 			.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
 			.with(rest({ credentials: 'include' }))
-		if (login) {
-			await client.login({ email: login.email, password: login.password })
+		directus = withTokenExpirationHandling(directus)
+	}
+
+	if (login) {
+		await directus.login({ email: login.email, password: login.password })
+	} else {
+		const user = await getCurrentUser()
+		// If the user is authenticated, use their token to make requests on their behalf.
+		if (user?.access_token) {
+			directus.with(staticToken(user.access_token))
 		}
-		directus = withTokenExpirationHandling(client)
 	}
 
 	return directus
