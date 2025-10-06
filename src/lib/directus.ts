@@ -24,32 +24,23 @@ export async function getDirectusClient(
 		throw new Error('`DIRECTUS_URL` is not set in your environment variables. Please add it to your `.env.local` file.')
 	}
 
-	const user = await getCurrentUser()
-	// If the user is authenticated, use their token to make requests on their behalf.
-	if (user?.access_token && !login) {
-		// Create a new client with authentication capabilities and set the static token.
-		// This ensures the returned client matches the AuthenticationClient type.
-
-		const client = createDirectus(directusUrl)
-			//.with(authentication('json', { autoRefresh: false }))
-			.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
-			.with(staticToken(user.access_token))
-			.with(rest())
-		directus = client
-		return client
-	}
-
 	// If we need to login, or if there's no existing static token,
 	// we need a client with authentication capabilities.
 	// We use a singleton `directus` instance for unauthenticated users to share the connection.
-	if (!directus || login) {
-		const client = createDirectus(directusUrl)
+	if (!directus) {
+		directus = createDirectus(directusUrl)
 			.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
 			.with(rest({ credentials: 'include' }))
-		if (login) {
-			await client.login({ email: login.email, password: login.password })
+	}
+
+	if (login) {
+		await directus.login({ email: login.email, password: login.password })
+	} else {
+		const user = await getCurrentUser()
+		// If the user is authenticated, use their token to make requests on their behalf.
+		if (user?.access_token) {
+			directus.with(staticToken(user.access_token))
 		}
-		directus = client
 	}
 
 	return directus
