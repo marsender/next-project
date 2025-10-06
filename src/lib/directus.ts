@@ -1,10 +1,30 @@
 import { authentication, createDirectus, rest, staticToken } from '@directus/sdk'
 import { getLocale } from 'next-intl/server'
 import type { AuthenticationClient, DirectusClient, RestClient } from '@directus/sdk'
+import { TokenExpiredError } from './errors'
 import { getCurrentUser } from './sessions'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Schema = any
+
+// This function will wrap the Directus client's request method to handle token expiration.
+const withTokenExpirationHandling = <T extends DirectusClient<any> & RestClient<any>>(client: T): T => {
+	const originalRequest = client.request.bind(client)
+
+	// Override the request method
+	client.request = async (...args: Parameters<typeof originalRequest>) => {
+		try {
+			return await originalRequest(...args)
+		} catch (error: any) {
+			if (error.errors?.[0]?.extensions?.code === 'TOKEN_EXPIRED') {
+				throw new TokenExpiredError()
+			}
+			throw error
+		}
+	}
+
+	return client
+}
 
 // See https://directus.io/docs/guides/connect/sdk
 let directus: (DirectusClient<Schema> & RestClient<Schema> & AuthenticationClient<Schema>) | null = null
@@ -35,8 +55,7 @@ export async function getDirectusClient(
 			.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
 			.with(staticToken(user.access_token))
 			.with(rest())
-		directus = client
-		return client
+		return withTokenExpirationHandling(client)
 	}
 
 	// If we need to login, or if there's no existing static token,
@@ -49,7 +68,7 @@ export async function getDirectusClient(
 		if (login) {
 			await client.login({ email: login.email, password: login.password })
 		}
-		directus = client
+		directus = withTokenExpirationHandling(client)
 	}
 
 	return directus

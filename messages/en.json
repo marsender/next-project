@@ -1,4 +1,9 @@
 {
+	"Error": {
+		"title": "Something went wrong!",
+		"subtitle": "Please try again later.",
+		"session_expired": "Your session has expired. Redirecting to the homepage..."
+	},
 	"Metadata": {
 		"title": "Opale-concept - Freelance Web Developer",
 		"description": "Freelance Web Developer - Creation of modern and efficient websites"

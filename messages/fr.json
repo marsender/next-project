@@ -1,4 +1,9 @@
 {
+	"Error": {
+		"title": "Quelque chose s'est mal passé !",
+		"subtitle": "Veuillez réessayer plus tard.",
+		"session_expired": "Votre session a expiré. Redirection vers la page d'accueil..."
+	},
 	"Metadata": {
 		"title": "Opale-concept - Développeur Web Freelance",
 		"description": "Développeur Web Freelance - Création de sites modernes & performants"
