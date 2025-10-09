@@ -36,7 +36,7 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
 	</NextIntlClientProvider>
 )
 
-const directus = await getDirectusClientWithTestUser()
+const directus = await getDirectusClientWithTestUser({ withToken: false })
 
 describe('useAppState', () => {
 	const testUserId: string = '3b490daf-9b84-4271-9cf7-38218e702640'

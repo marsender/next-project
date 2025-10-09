@@ -12,24 +12,17 @@ export const useTokenExpiration = () => {
 
 		// Check if token has expired
 		const checkTokenExpiration = () => {
-			console.log('checkTokenExpiration session: %o', session)
 			if (session.error === 'RefreshAccessTokenError') {
 				// Token refresh failed, sign out
-				console.log('checkTokenExpiration: HERE 1')
 				handleSignOut()
 				return
 			}
-
-			// You can also check expiration time if stored in session
-			console.log('checkTokenExpiration: accessToken: %o', session.accessToken)
+			// Check expiration time if stored in session
 			if (session.accessToken) {
 				try {
 					const payload = JSON.parse(atob(session.accessToken.split('.')[1]))
 					const exp = payload.exp * 1000 // Convert to milliseconds
-
-					console.log('checkTokenExpiration payload: %o', payload)
 					if (Date.now() >= exp) {
-						console.log('checkTokenExpiration: HERE 3')
 						handleSignOut()
 					}
 				} catch (error) {

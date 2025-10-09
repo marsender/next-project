@@ -12,7 +12,6 @@ declare module 'next-auth' {
 		email_notifications?: boolean | null
 		last_access?: string | null
 		access_token?: string
-		refresh_token?: string
 		token_expires?: number
 	}
 
@@ -34,7 +33,6 @@ declare module 'next-auth/jwt' {
 		/** OpenID ID Token */
 		idToken?: string
 		accessToken?: string
-		refreshToken?: string
 		tokenExpires?: number
 		user?: User
 		error?: string

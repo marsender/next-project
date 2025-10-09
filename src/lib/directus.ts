@@ -11,42 +11,42 @@ let directus: (DirectusClient<Schema> & RestClient<Schema> & AuthenticationClien
 
 /**
  * Returns a Directus SDK instance.
- * If a user is authenticated, it will use cookie-based authentication to make requests on their behalf.
- * Otherwise, it will use a static token for public/unauthenticated access.
+ * If a user is authenticated, the token authentication is done
+ * Otherwise, the authentication has to be done
  *
  * @returns The Directus SDK instance.
  */
-export async function getDirectusClient(
-	login?: { email: string; password: string } | undefined,
-): Promise<DirectusClient<Schema> & RestClient<Schema> & AuthenticationClient<Schema>> {
+export async function getDirectusClient(): Promise<
+	DirectusClient<Schema> & RestClient<Schema> & AuthenticationClient<Schema>
+> {
+	if (directus) {
+		return directus
+	}
+
 	const directusUrl = process.env.DIRECTUS_URL
 	if (!directusUrl) {
 		throw new Error('`DIRECTUS_URL` is not set in your environment variables. Please add it to your `.env.local` file.')
 	}
 
-	// If we need to login, or if there's no existing static token,
-	// we need a client with authentication capabilities.
-	// We use a singleton `directus` instance for unauthenticated users to share the connection.
-	if (!directus) {
+	// If the user is authenticated, use the token
+	const user = await getCurrentUser()
+	if (user?.access_token) {
+		//console.log('getDirectusClient with user access token: %o', user)
 		directus = createDirectus(directusUrl)
 			.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
+			.with(staticToken(user.access_token))
 			.with(rest({ credentials: 'include' }))
+		return directus
 	}
 
-	if (login) {
-		await directus.login({ email: login.email, password: login.password })
-	} else {
-		const user = await getCurrentUser()
-		// If the user is authenticated, use their token to make requests on their behalf.
-		if (user?.access_token) {
-			directus.with(staticToken(user.access_token))
-		}
-	}
+	directus = createDirectus(directusUrl)
+		.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
+		.with(rest({ credentials: 'include' }))
 
 	return directus
 }
 
-export async function getDirectusClientWithTestUser() {
+export async function getDirectusClientWithTestUser({ withToken }: { withToken: boolean }) {
 	const email = process.env.DIRECTUS_EMAIL
 	if (!email) {
 		throw new Error(
@@ -60,7 +60,21 @@ export async function getDirectusClientWithTestUser() {
 		)
 	}
 
-	const client = await getDirectusClient({ email: email, password: password })
+	const client = await getDirectusClient()
+	const authData = await client.login({ email, password })
+	if (!authData?.access_token) {
+		throw new Error('`DIRECTUS_ACCESS_TOKEN` is not available.')
+	}
+
+	if (withToken) {
+		const directusUrl = process.env.DIRECTUS_URL
+		if (!directusUrl) {
+			throw new Error(
+				'`DIRECTUS_URL` is not set in your environment variables. Please add it to your `.env.local` file.',
+			)
+		}
+		return createDirectus(directusUrl).with(staticToken(authData.access_token)).with(rest())
+	}
 
 	return client
 }

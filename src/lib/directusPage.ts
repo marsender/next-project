@@ -113,12 +113,10 @@ async function directusPage(slug: string): Promise<Page> {
 			)
 			return emptyPage
 		}
-
 		if (response.length !== 1) {
 			return emptyPage
 		}
 		const itemPage = response[0] as ItemPage
-		//console.log('Directus itemPage: %o', itemPage)
 		// Access the translations property
 		if (itemPage.slug != slug || itemPage.translations.length !== 1) {
 			return emptyPage
@@ -127,10 +125,9 @@ async function directusPage(slug: string): Promise<Page> {
 		const page: Page = { ...itemPageTranslation, blocks: [] }
 		page.blocks = filterBlocks(itemPage.blocks, languageCode)
 		// Return the fetched page
-		//console.log('Page: %o', page)
 		return page
 	} catch (error) {
-		console.log(error)
+		// Token expired
 		return emptyPage
 	}
 }

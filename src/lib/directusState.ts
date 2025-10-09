@@ -26,6 +26,7 @@ export const stateService = {
 			}
 
 			const directus = await getDirectusClient()
+			//console.log('Directus token: %s', await directus.getToken())
 			const response = await directus.request(
 				readItems(USER_STATES_COLLECTION, {
 					filter: {
@@ -75,6 +76,7 @@ export const stateService = {
 			}
 
 			const directus = await getDirectusClient()
+			//console.log('Directus token: %s', await directus.getToken())
 			// Check if state exists
 			const response = await directus.request(
 				readItems(USER_STATES_COLLECTION, {

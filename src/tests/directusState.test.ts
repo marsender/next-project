@@ -10,7 +10,7 @@ import { User } from 'next-auth'
 vi.mock('@/lib/sessions')
 const mockGetCurrentUser = vi.mocked(getCurrentUser)
 
-const directus = await getDirectusClientWithTestUser()
+const directus = await getDirectusClientWithTestUser({ withToken: true })
 
 describe('stateService', () => {
 	// Use a valid test user ID
