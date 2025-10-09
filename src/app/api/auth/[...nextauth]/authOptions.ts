@@ -1,4 +1,5 @@
-import type { NextAuthOptions, User } from 'next-auth'
+import type { NextAuthOptions, User, Session } from 'next-auth'
+import type { JWT } from 'next-auth/jwt'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { routes } from '@/lib/constants'
 import { getDirectusClient } from '@/lib/directus'
@@ -22,7 +23,6 @@ export const authOptions: NextAuthOptions = {
 				const password: string = credentials?.password ?? ''
 				console.log('Directus login attempt with email=%s', email)
 				try {
-					// Create a new client instance specifically for logging in
 					const directus = await getDirectusClient({ email: email, password: password })
 					const authData = await directus.login({ email, password })
 
@@ -35,19 +35,21 @@ export const authOptions: NextAuthOptions = {
 								'email',
 								'avatar',
 								'language',
-								'status',
+								{ role: ['name'] },
 								'email_notifications',
 								'last_access',
 							],
 						}),
 					)) as User
-					// On successful authorization, return the user object from Directus
-					// along with the tokens. This object is passed to the `jwt` callback.
-					//console.log('Directus login readMe: %o', user)
+
+					// Calculate token expiration time
+					const tokenExpires = Date.now() + (authData.expires ?? 900000) // Default 15 minutes
+
 					return {
 						...user,
 						access_token: authData.access_token ?? undefined,
 						refresh_token: authData.refresh_token ?? undefined,
+						token_expires: tokenExpires,
 					}
 				} catch (error) {
 					let directusError = 'An unknown authentication error occurred.'
@@ -66,54 +68,78 @@ export const authOptions: NextAuthOptions = {
 	pages: {
 		signIn: routes.LOGIN,
 		signOut: routes.LOGOUT,
-		// error: '/auth/error', // Error code passed in query string as ?error=
-		// verifyRequest: '/reset-password',
-		// newUser: '/new-user', // New users will be directed here on first sign in
 	},
 	callbacks: {
 		async jwt({ token, user }) {
-			// The user object is only passed on the first call after sign-in
+			// Initial sign in
 			if (user) {
 				token.id = user.id
 				token.accessToken = user.access_token
 				token.refreshToken = user.refresh_token
-				// Persist the user properties from Directus in the token
+				token.tokenExpires = user.token_expires
 				token.user = user
 			}
-			return token
+
+			// Return previous token if the access token has not expired yet
+			if (token.tokenExpires && Date.now() < token.tokenExpires) {
+				return token
+			}
+
+			// Access token has expired, try to update it
+			return await refreshAccessToken(token)
 		},
-		async session({ session, token }) {
-			// The session object is what the client-side and server components will see.
-			// We are taking the user data from the token and putting it into the session.
+		async session({ session, token }: { session: Session; token: JWT }) {
 			if (token && session.user) {
 				session.user = token.user as User
-				// You can also expose tokens to the session if needed for client-side API calls
-				// session.accessToken = token.accessToken as string;
-				// session.refreshToken = token.refreshToken as string;
+				session.error = token.error
+				session.accessToken = token.accessToken as string
 			}
 			return session
 		},
 	},
 	events: {
-		/* on successful sign in */
 		async signIn(message) {
 			console.log('Next auth signIn message: %o', message)
 		},
-		/* on signout */
 		async signOut(message) {
 			console.log('Next auth signOut message: %o', message)
 		},
-		/* user created */
-		// async createUser(message) {
-		// 	console.log('Next auth createUser message: %o', message)
-		// },
-		/* user updated - e.g. their email was verified */
-		// async updateUser(message) {
-		// 	console.log('Next auth updateUser message: %o', message)
-		// },
-		/* session is active */
-		// async session(message) {
-		// 	console.log('Next auth session message: %o', message)
-		// },
 	},
+}
+
+async function refreshAccessToken(token: JWT): Promise<JWT> {
+	try {
+		// You'll need to implement token refresh logic with Directus
+		// This is a simplified example - adjust based on your Directus setup
+		const response = await fetch(`${process.env.DIRECTUS_URL}/auth/refresh`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				refresh_token: token.refreshToken,
+			}),
+		})
+
+		const refreshedTokens = await response.json()
+
+		if (!response.ok) {
+			throw refreshedTokens
+		}
+
+		return {
+			...token,
+			accessToken: refreshedTokens.access_token,
+			refreshToken: refreshedTokens.refresh_token ?? token.refreshToken,
+			tokenExpires: Date.now() + (refreshedTokens.expires ?? 900000),
+		}
+	} catch (error) {
+		console.error('Error refreshing access token:', error)
+
+		// Return a token that will trigger the client to sign out
+		return {
+			...token,
+			error: 'RefreshAccessTokenError',
+		}
+	}
 }
