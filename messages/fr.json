@@ -98,5 +98,9 @@
 		"updateSuccess": "{key} mis à jour avec succès !",
 		"failedToSave": "Échec de la sauvegarde de {key}",
 		"failedToLoad": "Échec du chargement de {key}"
+	},
+	"Toast": {
+		"error": "Erreur",
+		"success": "Succès"
 	}
 }

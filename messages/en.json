@@ -98,5 +98,9 @@
 		"updateSuccess": "{key} updated successfully!",
 		"failedToSave": "Failed to save {key}",
 		"failedToLoad": "Failed to load {key}"
+	},
+	"Toast": {
+		"error": "Error",
+		"success": "Success"
 	}
 }

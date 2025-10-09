@@ -1,17 +1,21 @@
-import { toast } from "./use-toast"
+'use client'
+
+import { useTranslations } from 'next-intl'
+import { toast } from './use-toast'
 
 const useCustomToast = () => {
+	const t = useTranslations('Toast')
 	return {
 		errorToast: (message: string) => {
 			toast({
-				title: 'Error',
+				title: t('error'),
 				description: message,
-				variant: "destructive",
+				variant: 'destructive',
 			})
 		},
-		successToast: (message:string) => {
+		successToast: (message: string) => {
 			toast({
-				title: 'Success',
+				title: t('success'),
 				description: message,
 			})
 		},
