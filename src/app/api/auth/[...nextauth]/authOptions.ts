@@ -3,7 +3,7 @@ import type { JWT } from 'next-auth/jwt'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { routes } from '@/lib/constants'
 import { getDirectusClient } from '@/lib/directus'
-import { readMe } from '@directus/sdk'
+import { createDirectus, rest, authentication, readMe, refresh } from '@directus/sdk'
 
 /**
  * All requests to /api/auth/* (signIn, callback, signOut, etc.) will automatically be handled by NextAuth.js
@@ -22,7 +22,10 @@ export const authOptions: NextAuthOptions = {
 				const email: string = credentials?.email ?? ''
 				const password: string = credentials?.password ?? ''
 				try {
-					const directus = await getDirectusClient()
+					// Use a temporary client to login with username/password, for the user to get the refresh_token
+					const directus = createDirectus(process.env.DIRECTUS_URL as string)
+						.with(authentication('json'))
+						.with(rest())
 					const authData = await directus.login({ email, password })
 					const user = (await directus.request(
 						readMe({
@@ -42,8 +45,10 @@ export const authOptions: NextAuthOptions = {
 
 					return {
 						...user,
-						access_token: authData.access_token ?? undefined,
-						token_expires: authData.expires_at ?? undefined,
+						access_token: authData.access_token,
+						// The expires property is in milliseconds
+						token_expires: Date.now() + authData.expires,
+						refresh_token: authData.refresh_token,
 					}
 				} catch (error) {
 					let directusError = 'An unknown authentication error occurred.'
@@ -68,10 +73,11 @@ export const authOptions: NextAuthOptions = {
 			if (user) {
 				token.accessToken = user.access_token
 				token.tokenExpires = user.token_expires
+				token.refreshToken = user.refresh_token
 				token.user = user
 			}
 			// Return previous token if the access token has not expired yet
-			if (token.tokenExpires && Date.now() < token.tokenExpires) {
+			if (token.tokenExpires && Date.now() < (token.tokenExpires as number)) {
 				return token
 			}
 			// Access token has expired, try to update it
@@ -100,26 +106,14 @@ export const authOptions: NextAuthOptions = {
 
 async function refreshAccessToken(token: JWT): Promise<JWT> {
 	try {
-		console.log('HERE refreshAccessToken: %o', token)
-		// You'll need to implement token refresh logic with Directus
-		// This is a simplified example - adjust based on your Directus setup
-		const response = await fetch(`${process.env.DIRECTUS_URL}/auth/refresh`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				refresh_token: token.accessToken,
-			}),
-		})
-		const refreshedTokens = await response.json()
-		if (!response.ok) {
-			throw refreshedTokens
-		}
+		const directus = await getDirectusClient()
+		const refreshedTokens = await directus.request(refresh())
+
 		return {
 			...token,
 			accessToken: refreshedTokens.access_token,
-			tokenExpires: Date.now() + (refreshedTokens.expires ?? 900000),
+			tokenExpires: Date.now() + refreshedTokens.expires,
+			refreshToken: refreshedTokens.refresh_token ?? token.refreshToken, // Fall back to old refresh token
 		}
 	} catch (error) {
 		// Return a token that will trigger the client to sign out
