@@ -43,14 +43,15 @@ export function Avatar({ className }: Props) {
 			}
 		}
 	}
-
-	//const avatarUrl = session?.user?.image ? getAssetURL(session.user.image) : '/default-avatar.png'
-	const avatarUrl = session?.user?.image ? session.user.image : '/default-avatar.png'
+	//console.log('User: %o', session?.user)
+	//const avatarUrl = session?.user?.avatar ? getAssetURL(session.user.avatar) : '/default-avatar.png'
+	const avatar = session?.user?.avatar ? session.user.avatar : 'default-avatar.png'
+	const avatarUrl = 'https://directus.localhost/assets/' + avatar
 
 	return (
 		<div className={`flex items-center space-x-4 ${className}`}>
 			<div className="relative h-24 w-24">
-				<Image src={avatarUrl} alt="User Avatar" layout="fill" className="rounded-full object-cover" />
+				<Image src={avatarUrl} alt="User Avatar" fill sizes="96px" className="rounded-full object-cover" />
 			</div>
 			<div className="flex flex-col">
 				<Button asChild className="mb-2" disabled={loading}>
