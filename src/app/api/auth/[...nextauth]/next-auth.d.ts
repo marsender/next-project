@@ -13,6 +13,7 @@ declare module 'next-auth' {
 		last_access?: string | null
 		access_token?: string
 		token_expires?: number
+		refresh_token?: string
 	}
 
 	/**
@@ -33,6 +34,7 @@ declare module 'next-auth/jwt' {
 		/** OpenID ID Token */
 		idToken?: string
 		accessToken?: string
+		refreshToken?: string
 		tokenExpires?: number
 		user?: User
 		error?: string
