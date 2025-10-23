@@ -126,7 +126,7 @@ async function directusPage(slug: string): Promise<Page> {
 		page.blocks = filterBlocks(itemPage.blocks, languageCode)
 		// Return the fetched page
 		return page
-	} catch (error) {
+	} catch {
 		// Token expired
 		return emptyPage
 	}
