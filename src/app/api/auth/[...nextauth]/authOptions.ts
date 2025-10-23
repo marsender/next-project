@@ -152,7 +152,7 @@ async function refreshAccessToken(token: JWT): Promise<JWT> {
 
 	try {
 		// Create a new Directus client for the refresh call
-		const directus = await getDirectusClient({ useExisting: false })
+		const directus = await getDirectusClient() // { useExisting: false }
 
 		// See https://directus.io/docs/guides/auth/email-login
 		// Use the refresh token from the token object

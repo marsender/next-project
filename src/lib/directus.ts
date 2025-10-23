@@ -16,10 +16,12 @@ let directus: (DirectusClient<Schema> & RestClient<Schema> & AuthenticationClien
  *
  * @returns The Directus SDK instance.
  */
-export async function getDirectusClient({ useExisting = true }: { useExisting?: boolean } = {}): Promise<
+//export async function getDirectusClient({ useExisting = true }: { useExisting?: boolean } = {}): Promise<
+export async function getDirectusClient(): Promise<
 	DirectusClient<Schema> & RestClient<Schema> & AuthenticationClient<Schema>
 > {
-	if (useExisting && directus) {
+	//if (useExisting && directus) {
+	if (directus) {
 		return directus
 	}
 
@@ -29,25 +31,17 @@ export async function getDirectusClient({ useExisting = true }: { useExisting?: 
 	}
 
 	// If the user is authenticated, use the token
-	if (useExisting) {
-		const user = await getCurrentUser()
-		if (user?.access_token) {
-			//console.log('getDirectusClient with user access token: %o', user)
-			directus = createDirectus(directusUrl)
-				//.with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
-				.with(authentication('json'))
-				.with(staticToken(user.access_token))
-				// .with(rest({ credentials: 'include' }))
-				.with(rest())
-			return directus
-		}
+	const user = await getCurrentUser()
+	if (user?.access_token) {
+		//console.log('getDirectusClient with user access token: %o', user)
+		directus = createDirectus(directusUrl)
+			.with(authentication('json'))
+			.with(staticToken(user.access_token))
+			.with(rest())
+		return directus
 	}
 
-	directus = createDirectus(directusUrl)
-		// .with(authentication('cookie', { credentials: 'include', autoRefresh: true }))
-		.with(authentication('json'))
-		// .with(rest({ credentials: 'include' }))
-		.with(rest())
+	directus = createDirectus(directusUrl).with(authentication('json')).with(rest())
 
 	return directus
 }
@@ -70,7 +64,7 @@ export async function getDirectusClientWithTestUser({
 		)
 	}
 
-	const client = await getDirectusClient({ useExisting: false })
+	const client = await getDirectusClient() // { useExisting: false }
 	const authData = await client.login({ email, password }, { mode: 'json' })
 	if (!authData?.access_token) {
 		throw new Error('`DIRECTUS_ACCESS_TOKEN` is not available.')
