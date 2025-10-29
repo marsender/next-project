@@ -1,30 +1,37 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import tseslint from 'typescript-eslint';
+import tseslint from 'typescript-eslint'
+import next from '@next/eslint-plugin-next'
 
-const compat = new FlatCompat({
-	baseDirectory: import.meta.dirname,
-});
-
-export default tseslint.config(
+export default [
+	// Global ignores
 	{
 		ignores: [
-            '.next/**',
-            'node_modules/**',
-            'public/**',
-            'out/**',
-            'build/**',
-            'next-env.d.ts',
-            'src/playwright/**',
-            'src/tests/**'
-        ],
+			'.next/**',
+			'node_modules/**',
+			'public/**',
+			'out/**',
+			'build/**',
+			'next-env.d.ts',
+			'src/playwright/**',
+			'src/tests/**',
+		],
 	},
-	...compat.extends('next/core-web-vitals', 'next/typescript'),
-	...tseslint.configs.recommended,
+	// Next.js config
 	{
-		// Custom rules can be placed here
+		files: ['**/*.ts', '**/*.tsx'],
+		plugins: {
+			'@next/next': next,
+		},
 		rules: {
-			// For example, to warn about unused variables instead of erroring
+			...next.configs.recommended.rules,
+			...next.configs['core-web-vitals'].rules,
+		},
+	},
+	// TypeScript ESLint
+	...tseslint.configs.recommended,
+	// Custom rules
+	{
+		rules: {
 			'@typescript-eslint/no-unused-vars': 'warn',
 		},
 	},
-);
+]
