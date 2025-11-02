@@ -148,10 +148,10 @@ describe('useAppState', () => {
 		// so that the query actually gets refetched.
 		const invalidateQueriesSpy = vi.spyOn(queryClient, 'invalidateQueries')
 
-		// Mutate the state using the most recent mutate function from the hook
-		act(() => {
+		// Mutate the state using the most recent mutateAsync function from the hook
+		await act(async () => {
 			const [, setState] = result.current
-			setState(initialValue)
+			await setState(initialValue)
 		})
 
 		// Wait for the mutation to be successful

@@ -33,7 +33,7 @@ export function useAppState<T extends JSONValue>(key: string, defaultValue: T) {
 		staleTime: 1000 * 60 * 5, // 5 minutes
 	})
 
-	const { mutate } = useMutation({
+	const { mutateAsync } = useMutation({
 		mutationFn: (newValue: T) => setAppStateAction(key, newValue),
 		onMutate: async (newValue: T) => {
 			// If the query has an error, we shouldn't attempt an optimistic update.
@@ -74,5 +74,6 @@ export function useAppState<T extends JSONValue>(key: string, defaultValue: T) {
 		}
 	}, [isError, error, key, errorToast, t])
 
-	return [state ?? defaultValue, mutate, isLoading] as const
+	// Return the promise-based mutateAsync so callers/tests can await it and wrap in act()
+	return [state ?? defaultValue, mutateAsync, isLoading] as const
 }
