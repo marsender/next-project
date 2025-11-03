@@ -60,7 +60,7 @@
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.36.0",
 		"eslint-config-next": "^16.0.0",
-		"jsdom": "^27.0.0",
+		"jsdom": "^27.1.0",
 		"knip": "^5.65.2",
 		"msw": "^2.11.3",
 		"postcss": "^8.5.6",
