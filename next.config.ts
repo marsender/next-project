@@ -25,6 +25,8 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	// Add this section to configure allowedDevOrigins
+	allowedDevOrigins: ['http://localhost:3002', 'http://172.17.0.2'],
 }
 
 export default withNextIntl(nextConfig)

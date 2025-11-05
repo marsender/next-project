@@ -3,7 +3,7 @@ import type { JWT } from 'next-auth/jwt'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { routes } from '@/lib/constants'
 import { getDirectusClient } from '@/lib/directus'
-import { readMe, refresh, withOptions } from '@directus/sdk'
+import { readMe, refresh } from '@directus/sdk'
 
 // Flag to prevent infinite loop during token refresh
 let isRefreshing = 0
@@ -158,15 +158,15 @@ async function refreshAccessToken(token: JWT): Promise<JWT> {
 		// Use the refresh token from the token object
 		// Note: Directus SDK's refresh() method should automatically use the stored refresh token
 		// But we need to ensure the SDK has access to it
-		const refreshedTokens = await directus.request(
-			withOptions(refresh(), {
-				body: JSON.stringify({
-					refresh_token: token.refreshToken,
-				}),
-			}),
-		)
+		// const refreshedTokens = await directus.request(
+		// 	withOptions(refresh(), {
+		// 		body: JSON.stringify({
+		// 			refresh_token: token.refreshToken,
+		// 		}),
+		// 	}),
+		// )
 		//const refreshedTokens = await directus.request(refresh())
-		//const refreshedTokens = await directus.request(refresh({ mode: 'json', refresh_token: token.refreshToken }))
+		const refreshedTokens = await directus.request(refresh({ mode: 'json', refresh_token: token.refreshToken }))
 		console.log('refreshedTokens: %o', refreshedTokens)
 
 		// console.log('Token refresh successful:', {

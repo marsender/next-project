@@ -7,6 +7,9 @@ export const USER_STATES_COLLECTION = 'user_states'
 // Represents any valid JSON value.
 export type JSONValue = string | number | boolean | { [x: string]: JSONValue } | Array<JSONValue> | null
 
+// Directus SDK doesn't like `null` for JSON fields, it prefers `undefined` or a value.
+type DirectusJsonValue = string | number | boolean | { [x: string]: JSONValue } | Array<JSONValue>
+
 // Define the structure of a 'user_states' item in Directus.
 interface UserStateItem {
 	id: string // The unique identifier for the state item in Directus
@@ -92,7 +95,7 @@ export const stateService = {
 				// Update response
 				await directus.request(
 					updateItem(USER_STATES_COLLECTION, response[0].id, {
-						state_value: value,
+						state_value: (value === null ? undefined : value) as DirectusJsonValue | undefined,
 					}),
 				)
 			} else {

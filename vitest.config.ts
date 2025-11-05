@@ -12,7 +12,7 @@ export default defineConfig({
 	test: {
 		globals: true, // allows to use describe, expect, it etc. without import
 		environment: 'jsdom',
-		setupFiles: ['./src/setupTests.ts'],
+		setupFiles: ['./src/tests/setupTests.ts'],
 		exclude: [...configDefaults.exclude, 'src/playwright/*'],
 		coverage: {
 			provider: 'v8', // or 'istanbul'
