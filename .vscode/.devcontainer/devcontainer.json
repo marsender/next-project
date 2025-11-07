@@ -11,9 +11,10 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3002],
+	"forwardPorts": [3002, 9323],
 	"portsAttributes": {
-		"3002": { "label": "Next.js development server" }
+		"3002": { "label": "Next.js development server" },
+		"9323": { "label": "Playwright UI" }
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
