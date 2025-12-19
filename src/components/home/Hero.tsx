@@ -19,7 +19,7 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 				<h1 className="mb-4 text-4xl leading-normal font-black xl:text-5xl">{global.title}</h1>
 				<h2 className="mb-4 text-2xl font-[300]">{global.description}</h2>
 				<div className="flex justify-center gap-4 pt-10 lg:justify-start">
-					{false && isConnected ? null : (
+					{true || isConnected ? null : (
 						<CustomLink
 							// Calcom is disabled
 							// https://cal.opale-concept.com/didier.corbiere/meeting
