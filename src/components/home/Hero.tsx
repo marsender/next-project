@@ -9,6 +9,7 @@ import type { Global } from '@/lib/directusGlobalTypes'
 
 export default async function Hero({ isConnected }: { isConnected: boolean }) {
 	const developmentMode = process.env.NODE_ENV === 'development'
+	const calComUrl = process.env.CAL_COM_URL
 	const locale = await getLocale()
 	const t = await getTranslations({ locale })
 	const global: Global = await directusGlobal()
@@ -19,19 +20,11 @@ export default async function Hero({ isConnected }: { isConnected: boolean }) {
 				<h1 className="mb-4 text-4xl leading-normal font-black xl:text-5xl">{global.title}</h1>
 				<h2 className="mb-4 text-2xl font-[300]">{global.description}</h2>
 				<div className="flex justify-center gap-4 pt-10 lg:justify-start">
-					{true || isConnected ? null : (
-						<CustomLink
-							// Calcom is disabled
-							// https://cal.opale-concept.com/didier.corbiere/meeting
-							href=""
-							size="lg"
-							variant="solid"
-							icon={<User size={48} />}
-							blankTarget={true}
-						>
+					{!isConnected && calComUrl ? (
+						<CustomLink href={calComUrl} size="lg" variant="solid" icon={<User size={48} />} blankTarget={true}>
 							{t('Hero.contactMe')} &nbsp;
 						</CustomLink>
-					)}
+					) : null}
 					{false && developmentMode ? (
 						<>
 							<CustomLink href={routes.LOGIN} size="lg">
