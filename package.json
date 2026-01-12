@@ -12,7 +12,7 @@
 		"type-check": "tsc -b",
 		"lint": "eslint",
 		"lint:fix": "eslint --fix",
-		"test": "NODE_ENV=test vitest",
+		"test:int": "NODE_ENV=test vitest",
 		"coverage": "NODE_ENV=test vitest run --coverage",
 		"test:e2e": "npx playwright test",
 		"test:e2e:ui": "npx playwright test --ui",

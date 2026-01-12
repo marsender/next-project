@@ -8,7 +8,9 @@ test.describe('home page', () => {
 		await page.goto('/')
 		// Note: Content is provided by directus, not by the translation files.
 		await expect(page.getByRole('heading', { name: 'Freelance Web Developer' })).toBeVisible()
-		await expect(page.getByRole('link', { name: en.Hero.contactMe })).toBeVisible()
+		if (process.env.CAL_COM_URL !== undefined) {
+			await expect(page.getByRole('link', { name: en.Hero.contactMe })).toBeVisible()
+		}
 		// Note: Content is provided by directus, not by the translation files.
 		await expect(page.getByText('Hosting')).toBeVisible()
 	})
@@ -16,7 +18,9 @@ test.describe('home page', () => {
 		await page.goto('/fr')
 		// Note: Content is provided by directus, not by the translation files.
 		await expect(page.getByRole('heading', { name: 'Développeur Web Freelance' })).toBeVisible()
-		await expect(page.getByRole('link', { name: fr.Hero.contactMe })).toBeVisible()
+		if (process.env.CAL_COM_URL !== undefined) {
+			await expect(page.getByRole('link', { name: fr.Hero.contactMe })).toBeVisible()
+		}
 		// Note: Content is provided by directus, not by the translation files.
 		await expect(page.getByText('Hébergement')).toBeVisible()
 	})

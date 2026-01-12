@@ -70,8 +70,8 @@ jobs:
           DIRECTUS_PASSWORD=${{ secrets.TEST_DIRECTUS_PASSWORD }}
           EOF
 
-      - name: ⚡ Run vitest
-        run: npm run test -- --coverage
+      - name: ⚡ Run integration tests
+        run: npm run test:int -- --coverage
 
   playwright:
     name: 🎭 Playwright
