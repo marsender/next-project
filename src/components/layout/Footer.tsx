@@ -51,7 +51,7 @@ const Footer = () => {
 						</ListSection>
 					</div>
 					<div className="flex items-center justify-between border-t border-gray-700 py-6">
-						{false ? <Logo className="text-white" isWhite /> : null}
+						{false ? <Logo className="text-white" /> : null}
 						<Link href="https://opale-concept.com/" target="_blank">
 							<span className="text-sm">Opale-concept © {currentYear}</span>
 						</Link>
