@@ -13,7 +13,9 @@ const Step = ({ title, img, description }: StepProps) => (
 	<div className="xs:flex-row xs:space-x-8 max-xs:items-center flex flex-col space-y-8 lg:flex-col lg:space-y-8 lg:space-x-0">
 		<Image src={img} alt={img} width={70} height={0} className="xs:w-[13rem] relative w-3/5" />
 		<div className="xs:text-left text-center">
-			<span className="mb-3 inline-block border-b-4 border-b-black pt-4 pr-5 pb-1 text-2xl font-[800]">{title}</span>
+			<span className="mb-3 inline-block border-b-4 border-b-black pt-4 pr-5 pb-1 text-2xl font-extrabold">
+				{title}
+			</span>
 			<div className="text-base">{description}</div>
 		</div>
 	</div>
